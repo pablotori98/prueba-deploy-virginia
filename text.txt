@@ -1,0 +1,6 @@
+
+
+
+npm update <<<<<
+
+npm install react@latest react-dom@latest
