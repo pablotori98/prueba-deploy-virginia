@@ -1,3 +1,12 @@
 /* 
     General Styles used on every website (Don't Repeat Yourself)
 */
+@import url(colors.css);
+@import url(./components/navbar.css);
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;500;600;700;800;900&display=swap');
+
+body,
+html,
+#root{
+    font-family: 'Inter', sans-serif;
+}

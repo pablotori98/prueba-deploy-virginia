@@ -1,14 +1,9 @@
-import React, { useContext } from "react";
-import { Context } from "../store/appContext";
+import React from 'react'
 
-import "../../styles/home.css";
+const Home = () => {
+  return (
+	<div>Home</div>
+  )
+}
 
-export const Home = () => {
-	const { store, actions } = useContext(Context);
-
-	return (
-		<div className="text-center mt-5">
-			<h1>Hola mundo</h1>
-		</div>
-	);
-};
+export default Home

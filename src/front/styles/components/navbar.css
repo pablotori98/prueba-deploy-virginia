@@ -1,0 +1,8 @@
+@import url(../colors.css);
+
+.NavbarWrapper {
+  width: 100%;
+  height: 4rem;
+  background-color: var(--red700);
+  color: var(--white);
+}
