@@ -13,7 +13,7 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { clientsColumns } from "../app/ClientsDataGrid";
 import { getAllClients } from "../app/apicalls/clientCalls";
 import ClientDetailView from "../features/clientsdetailview/ClientDetailView";
-import { SpanishText } from "../features/clientsdetailview/aux/SpanishText";
+import { SpanishText } from "../features/clientsdetailview/comps/SpanishText";
 
 const Clients = () => {
   const { actions, store } = useContext(Context);

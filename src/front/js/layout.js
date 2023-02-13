@@ -16,7 +16,7 @@ import ProtectedRoute from "./app/ProtectedRoute.js";
 import Sidebar from "./features/sidebar/Sidebar.js";
 //Compoents and features
 import injectContext from "./store/appContext";
-import { sidePages } from "./features/sidebar/aux/SideBarData.js";
+import { sidePages } from "./features/sidebar/comps/SideBarData.js";
 //create your first component
 const Layout = () => {
   const { actions, store } = useContext(Context);
@@ -26,7 +26,7 @@ const Layout = () => {
   const isAdmin = useMemo(() => {
     return store.isAdmin;
   }, [store.isAdmin]);
-  
+
   //the basename is used when your project is published in a subdirectory and not in the root of the domain
   // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
   const basename = process.env.BASENAME || "";
@@ -35,7 +35,7 @@ const Layout = () => {
   const data = { name: "Test", occupation: "test" };
 
   useEffect(() => {
-    actions.setIsLogged()
+    actions.setIsLogged();
   }, []);
   return (
     <Box

@@ -11,8 +11,8 @@ import {
 } from "@mui/material";
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import FlexBetween from "../styled/FlexBetween";
-import SideBar from "./aux/SideBar";
-import FullBar from "./aux/FullBar";
+import SideBar from "./comps/SideBar";
+import FullBar from "./comps/FullBar";
 import { useSelector, useDispatch } from "react-redux";
 
 const NavBar = () => {
