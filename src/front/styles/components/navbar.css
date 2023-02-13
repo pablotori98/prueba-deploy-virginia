@@ -3,6 +3,30 @@
 .NavbarWrapper {
   width: 100%;
   height: 4rem;
-  background-color: var(--red700);
+  background-color: var(--nacexorange);
   color: var(--white);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.FullbarWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+
+}
+
+.LogoContainer {
+}
+.Logo {
+  height: 2rem;
+  aspect-ratio: 4/1;
+}
+
+.NavButton{
+  color:var(--white-3) !important;
+  font-weight: 600 !important;
 }

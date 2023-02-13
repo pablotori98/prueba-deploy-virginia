@@ -1,0 +1,7 @@
+@import url(../colors.css);
+.SideBarWrapper{
+    background-color: #f6a17a;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}

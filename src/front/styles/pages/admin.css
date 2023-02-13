@@ -1,0 +1,70 @@
+@import url(../colors.css);
+.AdminWrapper {
+  height: 70vh;
+}
+.AdminBody {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.AdminUpperBody {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 35%;
+  width: 100%;
+  gap: 1rem;
+}
+
+.AdminUpperBodyLeft {
+  width: 35%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-areas:
+  "UL UR"
+  "DL DR"
+  ;
+  column-gap: 1rem;
+  row-gap: 1rem;
+}
+.UB-UL{
+    grid-area: UL;
+}
+.UB-UR{
+    grid-area: UR;
+}
+.UB-DL{
+    grid-area: DL;
+}
+.UB-DR{
+    grid-area: DR;
+}
+.AdminUpperBodyRight {
+  width: 65%;
+  height: 100%;
+}
+
+.AdminLowerBody {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 65%;
+  width: 100%;
+  gap: 1rem;
+}
+
+.AdminLowerBodyLeft {
+  width: 100%;
+  height: 100%;
+}
+
+.AdminLowerBodyRight {
+  width: 30%;
+  height: 100%;
+}
+

@@ -79,6 +79,7 @@
 		"@mui/material": "^5.11.0",
 		"@mui/system": "^5.11.5",
 		"@mui/utils": "^5.11.2",
+		"@mui/x-data-grid": "^5.17.21",
 		"@mui/x-date-pickers": "^5.0.16",
 		"@reduxjs/toolkit": "^1.9.2",
 		"formik": "^2.2.9",
@@ -89,6 +90,7 @@
 		"react-redux": "^8.0.5",
 		"react-router-dom": "^6.3.0",
 		"socket.io-client": "^4.5.4",
+		"uuid": "^9.0.0",
 		"yup": "^0.32.11"
 	}
 }

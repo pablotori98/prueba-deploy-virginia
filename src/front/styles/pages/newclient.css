@@ -1,0 +1,12 @@
+@import url(../colors.css);
+
+.NewClientWrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+.ClientForm{
+    margin-top: 1rem;
+    height: max-content;
+    padding-top: 1rem;
+}

@@ -16,10 +16,12 @@ import FullBar from "./aux/FullBar";
 import { useSelector, useDispatch } from "react-redux";
 
 const NavBar = () => {
-  const isMobile = useMediaQuery("(max-width:600px)");
+  const isMobile = useMediaQuery("(max-width:768px)");
   return (
     <Box className="NavbarWrapper container-fluid">
-      <FlexBetween>{isMobile ? <SideBar /> : <FullBar />}</FlexBetween>
+      <FlexBetween sx={{ width: "100%", height: "100%" }} className="container-fluid">
+        {isMobile ? <SideBar /> : <FullBar />}
+      </FlexBetween>
     </Box>
   );
 };
