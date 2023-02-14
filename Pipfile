@@ -7,7 +7,7 @@ verify_ssl = true
 
 [packages]
 flask = "*"
-sqlalchemy = "*"
+sqlalchemy = "==1.4.46"
 flask-sqlalchemy = "*"
 flask-migrate = "*"
 flask-swagger = "*"
@@ -25,6 +25,8 @@ eventlet = "*"
 pandas = "*"
 flask-login = "*"
 flask-wtf = "*"
+importlib-metadata = "*"
+importlib-resources = "*"
 
 [requires]
 python_version = "3.10"
