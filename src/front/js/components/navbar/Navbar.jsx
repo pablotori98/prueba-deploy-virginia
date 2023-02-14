@@ -32,7 +32,7 @@ export const Navbar = () => {
       <AppBar sx={{ background: "#D2D2CF " }} className="navbar">
         <Toolbar className="padding0">
           {isMatch ? (
-            <Box className="padding0" >
+            <Box className="padding0">
               <Box className="positionabsoluterighttop">
                 <DrawerComp />
               </Box>
@@ -57,10 +57,9 @@ export const Navbar = () => {
                   }}
                 >
                   <Link to="/" className="linkremovestyle text-black">
-                  <Box className="d-flex align-items-center">
-
-                    <Typography variant="h6">Logo / Nombre</Typography>
-                  </Box>
+                    <Box className="d-flex align-items-center">
+                      <Typography variant="h6">Logo / Nombre</Typography>
+                    </Box>
                   </Link>
                   <Box to="/" className="linksnavbar">
                     <Link to="/" className="linkremovestyle">
@@ -102,10 +101,11 @@ export const Navbar = () => {
                     width: "75vw",
                   }}
                 >
-                  <Box className="d-flex align-items-center">
-                    
-                    <Typography variant="h6">Logo / Nombre</Typography>
-                  </Box>
+                  <Link to="/" className="linkremovestyle text-black">
+                    <Box className="d-flex align-items-center">
+                      <Typography variant="h6">Logo / Nombre</Typography>
+                    </Box>
+                  </Link>
                   <Box className="linksnavbar">
                     <Link to="/home" className="linkremovestyle">
                       <Button>

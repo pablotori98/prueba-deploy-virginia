@@ -1,5 +1,7 @@
 import { Box } from '@mui/material'
 import React, {useContext, useEffect, useLayoutEffect} from 'react'
+import { FaqEnglish } from '../components/faq/FaqEnglish.jsx'
+import { FaqSpanish } from '../components/faq/FaqSpanish.jsx'
 import { Context } from '../store/appContext'
 
 const Welcome = () => {
@@ -9,11 +11,18 @@ const Welcome = () => {
     document.title = newTitle
   }, [])
   return (
-    <Box className='d-flex align-items-center h-100 justify-content-center'>
+    <Box>
       {store.language=="spanish"?
-    <Box>Spanish</Box>  
+
+    <Box className='d-flex flex-column align-items-center'>
+      <Box>Spanish</Box>
+      <FaqSpanish/>  
+    </Box>
     :
-    <Box>English</Box>  
+    <Box className='d-flex flex-column align-items-center'>
+      <Box>English</Box>  
+      <FaqEnglish/>
+    </Box>
     }
     </Box>
   )
