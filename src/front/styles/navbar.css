@@ -1,0 +1,56 @@
+.navbar{
+    display: flex;
+    align-items: center;    
+    margin: 0!important;
+    padding: 0!important;
+}
+
+.logonavbar{
+
+    width: 3rem;
+}
+.height25px{
+    max-height:25px!important;
+    padding: 0!important;
+    margin: 0!important;
+}
+
+.closebutton{
+    position: absolute!important;
+    top: 35px;
+    right: 25px;
+}
+
+
+.linkremovestyle{
+    text-decoration: none;
+    text-transform: none;
+}
+.buttonnavbar{
+    color: white;
+    margin: 0.5rem;
+    text-transform: none;
+    font-size: 1.15rem!important;
+    font-weight: 500!important;
+
+    
+}
+
+.padding0{
+    padding: 0!important;
+}
+
+.navbarmobile{
+    display: flex;
+    justify-content: center;
+    width: 100vw!important;
+    height: 90px;
+    align-items: center;
+}
+
+.positionabsoluterighttop{
+    position: absolute!important;
+    top: 30px;
+    right: 30px;
+}
+

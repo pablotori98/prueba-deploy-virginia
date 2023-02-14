@@ -9,6 +9,8 @@ import Welcome from "./pages/Welcome";
 //Pages and views
 
 //Components and features
+import { Navbar } from "./components/navbar/Navbar.jsx";
+import { Contact } from "./components/contact/Contact.jsx";
 
 import ProtectedRoute from "./app/ProtectedRoute.js";
 //Compoents and features
@@ -40,7 +42,7 @@ const Layout = () => {
             height: "100%",
           }}
         >
-          {/* <NavBar /> */}
+          <Navbar />
           <Routes>
             <Route
               path="/"
@@ -53,6 +55,7 @@ const Layout = () => {
             />
 
           </Routes>
+          <Contact />
         </Box>
       </BrowserRouter>
     </Box>
