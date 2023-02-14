@@ -16,12 +16,12 @@ const Welcome = () => {
 
     <Box className='d-flex flex-column align-items-center'>
       <Box>Spanish</Box>
-      <FaqSpanish/>  
+      {/* <FaqSpanish/>   */}
     </Box>
     :
     <Box className='d-flex flex-column align-items-center'>
       <Box>English</Box>  
-      <FaqEnglish/>
+      {/* <FaqEnglish/> */}
     </Box>
     }
     </Box>

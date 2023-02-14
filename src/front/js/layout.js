@@ -8,6 +8,11 @@ import { useMediaQuery, Box } from "@mui/material";
 import Welcome from "./pages/Welcome";
 import { ContactInfo } from "./pages/ContactInfo";
 import { AboutMe } from "./pages/AboutMe";
+import { Admin } from "./pages/Admin";
+import { UserProfile } from "./pages/UserProfile";
+import { Login } from "./pages/Login";
+import { SignUp } from "./pages/SignUp";
+import { Servicios } from "./pages/Servicios";
 
 //Pages and views
 
@@ -16,8 +21,9 @@ import { Navbar } from "./components/navbar/Navbar.jsx";
 import { Footer } from "./components/footer/Footer.jsx";
 import { Contact } from "./components/contact/Contact.jsx";
 import ProtectedRoute from "./app/ProtectedRoute.js";
-//Compoents and features
+//Components and features
 import injectContext from "./store/appContext";
+
 //create your first component
 const Layout = () => {
   //the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -66,6 +72,54 @@ const Layout = () => {
                   <ProtectedRoute
                     enabledProtection={false}
                     component={<AboutMe />}
+                  />
+                }
+              />
+              <Route
+                path="/admin"
+                element={
+                  <ProtectedRoute
+                    enabledProtection={false}
+                    component={<Admin />}
+                  />
+                }
+              />
+
+              <Route
+                path="/userprofile"
+                element={
+                  <ProtectedRoute
+                    enabledProtection={false}
+                    component={<UserProfile />}
+                  />
+                }
+              />
+
+              <Route
+                path="/login"
+                element={
+                  <ProtectedRoute
+                    enabledProtection={false}
+                    component={<Login />}
+                  />
+                }
+              />
+              <Route
+                path="/signup"
+                element={
+                  <ProtectedRoute
+                    enabledProtection={false}
+                    component={<SignUp />}
+                  />
+                }
+              />
+
+              <Route
+                path="/services"
+                element={
+                  <ProtectedRoute
+                    enabledProtection={false}
+                    component={<Servicios />}
                   />
                 }
               />

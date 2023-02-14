@@ -53,7 +53,7 @@ const DrawerComp = () => {
               {paginas.map((page, index) => (
                 <ListItemButton key={index} >
                   <ListItemIcon >
-                    <Link to={linkpaginas[index]} className="linkremovestyle">
+                    <Link to={linkpaginas[index]} className="linkremovestyle text-black linkheight">
                       <ListItemText onClick={() => setOpenDrawer(false)} >{page}</ListItemText>
                     </Link>
                   </ListItemIcon>

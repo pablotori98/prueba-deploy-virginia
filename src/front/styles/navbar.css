@@ -54,3 +54,6 @@
     right: 30px;
 }
 
+.linkheight{
+    max-height: 10px!important;
+}
