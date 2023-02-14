@@ -1,6 +1,6 @@
 .navbar{
     display: flex;
-    align-items: center;    
+    align-items: center;   
     margin: 0!important;
     padding: 0!important;
 }
@@ -27,7 +27,7 @@
     text-transform: none;
 }
 .buttonnavbar{
-    color: white;
+    color: black;
     margin: 0.5rem;
     text-transform: none;
     font-size: 1.15rem!important;

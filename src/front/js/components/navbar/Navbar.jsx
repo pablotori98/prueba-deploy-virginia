@@ -29,7 +29,7 @@ export const Navbar = () => {
   const { actions, store } = useContext(Context);
   return (
     <React.Fragment>
-      <AppBar sx={{ background: "#063970" }} className="navbar">
+      <AppBar sx={{ background: "#D2D2CF " }} className="navbar">
         <Toolbar className="padding0">
           {isMatch ? (
             <Box className="padding0" >
@@ -38,7 +38,7 @@ export const Navbar = () => {
               </Box>
 
               <Box className="navbarmobile">
-                <Link className="linkremovestyle text-white" to="/">
+                <Link className="linkremovestyle text-black" to="/">
                   <Typography>Logo</Typography>
                 </Link>
               </Box>
@@ -56,7 +56,7 @@ export const Navbar = () => {
                     width: "75vw",
                   }}
                 >
-                  <Link to="/" className="linkremovestyle text-white">
+                  <Link to="/" className="linkremovestyle text-black">
                   <Box className="d-flex align-items-center">
 
                     <Typography variant="h6">Logo / Nombre</Typography>
@@ -75,14 +75,14 @@ export const Navbar = () => {
                         </Typography>
                       </Button>
                     </Link>
-                    <Link to="/sobremi" className="linkremovestyle">
+                    <Link to="/aboutme" className="linkremovestyle">
                       <Button>
                         <Typography className="buttonnavbar">
                           Sobre mi
                         </Typography>
                       </Button>
                     </Link>
-                    <Link to="/contacto" className="linkremovestyle">
+                    <Link to="/contact" className="linkremovestyle">
                       <Button>
                         <Typography className="buttonnavbar">
                           Contacto
