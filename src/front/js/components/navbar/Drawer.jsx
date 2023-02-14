@@ -19,9 +19,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 //paginas y links
 const paginas = ["Inicio", "Terapia", "Sobre Mi", "Contacto"];
-const linkpaginas = ["/", "/terapia", "/sobremi", "/contacto"];
+const linkpaginas = ["/", "/terapia", "/aboutme", "/contact"];
 const pages = ["Home", "Therapy", "About Me", "Contact"];
-const linkpagess = ["/", "/therapy", "/aboutme", "/contact"];
 
 //Context
 import { Context } from "../../store/appContext";
@@ -55,7 +54,7 @@ const DrawerComp = () => {
                 <ListItemButton key={index} >
                   <ListItemIcon >
                     <Link to={linkpaginas[index]} className="linkremovestyle">
-                      <ListItemText >{page}</ListItemText>
+                      <ListItemText onClick={() => setOpenDrawer(false)} >{page}</ListItemText>
                     </Link>
                   </ListItemIcon>
                 </ListItemButton>
@@ -67,7 +66,6 @@ const DrawerComp = () => {
                 <ListItemButton key={index}>
                   <ListItemIcon>
                     <Link to={linkpaginas[index]} className="linkremovestyle">
-                      {" "}
                       <ListItemText>{page}</ListItemText>
                     </Link>
                   </ListItemIcon>
