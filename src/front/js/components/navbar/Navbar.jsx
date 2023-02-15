@@ -14,10 +14,12 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+
+import PersonIcon from "@mui/icons-material/Person";
 //Import components
 import DrawerComp from "./Drawer.jsx";
 import { NavbarLinksSpanish } from "./spanish/NavbarLinksSpanish.jsx";
-
+import { Dropdown } from "../dropdown/Dropdown.jsx";
 //Import context
 import { Context } from "../../store/appContext";
 import { NavbarLinksEnglish } from "./english/NavbarLinksEnglish.jsx";
@@ -31,7 +33,7 @@ export const Navbar = () => {
   const { actions, store } = useContext(Context);
   return (
     <React.Fragment>
-      <AppBar sx={{ background: "#F5F5F5 " }} className="navbar">
+      <AppBar sx={{ background: "#9C8B7A " }} className="navbar">
         <Toolbar className="padding0">
           {isMatch ? (
             <Box className="padding0">
@@ -40,7 +42,7 @@ export const Navbar = () => {
               </Box>
 
               <Box className="navbarmobile">
-                <Link className="linkremovestyle text-black" to="/">
+                <Link className="linkremovestyle text-white" to="/">
                   <Typography>Logo</Typography>
                 </Link>
               </Box>
@@ -49,23 +51,18 @@ export const Navbar = () => {
             <>
               {store.language == "spanish" ? (
                 <>
-                <NavbarLinksSpanish />
-                <Link to="/login" className="linkremovestyle">
-                <Button>Login</Button>
-                </Link>
-                <Link to="/signup" className="linkremovestyle">
-                <Button>SignUp</Button>
-                </Link>
+                  <NavbarLinksSpanish />
+                  <Box className="mx-3">
+                    <Dropdown />
+                  </Box>
+
                 </>
               ) : (
                 <>
-                <NavbarLinksEnglish />
-                <Link to="/login" className="linkremovestyle">
-                <Button>Login</Button>
-                </Link>
-                <Link to="/signup" className="linkremovestyle">
-                <Button>SignUp</Button>
-                </Link>
+                  <NavbarLinksEnglish />
+                  <Box className="mx-3">
+                    <Dropdown />
+                  </Box>
                 </>
               )}
             </>

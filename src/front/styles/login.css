@@ -1,16 +1,15 @@
-.signup {
+.login {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 90vh;
-
 }
 
 .fontabhaya {
   font-family: "Abhaya Libre", sans-serif;
 }
 
-.cardsignup {
+.cardlogin {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,14 +17,7 @@
   border-radius: 15px;
 }
 
-.imgSignup {
-  width: 100%;
-  height: 70vh;
-  border-radius: 15px 0 0 15px;
-  object-fit: cover;
-}
-
-.formsignup{
+.formlogin{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -35,19 +27,19 @@
     border-radius: 15px;
 }
 
-.buttonsignup{
+.buttonlogin{
     background-color: #9C8B7A!important;
     margin-top: 1rem!important;
 }
 
 @media (max-width: 700px){
-  .formsignup{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 2rem;
-    width: 75vw;
-    height: 70vh;
-    border-radius: 15px;
-}
-}
+    .formlogin{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 2rem;
+      width: 75vw;
+      height: 70vh;
+      border-radius: 15px;
+  }
+  }

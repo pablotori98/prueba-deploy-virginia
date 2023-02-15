@@ -57,3 +57,27 @@
 .linkheight{
     max-height: 10px!important;
 }
+
+
+.linksnavbar{
+    color: white;
+}
+
+
+.dropdown-menu-center {
+    right: auto;
+    left: 50%;
+    -webkit-transform: translate(-50%, 0);
+    -o-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+}
+
+.dropdowncolor{
+    background-color: rgba(red, green, blue, 0)!important;
+}
+
+.borderdropdown{
+    border: solid 6px #9C8B7A;
+    margin-top: 1rem!important;
+    margin-left: 1.7rem;
+}

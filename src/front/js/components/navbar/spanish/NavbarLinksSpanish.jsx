@@ -30,32 +30,32 @@ export const NavbarLinksSpanish = () =>{
   >
     <Link to="/" className="linkremovestyle text-black">
       <Box className="d-flex align-items-center">
-        <Typography variant="h6">Logo / Nombre</Typography>
+        <Typography variant="h6" className="linksnavbar">Logo / Nombre</Typography>
       </Box>
     </Link>
-    <Box to="/" className="linksnavbar">
+    <Box to="/" >
       <Link to="/" className="linkremovestyle">
         <Button>
-          <Typography className="buttonnavbar">Inicio</Typography>
+          <Typography className="buttonnavbar linksnavbar">Inicio</Typography>
         </Button>
       </Link>
       <Link to="/services" className="linkremovestyle">
         <Button>
-          <Typography className="buttonnavbar">
+          <Typography className="buttonnavbar linksnavbar">
             Servicios
           </Typography>
         </Button>
       </Link>
       <Link to="/aboutme" className="linkremovestyle">
         <Button>
-          <Typography className="buttonnavbar">
+          <Typography className="buttonnavbar linksnavbar">
             Sobre mi
           </Typography>
         </Button>
       </Link>
       <Link to="/contact" className="linkremovestyle">
         <Button>
-          <Typography className="buttonnavbar">
+          <Typography className="buttonnavbar linksnavbar">
             Contacto
           </Typography>
         </Button>

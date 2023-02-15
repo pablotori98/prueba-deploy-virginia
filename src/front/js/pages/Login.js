@@ -33,15 +33,17 @@ export const Login = () => {
   console.log(values);
 
   return (
-    <Box>
-      <Box>
-        <Typography>Sign Up text</Typography>
-        <form onSubmit={handleSubmit}>
+    <Box className="login">
+      <Box className="cardlogin">
+        <h2 className="fontabhaya">Sign Up text</h2>
+        <form onSubmit={handleSubmit} className="formlogin">
           <TextField
             values={values.email}
             onChange={handleChange}
             name="email"
             label="Email"
+            className="w-100 my-2"
+            variant="standard"
           />
           <TextField
             values={values.password}
@@ -49,12 +51,15 @@ export const Login = () => {
             type="password"
             name="password"
             label="Contraseña"
+            className="w-100 my-2"
+            variant="standard"
           />
           <Button
           type="submit"
           variant="contained"
+          className="buttonlogin"
           >
-            Registro
+            Login
           </Button>
         </form>
       </Box>
