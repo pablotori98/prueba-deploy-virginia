@@ -32,3 +32,55 @@ def is_auth(username_var):
         return jsonify({"auth": True}), 200
     elif user != username_var:
         return jsonify({"auth": False}), 200
+
+@api.route('/signup', methods=['POST'])
+def signup():
+    request_data = request.get_json(force=True)
+
+    if db.session.query(User).filter(User.email == request_data['email']).first():
+        return jsonify({'message':'Email ya registrado'}), 400
+    if db.session.query(User).filter(User.username == request_data['username']).first():
+        return jsonify({'messaje': 'Usuario registrado'}), 400
+    
+    new_user= User(
+        first_name=request_data['first_name'],
+        last_name=request_data['last_name'],
+        username=request_data['username'],
+        email=request_data['email'],
+        password=request_data['password'],
+        phone_number=request_data['phone_number'],
+        is_active=True
+    )
+
+    db.session.add(new_user)
+    db.session.commit()
+
+    return jsonify({
+        'message': 'User created',
+        'New_user': new_user.serialize()
+    }), 201
+
+@api.route('/login', methods=['POST'])
+def login():
+    request_data = request.get_json(force=True)
+    email = request.json.get("email", None)
+    password= request.json.get('password', None)
+    user = User.query.filter_by(email=email, password=password).first()
+    if user == None:
+        return jsonify({'message': 'Inicio de sesion incorrecto'}), 401
+    db.session.commit()
+    access_token= create_access_token(identity=user.username)
+    return jsonify({
+        "access_token": access_token,
+        "username": user.username,
+        "email": user.email,
+        "first_name": user.first_name,
+        "last_name": user.last_name
+    }), 200
+@api.route('/users', methods=['GET'])
+def get_users():
+    getAllUsers = User.query.all()
+    userlist= []
+    for singleUser in getAllUsers:
+        userlist.append(singleUser.serialize())
+    return jsonify(userlist), 200
