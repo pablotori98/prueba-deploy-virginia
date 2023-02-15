@@ -1,6 +1,6 @@
 //Import React
 import React, { useContext, useLayoutEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 //Import materials
 import { Box, Button, TextField, Typography } from "@mui/material";
@@ -12,8 +12,10 @@ import { Context } from "../store/appContext";
 
 //Import img
 import signupimg from "../assets/forms/signup.jpg";
+import Alert from '@mui/material/Alert';
 
 export const SignUp = () => {
+  const navigate = useNavigate()
   const newTitle = "SignUp";
   useLayoutEffect(() => {
     document.title = newTitle;
@@ -28,6 +30,9 @@ export const SignUp = () => {
       values.password,
       values.phone_number
     );
+    if(store.signup=="Correcto"){
+      navigate("/")
+    }
   };
 
   const { values, handleSubmit, handleChange, onChange } = useFormik({
@@ -102,6 +107,11 @@ export const SignUp = () => {
           <Button type="submit" variant="contained" className="buttonsignup">
             Registro
           </Button>
+          {store.signup !=""? store.signup !="Correcto"?
+        <Alert severity="error">{store.signup}</Alert>  : null
+        :
+        null
+        }
         </form>
       </Box>
     </Box>
