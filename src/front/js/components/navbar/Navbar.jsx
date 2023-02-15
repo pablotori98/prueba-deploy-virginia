@@ -31,7 +31,7 @@ export const Navbar = () => {
   const { actions, store } = useContext(Context);
   return (
     <React.Fragment>
-      <AppBar sx={{ background: "#D2D2CF " }} className="navbar">
+      <AppBar sx={{ background: "#F5F5F5 " }} className="navbar">
         <Toolbar className="padding0">
           {isMatch ? (
             <Box className="padding0">

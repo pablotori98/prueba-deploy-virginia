@@ -5,8 +5,8 @@ import { FaqSpanish } from '../components/faq/FaqSpanish.jsx'
 import { Context } from '../store/appContext'
 
 const Welcome = () => {
-  const newTitle = "Test change title"
   const {store, actions} = useContext(Context)
+  const newTitle = "Home"
   useLayoutEffect(() => {
     document.title = newTitle
   }, [])

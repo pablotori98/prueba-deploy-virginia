@@ -1,5 +1,5 @@
 //Import React
-import React, { useContext } from "react";
+import React, { useContext, useLayoutEffect } from "react";
 import { Link } from "react-router-dom";
 
 //Import materials
@@ -11,6 +11,10 @@ import { CallToActionSharp } from "@mui/icons-material";
 import { Context } from "../store/appContext"
 
 export const Login = () => {
+    const newTitle = "Login"
+    useLayoutEffect(() => {
+      document.title = newTitle
+    }, [])
     const {actions, store} = useContext(Context)
   const onSubmit = async (values, ax) => {
     await actions.signup(

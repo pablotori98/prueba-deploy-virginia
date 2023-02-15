@@ -1,0 +1,40 @@
+.signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fontabhaya {
+  font-family: "Abhaya Libre", sans-serif;
+}
+
+.cardsignup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  width: 70vw;
+  height: 70vh;
+  border-radius: 15px;
+}
+
+.imgSignup {
+  width: 100%;
+  height: 70vh;
+  border-radius: 15px 0 0 15px;
+  object-fit: cover;
+}
+
+.formsignup{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+    width: 60vw;
+    height: 60vh;
+    border-radius: 15px;
+}
+
+.buttonsignup{
+    background-color: #adadad!important;
+}

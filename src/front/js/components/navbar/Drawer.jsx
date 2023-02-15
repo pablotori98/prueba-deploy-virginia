@@ -18,9 +18,9 @@ import CloseIcon from '@mui/icons-material/Close';
 import MenuIcon from "@mui/icons-material/Menu";
 
 //paginas y links
-const paginas = ["Inicio", "Terapia", "Sobre Mi", "Contacto"];
-const linkpaginas = ["/", "/terapia", "/aboutme", "/contact"];
-const pages = ["Home", "Therapy", "About Me", "Contact"];
+const paginas = ["Inicio", "Terapia", "Sobre Mi", "Contacto", "Login", "SignUp"];
+const linkpaginas = ["/", "/terapia", "/aboutme", "/contact", "/login", "/signup"];
+const pages = ["Home", "Therapy", "About Me", "Contact", "Login", "SignUp"];
 
 //Context
 import { Context } from "../../store/appContext";
@@ -66,7 +66,7 @@ const DrawerComp = () => {
                 <ListItemButton key={index}>
                   <ListItemIcon>
                     <Link to={linkpaginas[index]} className="linkremovestyle">
-                      <ListItemText>{page}</ListItemText>
+                      <ListItemText  onClick={() => setOpenDrawer(false)}>{page}</ListItemText>
                     </Link>
                   </ListItemIcon>
                 </ListItemButton>
