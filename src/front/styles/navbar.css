@@ -60,7 +60,7 @@
 
 
 .linksnavbar{
-    color: white;
+    color: #5c5248;
 }
 
 
@@ -80,4 +80,15 @@
     border: solid 6px #9C8B7A;
     margin-top: 1rem!important;
     margin-left: 1.7rem;
+}
+
+.navbarcenter{
+    width: 20vw;    
+}
+
+.navbarright{
+    width: 30vw;
+}
+.navbarleft{
+    width:30vw;
 }

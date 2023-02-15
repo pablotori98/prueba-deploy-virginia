@@ -2,6 +2,7 @@ import { Box } from '@mui/material'
 import React, {useContext, useEffect, useLayoutEffect} from 'react'
 import { FaqEnglish } from '../components/faq/FaqEnglish.jsx'
 import { FaqSpanish } from '../components/faq/FaqSpanish.jsx'
+import { JumbotronHome } from '../components/jumbotron/JumbotronHome.jsx'
 import { Context } from '../store/appContext'
 
 const Welcome = () => {
@@ -15,7 +16,8 @@ const Welcome = () => {
       {store.language=="spanish"?
 
     <Box className='d-flex flex-column align-items-center'>
-      <Box>Spanish</Box>
+      {/* <Box>Spanish</Box> */}
+      <JumbotronHome/>
       {/* <FaqSpanish/>   */}
     </Box>
     :
