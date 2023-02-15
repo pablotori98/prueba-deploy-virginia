@@ -12,14 +12,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 	  signup: async (first_name, last_name, username, email, password, phone_number)=>{
 		const options ={
 			method: "POST",
-			body: `{
-				"first_name":"${first_name}",
-				"last_name":"${last_name}",
-				"username":"${username}",
-				"email":"${email}",
-				"password":"${password},
-				"phone_number":"${phone_number}"
-			}`,
+			headers: {
+				"Content-Type": "application/json",
+			  },
+			body: JSON.stringify({
+				first_name:first_name,
+				last_name:last_name,
+				username:username,
+				email:email,
+				password:password,
+				phone_number:phone_number
+			})
 		};
 		await fetch(`${process.env.BACKEND_URL}/api/signup`, options)
 		.then((response) =>{

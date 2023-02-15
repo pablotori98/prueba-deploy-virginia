@@ -42,6 +42,7 @@ export const SignUp = () => {
     onSubmit
   });
   console.log(values);
+  console.log(process.env.BACKEND_URL)
 
   return (
     <Box className="signup">
