@@ -8,24 +8,25 @@ import { Formik, useFormik } from "formik";
 import { CallToActionSharp } from "@mui/icons-material";
 
 //Import context
-import { Context } from "../store/appContext"
+import { Context } from "../store/appContext";
 
 //Import img
-import signupimg from "../assets/forms/signup.jpg"
+import signupimg from "../assets/forms/signup.jpg";
 
 export const SignUp = () => {
-    const newTitle = "SignUp"
-    useLayoutEffect(() => {
-      document.title = newTitle
-    }, [])
-    const {actions, store} = useContext(Context)
+  const newTitle = "SignUp";
+  useLayoutEffect(() => {
+    document.title = newTitle;
+  }, []);
+  const { actions, store } = useContext(Context);
   const onSubmit = async (values, ax) => {
     await actions.signup(
-      values.name,
+      values.first_name,
       values.last_name,
-      values.phonenumber,
+      values.username,
       values.email,
-      values.password
+      values.password,
+      values.phone_number
     );
   };
 
@@ -33,11 +34,12 @@ export const SignUp = () => {
     initialValues: {
       first_name: "",
       last_name: "",
-      phone_number: "",
+      username: "",
       email: "",
       password: "",
+      phone_number: "",
     },
-    onSubmit,
+    onSubmit
   });
   console.log(values);
 
@@ -61,7 +63,14 @@ export const SignUp = () => {
             label="Apellido"
             className="w-100 my-2"
             variant="standard"
-
+          />
+          <TextField
+            values={values.username}
+            onChange={handleChange}
+            name="username"
+            label="Username"
+            className="w-100 my-2"
+            variant="standard"
           />
           <TextField
             values={values.phone_number}
@@ -71,7 +80,6 @@ export const SignUp = () => {
             label="Número de telefono"
             className="w-100 my-2"
             variant="standard"
-
           />
           <TextField
             values={values.email}
@@ -80,7 +88,6 @@ export const SignUp = () => {
             label="Email"
             className="w-100 my-2"
             variant="standard"
-
           />
           <TextField
             values={values.password}
@@ -90,18 +97,12 @@ export const SignUp = () => {
             label="Contraseña"
             className="w-100 my-2"
             variant="standard"
-
           />
-          <Button
-          type="submit"
-          variant="contained"
-          className="buttonsignup"
-          >
+          <Button type="submit" variant="contained" className="buttonsignup">
             Registro
           </Button>
-
         </form>
-        </Box>
+      </Box>
     </Box>
   );
 };
