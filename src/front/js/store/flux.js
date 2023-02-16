@@ -71,6 +71,7 @@ const getState = ({ getStore, getActions, setStore }) => {
               return response.json().then((data) => {
                 result = data;
                 sessionStorage.setItem("access_token", result.access_token)
+                sessionStorage.setItem('current_user', result.username)
                 console.log("result:", result);
                 setStore({
                   user: result,

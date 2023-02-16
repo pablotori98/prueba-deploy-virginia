@@ -5,13 +5,13 @@ const AdminRoute = ({ component, isEnabled }) => {
   const currentUser = sessionStorage.getItem("current_user")
     ? sessionStorage.getItem("current_user")
     : null;
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(null);
 
   const authUser = async () => {
     if (currentUser === null) return;
 
-    const url = `${processprocess.env.BACKEND_URL}/api/isauth/${currentUser}`;
+    const url = `${process.env.BACKEND_URL}/api/isauth/${currentUser}`;
 
     const options = {
       method: "GET",
@@ -36,15 +36,17 @@ const AdminRoute = ({ component, isEnabled }) => {
     if (isEnabled) {
       authUser();
     }
-    if (isAuthenticated === false) {
-      window.location.href = "/login";
-    }
   }, []);
+
+  useEffect(() => {
+    if(isAuthenticated===false || isAdmin===false){
+      window.location.href = "/"}
+  }, [isAuthenticated, isAdmin]);
 
   return isEnabled === true
     ? isAuthenticated === true && isAdmin === true
       ? component
-      : null
+      : <h1> Acesso Denegado </h1>
     : component;
 };
 export default AdminRoute;
