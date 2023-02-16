@@ -14,17 +14,31 @@ import {
 } from "@mui/material";
 
 //Material Icons
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 
 //paginas y links
-const paginas = ["Inicio", "Terapia", "Sobre Mi", "Contacto", "Login", "SignUp"];
-const linkpaginas = ["/", "/terapia", "/aboutme", "/contact", "/login", "/signup"];
+const paginas = [
+  "Inicio",
+  "Terapia",
+  "Sobre Mi",
+  "Contacto",
+  "Login",
+  "SignUp",
+];
+const linkpaginas = [
+  "/",
+  "/terapia",
+  "/aboutme",
+  "/contact",
+  "/login",
+  "/signup",
+];
 const pages = ["Home", "Therapy", "About Me", "Contact", "Login", "SignUp"];
 
 //Context
 import { Context } from "../../store/appContext";
-
+import { Box } from "@mui/system";
 
 const DrawerComp = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -36,6 +50,11 @@ const DrawerComp = () => {
         anchor="top"
         open={openDrawer}
         onClose={() => setOpenDrawer(false)}
+        sx={{
+          "& .MuiDrawer-paper  *": {
+            border: "1px solid red",
+          },
+        }}
       >
         <List
           sx={{
@@ -43,21 +62,28 @@ const DrawerComp = () => {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            height: "100vh"
-
+            height: "100vh",
           }}
         >
-          <Button onClick={() => setOpenDrawer(false)} className="closebutton p-0 m-0"><CloseIcon/></Button>
+          <Button
+            onClick={() => setOpenDrawer(false)}
+            className="closebutton p-0 m-0"
+          >
+            <CloseIcon />
+          </Button>
           {store.language == "spanish" ? (
             <>
               {paginas.map((page, index) => (
-                <ListItemButton key={index} >
-                  <ListItemIcon >
-                    <Link to={linkpaginas[index]} className="linkremovestyle text-black linkheight">
-                      <ListItemText onClick={() => setOpenDrawer(false)} >{page}</ListItemText>
-                    </Link>
-                  </ListItemIcon>
-                </ListItemButton>
+                <Box key={index} width="100%">
+                  <Link
+                    to={linkpaginas[index]}
+                    className="linkremovestyle text-black linkheight"
+                  >
+                    <ListItemText onClick={() => setOpenDrawer(false)}>
+                      {page}
+                    </ListItemText>
+                  </Link>
+                </Box>
               ))}
             </>
           ) : (
@@ -66,7 +92,9 @@ const DrawerComp = () => {
                 <ListItemButton key={index}>
                   <ListItemIcon>
                     <Link to={linkpaginas[index]} className="linkremovestyle">
-                      <ListItemText  onClick={() => setOpenDrawer(false)}>{page}</ListItemText>
+                      <ListItemText onClick={() => setOpenDrawer(false)}>
+                        {page}
+                      </ListItemText>
                     </Link>
                   </ListItemIcon>
                 </ListItemButton>

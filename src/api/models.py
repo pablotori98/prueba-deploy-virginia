@@ -4,7 +4,6 @@ from datetime import datetime
 db = SQLAlchemy()
 
 
-
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(80), unique=False, nullable=False)
@@ -14,6 +13,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(80), unique=False, nullable=False)
     phone_number = db.Column(db.Integer, unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+    is_admin = db.Column(db.Boolean(), unique=False, nullable=False)
 
 
     def __repr__(self):
@@ -27,6 +27,8 @@ class User(db.Model, UserMixin):
             "username": self.username,
             "phone_number": self.phone_number,
             "email": self.email,
-
-            # do not serialize the password, its a security breach
+            "is_admin": self.is_admin,
+            "is_active": self.is_active
         }
+
+
