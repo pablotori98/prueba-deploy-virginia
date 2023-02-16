@@ -1,7 +1,7 @@
 from datetime import datetime
 from sqlalchemy import and_, or_, not_
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User
+from api.models import db, User, Appointment
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -88,4 +88,20 @@ def get_users():
     for singleUser in getAllUsers:
         userlist.append(singleUser.serialize())
     return jsonify(userlist), 200
+
+@api.route('/<string:username_var>/appointments', methods=['GET'])
+@jwt_required()
+def get_appointments(username_var):
+    user = get_jwt_identity()
+    user_id = User.query.filter_by(username=user).first().id
+    if user != username_var:
+        return jsonify({'message': 'No tienes permisos para ver esto'}), 401
+
+    getAllAppointments = Appointment.query.filter_by(user_id=user_id).all()
+    appointmentlist= []
+    for singleAppointment in getAllAppointments:
+        appointmentlist.append(singleAppointment.serialize())
+    if len(appointmentlist) == 0:
+        return jsonify({'message': 'No tienes citas programadas'}), 200
+    return jsonify(appointmentlist), 200
 
