@@ -49,3 +49,18 @@ class Appointment(db.Model):
         }
 
 
+class BlogPost(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title_post = db.Column(db.String(100), nullable=False)
+    body_post = db.Column(db.String(), nullable=False)
+    tags_post = db.Column(db.String())
+
+    def __repr__(self):
+        return f'<Appointment {self.title_post}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "title_post": self.title_post,
+            "body_post": self.body_post
+        }

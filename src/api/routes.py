@@ -1,7 +1,7 @@
 from datetime import datetime
 from sqlalchemy import and_, or_, not_
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Appointment
+from api.models import db, User, Appointment, BlogPost
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -105,3 +105,33 @@ def get_appointments(username_var):
         return jsonify({'message': 'No tienes citas programadas'}), 200
     return jsonify(appointmentlist), 200
 
+
+# Blog
+# Mostrar todos los post de blogs
+
+@api.route('/blogpost', methods=['GET'])
+def get_posts():
+    getAllPost = BlogPost.query.all()
+    listpost= []
+    for post in getAllPost:
+        listpost.append(post.serialize())
+    return jsonify(listpost), 200
+
+
+@api.route('/blogpost', methods=['POST'])
+def create_post():
+    request_data = request.get_json(force=True)
+
+    new_post= BlogPost(
+        title_post=request_data['title_post'],
+        body_post=request_data['body_post'],
+
+    )
+
+    db.session.add(new_post)
+    db.session.commit()
+
+    return jsonify({
+        'message': 'Post Creado',
+        'New_user': new_post.serialize()
+    }), 201
