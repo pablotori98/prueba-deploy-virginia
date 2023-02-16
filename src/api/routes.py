@@ -153,4 +153,14 @@ def modificate_post(post_id):
         'New_user': blogpost.serialize()
     }), 201
 
-    
+# Delete Post
+
+@api.route('/blogpost/<int:post_id>', methods=['DELETE'])
+def delete_post(post_id):
+    blogpost = db.session.query(BlogPost).filter(BlogPost.id == post_id).first()
+    db.session.delete(blogpost)
+    db.session.commit()
+
+    return jsonify({
+        'message': 'Post borrado' })
+
