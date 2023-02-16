@@ -107,7 +107,8 @@ def get_appointments(username_var):
 
 
 # Blog
-# Mostrar todos los post de blogs
+
+# Display post
 
 @api.route('/blogpost', methods=['GET'])
 def get_posts():
@@ -117,7 +118,7 @@ def get_posts():
         listpost.append(post.serialize())
     return jsonify(listpost), 200
 
-
+# Create post
 @api.route('/blogpost', methods=['POST'])
 def create_post():
     request_data = request.get_json(force=True)
@@ -135,3 +136,21 @@ def create_post():
         'message': 'Post Creado',
         'New_user': new_post.serialize()
     }), 201
+
+# Modify post 
+@api.route('/blogpost/<int:post_id>', methods=['PUT'])
+def modificate_post(post_id):
+    blogpost = db.session.query(BlogPost).filter(BlogPost.id == post_id).first()
+    default_values = blogpost
+    request_data = request.get_json(force=True)
+
+    blogpost.title_post = request_data.get('title_post', default_values.title_post)
+    blogpost.body_post = request_data.get('body_post', default_values.title_post)
+    db.session.commit()
+
+    return jsonify({
+        'message': 'Post Modificado',
+        'New_user': blogpost.serialize()
+    }), 201
+
+    
