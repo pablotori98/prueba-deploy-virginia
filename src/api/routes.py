@@ -108,7 +108,7 @@ def get_appointments(username_var):
 
 # Blog
 
-# Display post
+# Display all posts
 
 @api.route('/blogpost', methods=['GET'])
 def get_posts():
@@ -117,6 +117,13 @@ def get_posts():
     for post in getAllPost:
         listpost.append(post.serialize())
     return jsonify(listpost), 200
+
+# Display one post
+
+@api.route('/blogpost/<int:post_id>', methods=['GET'])
+def get_post(post_id):
+    blogpost = db.session.query(BlogPost).filter(BlogPost.id == post_id).first()
+    return jsonify(blogpost.serialize()), 200
 
 # Create post
 @api.route('/blogpost', methods=['POST'])
