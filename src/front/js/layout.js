@@ -14,6 +14,7 @@ import { Login } from "./pages/Login";
 import { SignUp } from "./pages/SignUp";
 import { Servicios } from "./pages/Servicios";
 import AdminPanel from "./pages/adminpanel";
+import { Blog } from "./pages/Blog";
 
 //Pages and views
 
@@ -97,6 +98,15 @@ const Layout = () => {
                 }
               />
               <Route
+                path="/blog"
+                element={
+                  <ProtectedRoute
+                    enabledProtection={false}
+                    component={<Blog />}
+                  />
+                }
+              />
+              <Route
                 path="/signup"
                 element={
                   <ProtectedRoute
@@ -117,7 +127,9 @@ const Layout = () => {
               />
               <Route
                 path="/admin"
-                element={<AdminRoute isEnabled={true} component={<AdminPanel />} />}
+                element={
+                  <AdminRoute isEnabled={true} component={<AdminPanel />} />
+                }
               />
             </Routes>
             <Contact />

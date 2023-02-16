@@ -2,16 +2,19 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       language: "spanish",
-	    signup: "",
-      login: ""
-
+      signup: "",
+      login: "",
+      blogpost: []
     },
     actions: {
+      // Change language function
       changeLanguage: (language) => {
         setStore({
           language: language,
         });
       },
+
+      // SignUp Function
       signup: async (
         first_name,
         last_name,
@@ -52,6 +55,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         );
       },
 
+      // Login Function
       login: async (email, password) => {
         let result = undefined;
         console.log("email:", email, "password:", password);
@@ -70,8 +74,8 @@ const getState = ({ getStore, getActions, setStore }) => {
             if (response.status == 200) {
               return response.json().then((data) => {
                 result = data;
-                sessionStorage.setItem("access_token", result.access_token)
-                sessionStorage.setItem('current_user', result.username)
+                sessionStorage.setItem("access_token", result.access_token);
+                sessionStorage.setItem("current_user", result.username);
                 console.log("result:", result);
                 setStore({
                   user: result,
@@ -84,9 +88,22 @@ const getState = ({ getStore, getActions, setStore }) => {
               });
             }
           }
-   );
-},
+        );
+      },
+      getallpost: async() =>{
+        const options = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        await fetch(`${process.env.BACKEND_URL}/api/blogpost`, options)
+        .then(response => response.json())
+        .then(result=>setStore({blogpost : result}))
 
+
+
+      }
     },
   };
 };
