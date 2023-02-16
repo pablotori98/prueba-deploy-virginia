@@ -2,7 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       language: "spanish",
-	  signup: ""
+      signup: "",
     },
     actions: {
       changeLanguage: (language) => {
@@ -35,10 +35,12 @@ const getState = ({ getStore, getActions, setStore }) => {
         await fetch(`${process.env.BACKEND_URL}/api/signup`, options).then(
           (response) => {
             if (response.status == 201) {
-              return response.json(), 
-			  setStore({
-                signup: "Correcto",
-              });
+              return (
+                response.json(),
+                setStore({
+                  signup: "Correcto",
+                })
+              );
             } else if (response.status == 400) {
               setStore({
                 signup: "Registro incorrecto, pruebe de nuevo",

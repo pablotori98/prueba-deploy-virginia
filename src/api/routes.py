@@ -25,11 +25,13 @@ def handle_hello():
 @api.route('/isauth/<string:username_var>', methods=['GET'])
 @jwt_required()
 def is_auth(username_var):
+    
     if not username_var or username_var == 'null' or username_var == '':
         raise APIException('You must provide a username', status_code=400)
     user = get_jwt_identity()
+    user_data = User.query.filter_by(username=user).first()
     if user == username_var:
-        return jsonify({"auth": True}), 200
+        return jsonify({"auth": True, "is_admin": user_data.is_admin}), 200
     elif user != username_var:
         return jsonify({"auth": False}), 200
 
@@ -49,7 +51,8 @@ def signup():
         email=request_data['email'],
         password=request_data['password'],
         phone_number=request_data['phone_number'],
-        is_active=True
+        is_active=True,
+        is_admin = False
     )
 
     db.session.add(new_user)
@@ -75,7 +78,8 @@ def login():
         "username": user.username,
         "email": user.email,
         "first_name": user.first_name,
-        "last_name": user.last_name
+        "last_name": user.last_name,
+        "is_admin": user.is_admin
     }), 200
 @api.route('/users', methods=['GET'])
 def get_users():
@@ -84,3 +88,4 @@ def get_users():
     for singleUser in getAllUsers:
         userlist.append(singleUser.serialize())
     return jsonify(userlist), 200
+

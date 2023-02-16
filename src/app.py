@@ -11,7 +11,7 @@ from flask_cors import CORS
 from api.utils import APIException, generate_sitemap
 from api.models import db, User
 from api.routes import api
-# from api.admin import setup_admin
+from api.admin import setup_admin
 from api.commands import setup_commands
 from flask_jwt_extended import JWTManager 
 from flask_jwt_extended import get_jwt_identity
@@ -27,7 +27,6 @@ ENV = os.getenv("FLASK_ENV")
 static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../public/')
 app = Flask(__name__)
 app.url_map.strict_slashes = False
-app.config["JWT_ALGORITHM"] = "HS256"
 app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SUPERSECRETKEY") 
 # app.config['JWT_EXPIRATION_DELTA'] = datetime.timedelta(days=10)
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = datetime.timedelta(hours=1)
@@ -35,7 +34,7 @@ jwt = JWTManager(app)
 socketio = SocketIO(app, cors_allowed_origins="*")
 # database condiguration
 db_url = os.getenv("DATABASE_URL")
-
+print("SUPER KEY" + os.getenv('JWT_SUPERSECRETKEY'))
 if db_url is not None:
     app.config['SQLALCHEMY_DATABASE_URI'] = db_url.replace("postgres://", "postgresql://")
 
@@ -50,7 +49,7 @@ db.init_app(app)
 CORS(app)
 
 # add the admin
-# setup_admin(app)
+setup_admin(app)
 
 # add the admin
 setup_commands(app)

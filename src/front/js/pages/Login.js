@@ -17,7 +17,7 @@ export const Login = () => {
     }, [])
     const {actions, store} = useContext(Context)
   const onSubmit = async (values, ax) => {
-    await actions.signup(
+    await actions.login(
       values.email,
       values.password
     );

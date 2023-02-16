@@ -13,6 +13,7 @@ import { UserProfile } from "./pages/UserProfile";
 import { Login } from "./pages/Login";
 import { SignUp } from "./pages/SignUp";
 import { Servicios } from "./pages/Servicios";
+import AdminPanel from "./pages/adminpanel";
 
 //Pages and views
 
@@ -21,6 +22,7 @@ import { Navbar } from "./components/navbar/Navbar.jsx";
 import { Footer } from "./components/footer/Footer.jsx";
 import { Contact } from "./components/contact/Contact.jsx";
 import ProtectedRoute from "./app/ProtectedRoute.js";
+import AdminRoute from "./app/AdminRoute";
 //Components and features
 import injectContext from "./store/appContext";
 
@@ -76,16 +78,6 @@ const Layout = () => {
                 }
               />
               <Route
-                path="/admin"
-                element={
-                  <ProtectedRoute
-                    enabledProtection={false}
-                    component={<Admin />}
-                  />
-                }
-              />
-
-              <Route
                 path="/userprofile"
                 element={
                   <ProtectedRoute
@@ -122,6 +114,10 @@ const Layout = () => {
                     component={<Servicios />}
                   />
                 }
+              />
+              <Route
+                path="/admin"
+                element={<AdminRoute isEnabled={true} component={<AdminPanel />} />}
               />
             </Routes>
             <Contact />
