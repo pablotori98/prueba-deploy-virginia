@@ -2,7 +2,9 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       language: "spanish",
-      signup: "",
+	    signup: "",
+      login: ""
+
     },
     actions: {
       changeLanguage: (language) => {
@@ -49,6 +51,41 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
         );
       },
+
+      login: async (email, password) => {
+        let result = undefined;
+        console.log("email:", email, "password:", password);
+        const options = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password,
+          }),
+        };
+        await fetch(`${process.env.BACKEND_URL}/api/login`, options).then(
+          (response) => {
+            if (response.status == 200) {
+              return response.json().then((data) => {
+                result = data;
+                sessionStorage.setItem("access_token", result.access_token)
+                console.log("result:", result);
+                setStore({
+                  user: result,
+                  login: "Correcto",
+                });
+              });
+            } else if (response.status == 400) {
+              setStore({
+                login: "Login incorrecto, pruebe de nuevo",
+              });
+            }
+          }
+   );
+},
+
     },
   };
 };
