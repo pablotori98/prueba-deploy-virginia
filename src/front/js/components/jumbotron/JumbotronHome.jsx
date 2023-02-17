@@ -1,20 +1,37 @@
-import { Box } from "@mui/material";
-import React from "react";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import imgjumbo from "../../assets/jumbotron/jumbotron.jpg";
+import imgjumbo from "../../assets/jumbotron/jumbotroncenter.png";
+import imgjumbomobile from "../../assets/jumbotron/jumbotroncentermobile.png";
+
 import { TypesOfTherapy } from "../typesoftherapy/TypeOftherapy.jsx";
+import { JumbotronMobileEnglish } from "./jumbotronmobile/JumbotronMobileEnglish.jsx";
+import { JumbotronMobileSpanish } from "./jumbotronmobile/JumbotronMobileSpanish.jsx";
+
+import { Context } from "../../store/appContext"
 
 export const JumbotronHome = () => {
+  const {store, actions} = useContext(Context)
+  const theme = useTheme();
+  const isMatch = useMediaQuery(theme.breakpoints.down("sm"));
   return (
-    <Box
-    //   sx={{
-    //     backgroundImage: `url(${imgjumbo})`,
-    //     width: "100vw",
-    //     backgroundSize: "cover",
-    //     height: "70vh",
-    //     backgroundPosition: "center",
-    //   }}
-      className="d-flex flex-column align-items-center justify-content-center"
+    <>
+    {
+      isMatch?
+        store.language=="spanish"?
+        <JumbotronMobileSpanish />
+        :
+        <JumbotronMobileEnglish />
+      :
+      <Box
+      sx={{
+        backgroundImage: `url(${imgjumbo})`,
+        width: "100vw",
+        backgroundSize: "cover",
+        height: "90vh",
+        backgroundPosition: "center bottom",
+      }}
+      className="d-flex flex-column align-items-center justify-content-start w-100 "
     >
       <h1 className="fontabhaya mt-5">Nombre psicologa</h1>
       <h3 className="fontabhaya">Breve descripcion psicologa</h3>
@@ -25,5 +42,9 @@ export const JumbotronHome = () => {
         <Link className="linkremovestyle text-black" to="/terapia1"><TypesOfTherapy title="terapia 4" subtitle="Subtitulo"/></Link>
       </Box>
     </Box>
+
+
+    }
+    </>
   );
 };

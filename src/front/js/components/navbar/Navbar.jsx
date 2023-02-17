@@ -27,13 +27,12 @@ import { NavbarLinksEnglish } from "./english/NavbarLinksEnglish.jsx";
 //Main Function
 export const Navbar = () => {
   const theme = useTheme();
-  console.log(theme);
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
   console.log(isMatch);
   const { actions, store } = useContext(Context);
   return (
     <React.Fragment>
-      <AppBar  sx={{ background: "#9C8B7A " }} className="navbar">
+      <AppBar  sx={{ background: "#F5ECE8 " }} elevation={0} className="navbar">
         <Toolbar className="padding0">
           {isMatch ? (
             <Box className="padding0">
@@ -42,7 +41,7 @@ export const Navbar = () => {
               </Box>
 
               <Box className="navbarmobile">
-                <Link className="linkremovestyle text-white" to="/">
+                <Link className="linkremovestyle text-black" to="/">
                   <Typography>Logo</Typography>
                 </Link>
               </Box>

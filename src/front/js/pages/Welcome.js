@@ -17,18 +17,10 @@ const Welcome = () => {
     <Box sx={{
       
     }}>
-      {store.language == "spanish" ? (
         <Box className="d-flex flex-column align-items-center">
-          {/* <Box>Spanish</Box> */}
           <JumbotronHome />
-          {/* <FaqSpanish/>   */}
+
         </Box>
-      ) : (
-        <Box className="d-flex flex-column align-items-center">
-          <Box>English</Box>
-          {/* <FaqEnglish/> */}
-        </Box>
-      )}
     </Box>
   );
 };
