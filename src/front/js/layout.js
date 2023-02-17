@@ -26,6 +26,7 @@ import ProtectedRoute from "./app/ProtectedRoute.js";
 import AdminRoute from "./app/AdminRoute";
 //Components and features
 import injectContext from "./store/appContext";
+import { HandlePost } from "./components/blog/Createpost/HandlePost.jsx";
 
 //create your first component
 const Layout = () => {
@@ -122,6 +123,15 @@ const Layout = () => {
                   <ProtectedRoute
                     enabledProtection={false}
                     component={<Servicios />}
+                  />
+                }
+              />
+              <Route
+                path="/admin/blog"
+                element={
+                  <ProtectedRoute
+                    enabledProtection={false}
+                    component={<HandlePost />}
                   />
                 }
               />
