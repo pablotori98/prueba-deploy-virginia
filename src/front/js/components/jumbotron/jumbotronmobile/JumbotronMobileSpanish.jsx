@@ -1,8 +1,7 @@
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import React from "react";
 import imgjumbo from "../../../assets/jumbotron/jumbotroncenter.png";
 import imgjumbomobile from "../../../assets/jumbotron/jumbotroncentermobile.png";
-
 export const JumbotronMobileSpanish = () =>{
     return(
         <Box
@@ -18,7 +17,12 @@ export const JumbotronMobileSpanish = () =>{
         className="d-flex flex-column align-items-center justify-content-start w-100 "
       >
         <h1 className="fontabhaya mt-5">Nombre psicologa</h1>
-        <h3 className="fontabhaya">Breve descripcion psicologa</h3>
+        <h3 className="fontabhaya my-2">Breve descripcion psicologa</h3>
+        <Button
+      variant="contained"
+      className="btnjumbotron my-2"
+      >CTA texto
+      </Button>
       </Box>
   
     )
