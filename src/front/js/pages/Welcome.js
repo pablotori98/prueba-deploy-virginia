@@ -2,6 +2,7 @@ import { Box, useMediaQuery } from "@mui/material";
 import React, { useContext, useEffect, useLayoutEffect } from "react";
 import { FaqEnglish } from "../components/faq/FaqEnglish.jsx";
 import { FaqSpanish } from "../components/faq/FaqSpanish.jsx";
+import { BannerInfo } from "../components/infopsico/BannerInfo.jsx";
 import { JumbotronHome } from "../components/jumbotron/JumbotronHome.jsx";
 import { Context } from "../store/appContext";
 
@@ -19,6 +20,7 @@ const Welcome = () => {
     }}>
         <Box className="d-flex flex-column align-items-center">
           <JumbotronHome />
+          <BannerInfo />
 
         </Box>
     </Box>
