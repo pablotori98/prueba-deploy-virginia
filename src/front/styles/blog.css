@@ -6,7 +6,33 @@
 }
 
 .blogpost{
-    margin: 3rem;
-    width: 70vw!important;
+    width: 50vw!important;
+    background-color: #dfcbc4;
+    padding: 3rem;
+    border-radius: 15px;
+}
 
+.blogbubblesection{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100vw;
+}
+
+.bubblepost{
+    width: 23vw;
+    height: 23vh;
+    background-color: red;
+    margin: 3rem;
+}
+
+.imgpost{
+    max-height: 300px!important;
+    width:100%!important;
+    object-fit: cover!important;
+}
+.imgpost img{
+    max-height: 400px!important;
+    width:100%!important;
+    object-fit: cover!important;
 }

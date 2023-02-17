@@ -1,7 +1,10 @@
-import { Box, Typography } from "@mui/material";
-import React, { useContext, useEffect } from "react";
+import { Box, Button, Typography } from "@mui/material";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { BlogTextSpanish } from "../components/blog/spanish/BlogTextSpanish.jsx";
 import { Context } from "../store/appContext";
+import ChromeReaderModeIcon from "@mui/icons-material/ChromeReaderMode";
+import { BlogBubbleSpanish } from "../components/blog/spanish/BlogBubbleSpanish.jsx";
 
 export const Blog = () => {
   const { actions, store } = useContext(Context);
@@ -9,17 +12,19 @@ export const Blog = () => {
     actions.getallpost();
   }, []);
   console.log("holsa", store.blogpost[0]);
+  const [read, setRead] = useState(true);
   return (
-    <Box className="blogsection">
-      {store?.blogpost?.map((element, index) => {
-        return (
-          <Box className="blogpost" key={index}>
-            <Link to={`/blog/${element.title_post}`} className="linkremovestyle text-black">
-            <Typography variant="h2">{element.title_post}</Typography></Link>
-            <Typography className="mt-3">{element.body_post}</Typography>
-          </Box>
-        );
-      })}
+    <Box className="container">
+      <Box className="d-flex justify-content-end ps-5">
+      <Button  className="text-black"
+        onClick={read == true ? () => setRead(false) : () => setRead(true)}
+      >
+        Cambiar disposición <ChromeReaderModeIcon className="ms-1"/>
+      </Button>
+      </Box>
+      <Box className="d-flex justify-content-center text-center">
+      {read == true ? <BlogTextSpanish /> : <BlogBubbleSpanish />}
+      </Box>
     </Box>
   );
 };
