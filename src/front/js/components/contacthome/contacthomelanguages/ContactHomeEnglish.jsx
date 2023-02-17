@@ -13,7 +13,7 @@ import { Context } from "../../../store/appContext";
 //Import img
 import Alert from '@mui/material/Alert';
 
-export const ContactHomeSpanish = () => {
+export const ContactHomeEnglish = () => {
   const navigate = useNavigate()
 
   const { actions, store } = useContext(Context);
@@ -46,13 +46,13 @@ export const ContactHomeSpanish = () => {
   return (
     <Box className="signup">
       <Box className="cardsignup">
-        <h1 className="fontabhaya">Contacto</h1>
+        <h1 className="fontabhaya">Contact</h1>
         <form onSubmit={handleSubmit} className="formsignup">
           <TextField
             values={values.first_name}
             onChange={handleChange}
             name="first_name"
-            label="Nombre"
+            label="Name"
             className="w-100 my-2"
             variant="standard"
           />
@@ -60,7 +60,7 @@ export const ContactHomeSpanish = () => {
             values={values.last_name}
             onChange={handleChange}
             name="last_name"
-            label="Apellido"
+            label="Last Name"
             className="w-100 my-2"
             variant="standard"
           />
@@ -69,7 +69,7 @@ export const ContactHomeSpanish = () => {
             onChange={handleChange}
             type="tel"
             name="phone_number"
-            label="Número de telefono"
+            label="Phone Number"
             className="w-100 my-2"
             variant="standard"
           />
@@ -85,7 +85,7 @@ export const ContactHomeSpanish = () => {
             values={values.description}
             onChange={handleChange}
             name="description"
-            label="¿Qué le ocurre?"
+            label="Tell me your problem"
             className="w-100 my-2"
             variant="standard"
             id="outlined-multiline-flexible"
@@ -93,7 +93,7 @@ export const ContactHomeSpanish = () => {
           />
 
           <Button type="submit" variant="contained" className="buttonsignup">
-            Enviar
+            Submit
           </Button>
           {/* {store.signup !=""? store.signup !="Correcto"?
         <Alert severity="error">{store.signup}</Alert>  : null

@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import React, { useContext } from "react";
 import { Context } from "../../store/appContext";
+import { ContactHomeEnglish } from "./contacthomelanguages/ContactHomeEnglish.jsx";
 import { ContactHomeSpanish } from "./contacthomelanguages/ContactHomeSpanish.jsx";
 
 export const ContactHome = () =>{
@@ -10,7 +11,7 @@ export const ContactHome = () =>{
             {store.language=="spanish"?
         <ContactHomeSpanish />
         :
-        null    
+        <ContactHomeEnglish />    
         }
         </Box>
     )
