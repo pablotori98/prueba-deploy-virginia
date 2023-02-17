@@ -100,12 +100,57 @@ const getState = ({ getStore, getActions, setStore }) => {
         await fetch(`${process.env.BACKEND_URL}/api/blogpost`, options)
         .then(response => response.json())
         .then(result=>setStore({blogpost : result}))
+      },
 
 
+      // Creacion de post
+      handlepost: async (
+        title_post,
+        paragraph1,
+        paragraph2,
+        paragraph3,
+        paragraph4,
+        paragraph5,
+        language
+      ) => {
+        const options = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title_post: title_post,
+            paragraph1: paragraph1,
+            paragraph2: paragraph2,
+            paragraph3: paragraph3,
+            paragraph4: paragraph4,
+            paragraph5: paragraph5,
+            language: language
+          }),
+        };
+        await fetch(`${process.env.BACKEND_URL}/api/blogpost`, options).then(
+          (response) => {
+            if (response.status == 201) {
+              return (
+                response.json(),
+                setStore({
+                  createpost: "Correcto",
+                })
+              );
+            } else if (response.status == 400) {
+              setStore({
+                createpost: "Creación post incorrecto, pruebe de nuevo",
+              });
+            }
+          }
+        );
+      },
 
-      }
+
     },
   };
 };
+
+
 
 export default getState;

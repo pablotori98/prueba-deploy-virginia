@@ -18,7 +18,7 @@ export const HandlePost = () => {
 
   const { actions, store } = useContext(Context);
   const onSubmit = async (values, ax) => {
-    await actions.signup(
+    await actions.handlepost(
       values.title_post,
       values.paragraph1,
       values.paragraph2,
