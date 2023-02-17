@@ -4,6 +4,8 @@ import { FaqEnglish } from "../components/faq/FaqEnglish.jsx";
 import { FaqSpanish } from "../components/faq/FaqSpanish.jsx";
 import { BannerInfo } from "../components/infopsico/BannerInfo.jsx";
 import { JumbotronHome } from "../components/jumbotron/JumbotronHome.jsx";
+import { Therapies } from "../components/therapies/Therapies.jsx";
+import { TherapiesSpanish } from "../components/therapies/therapieslanguage/TherapiesSpanish.jsx";
 import { Context } from "../store/appContext";
 
 const Welcome = () => {
@@ -15,14 +17,12 @@ const Welcome = () => {
     document.title = newTitle;
   }, []);
   return (
-    <Box sx={{
-      
-    }}>
-        <Box className="d-flex flex-column align-items-center">
-          <JumbotronHome />
-          <BannerInfo />
-
-        </Box>
+    <Box sx={{}}>
+      <Box className="d-flex flex-column align-items-center">
+        <JumbotronHome />
+        <BannerInfo />
+        <Therapies />
+      </Box>
     </Box>
   );
 };

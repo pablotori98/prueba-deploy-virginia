@@ -1,22 +1,42 @@
-.card{
+.containertherapies{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 98vw;
+    margin-bottom: 2rem;
+}
+
+.cardtherapies{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
-    margin: 0.5rem;
-    border-radius: 15px;
-    height: 70px;
-    width: 140px;
+    background-color: #E1BAAC;
+    border-radius: 15%;
+    height: 250px;
+    width: 200px;
 }
 
-
-
-.subtitle{
-    font-size: 0.8rem!important;
+.icontherapies{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    background-color: red;
 }
-
-.cardtherapiesmobile{
-    width: 70vw;
-    height: 50px;
+@media (max-width: 800px){
+    .cardtherapies{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0)!important;
+        border: solid 5px #E1BAAC!important;
+        border-radius: 15%;
+        height: 350px;
+        width: 80vw;
+        margin: 1rem;
+    }
 }

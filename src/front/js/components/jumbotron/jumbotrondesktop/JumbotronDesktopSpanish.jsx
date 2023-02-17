@@ -11,7 +11,6 @@ import imgjumbomobile from "../../../assets/jumbotron/jumbotroncentermobile.png"
 
 //Import context
 import { Context } from "../../../store/appContext";
-import { TypesOfTherapy } from "../../typesoftherapy/TypeOftherapy.jsx";
 
 export const JumbotronDesktopSpanish = () => {
   const { actions, store } = useContext(Context);
