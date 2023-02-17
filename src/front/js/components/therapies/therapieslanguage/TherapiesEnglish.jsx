@@ -5,6 +5,8 @@ import { Context } from "../../../store/appContext"
 export const TherapiesEnglish = () =>{
     const {actions, store} = useContext(Context)
     return(
+        <>
+        <h1 className="fontabhaya text-center">Therapies</h1>
         <Box className="containertherapies">
             <Box className="d-flex flex-column align-items-center cardtherapies">
                 <Box className="mb-3">Icon</Box>
@@ -27,5 +29,6 @@ export const TherapiesEnglish = () =>{
                 <Typography>Description</Typography>
             </Box>
         </Box>
+        </>
     )
 }
