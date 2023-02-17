@@ -28,17 +28,17 @@ body,
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #7a7f9d;
+  background: #F9EDE9;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #21295c;
+  background: #E1BAAC;
 }
 
 /* Handle on Hover */
 ::-webkit-scrollbar-track:hover {
-  background: #21295c;}
+  background: #e0b19f;}
 
 .contentfullheight{
   min-height: 94vh;
