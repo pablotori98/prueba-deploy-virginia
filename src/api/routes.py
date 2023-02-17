@@ -129,10 +129,14 @@ def get_post(post_id):
 @api.route('/blogpost', methods=['POST'])
 def create_post():
     request_data = request.get_json(force=True)
-
     new_post= BlogPost(
         title_post=request_data['title_post'],
-        body_post=request_data['body_post'],
+        paragraph1=request_data['paragraph1'],
+        paragraph2=request_data['paragraph2'],
+        paragraph3=request_data['paragraph3'],
+        paragraph4=request_data['paragraph4'],
+        paragraph5=request_data['paragraph5'],
+        language=request_data['language']
 
     )
 

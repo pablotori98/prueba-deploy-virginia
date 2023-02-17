@@ -52,7 +52,12 @@ class Appointment(db.Model):
 class BlogPost(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title_post = db.Column(db.String(100), nullable=False)
-    body_post = db.Column(db.String(), nullable=False)
+    paragraph1 = db.Column(db.String(), nullable=False)
+    paragraph2 = db.Column(db.String(), nullable=True)
+    paragraph3 = db.Column(db.String(), nullable=True)
+    paragraph4 = db.Column(db.String(), nullable=True)
+    paragraph5 = db.Column(db.String(), nullable=True)
+    language = db.Column(db.String(),nullable=False)
     tags_post = db.Column(db.String())
 
     def __repr__(self):
@@ -62,5 +67,11 @@ class BlogPost(db.Model):
         return {
             "id": self.id,
             "title_post": self.title_post,
-            "body_post": self.body_post
+            "paragraph1": self.paragraph1,
+            "paragraph2": self.paragraph2,
+            "paragraph3": self.paragraph3,
+            "paragraph4": self.paragraph4,
+            "paragraph5": self.paragraph5,
+            "language": self.language
+
         }
