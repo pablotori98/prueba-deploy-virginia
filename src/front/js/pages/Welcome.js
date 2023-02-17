@@ -1,5 +1,6 @@
 import { Box, useMediaQuery } from "@mui/material";
 import React, { useContext, useEffect, useLayoutEffect } from "react";
+import { ContactHome } from "../components/contacthome/ContactHome.jsx";
 import { FaqEnglish } from "../components/faq/FaqEnglish.jsx";
 import { FaqSpanish } from "../components/faq/FaqSpanish.jsx";
 import { BannerInfo } from "../components/infopsico/BannerInfo.jsx";
@@ -22,6 +23,7 @@ const Welcome = () => {
         <JumbotronHome />
         <BannerInfo />
         <Therapies />
+        <ContactHome />
       </Box>
     </Box>
   );
