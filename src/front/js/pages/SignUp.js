@@ -12,10 +12,12 @@ import { Context } from "../store/appContext";
 
 //Import img
 import signupimg from "../assets/forms/signup.jpg";
-import Alert from '@mui/material/Alert';
+import Alert from "@mui/material/Alert";
+import { SignUpSpanish } from "../components/signup/SignupSpanish.jsx";
+import { SignUpEnglish } from "../components/signup/SignupEnglish.jsx";
 
 export const SignUp = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const newTitle = "SignUp";
   useLayoutEffect(() => {
     document.title = newTitle;
@@ -30,8 +32,8 @@ export const SignUp = () => {
       values.password,
       values.phone_number
     );
-    if(store.signup=="Correcto"){
-      navigate("/")
+    if (store.signup == "Correcto") {
+      navigate("/");
     }
   };
 
@@ -44,76 +46,12 @@ export const SignUp = () => {
       password: "",
       phone_number: "",
     },
-    onSubmit
+    onSubmit,
   });
   console.log(values);
-  console.log(process.env.BACKEND_URL)
+  console.log(process.env.BACKEND_URL);
 
   return (
-    <Box className="signup">
-      <Box className="cardsignup">
-        <h1 className="fontabhaya">Sign Up text</h1>
-        <form onSubmit={handleSubmit} className="formsignup">
-          <TextField
-            values={values.first_name}
-            onChange={handleChange}
-            name="first_name"
-            label="Nombre"
-            className="w-100 my-2"
-            variant="standard"
-          />
-          <TextField
-            values={values.last_name}
-            onChange={handleChange}
-            name="last_name"
-            label="Apellido"
-            className="w-100 my-2"
-            variant="standard"
-          />
-          <TextField
-            values={values.username}
-            onChange={handleChange}
-            name="username"
-            label="Username"
-            className="w-100 my-2"
-            variant="standard"
-          />
-          <TextField
-            values={values.phone_number}
-            onChange={handleChange}
-            type="tel"
-            name="phone_number"
-            label="Número de telefono"
-            className="w-100 my-2"
-            variant="standard"
-          />
-          <TextField
-            values={values.email}
-            onChange={handleChange}
-            name="email"
-            label="Email"
-            className="w-100 my-2"
-            variant="standard"
-          />
-          <TextField
-            values={values.password}
-            onChange={handleChange}
-            type="password"
-            name="password"
-            label="Contraseña"
-            className="w-100 my-2"
-            variant="standard"
-          />
-          <Button type="submit" variant="contained" className="buttonsignup">
-            Registro
-          </Button>
-          {store.signup !=""? store.signup !="Correcto"?
-        <Alert severity="error">{store.signup}</Alert>  : null
-        :
-        null
-        }
-        </form>
-      </Box>
-    </Box>
+    <>{(store.language == "spanish" ? <SignUpSpanish /> : <SignUpEnglish />)}</>
   );
 };
