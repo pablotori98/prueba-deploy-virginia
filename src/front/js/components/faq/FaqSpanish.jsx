@@ -9,10 +9,10 @@ import { Box } from '@mui/material';
 export const FaqSpanish = () =>{
 
   return (
-    <Box className="d-flex flex-column align-items-center">
-      <Box className="m-2 w-75">
-      <Accordion>
-        <AccordionSummary
+    <Box className="d-flex flex-column align-items-center mb-5">
+      <Box className="m-2">
+      <Accordion sx={{backgroundColor:"#F5ECE8"}}>
+        <AccordionSummary sx={{backgroundColor:"#E1BAAC"}}
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
@@ -20,16 +20,16 @@ export const FaqSpanish = () =>{
           <Typography>Pregunta frecuente 1</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography className='m-2'>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             malesuada lacus ex, sit amet blandit leo lobortis eget.
           </Typography>
         </AccordionDetails>
       </Accordion>
       </Box>
-      <Box className="m-2 w-75">
-      <Accordion>
-        <AccordionSummary
+      <Box className="m-2">
+      <Accordion sx={{backgroundColor:"#F5ECE8"}}>
+        <AccordionSummary sx={{backgroundColor:"#E1BAAC"}}
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
@@ -37,7 +37,7 @@ export const FaqSpanish = () =>{
           <Typography>Pregunta frecuente 2</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+        <Typography className='m-2'>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             malesuada lacus ex, sit amet blandit leo lobortis eget.
           </Typography>
@@ -45,9 +45,9 @@ export const FaqSpanish = () =>{
       </Accordion>
       </Box>
 
-      <Box className="m-2 w-75">
-      <Accordion>
-        <AccordionSummary
+      <Box className="m-2">
+      <Accordion sx={{backgroundColor:"#F5ECE8"}}>
+        <AccordionSummary sx={{backgroundColor:"#E1BAAC"}}
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
@@ -55,7 +55,7 @@ export const FaqSpanish = () =>{
           <Typography>Pregunta frecuente 3</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+        <Typography className='m-2'>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             malesuada lacus ex, sit amet blandit leo lobortis eget.
           </Typography>

@@ -92,7 +92,7 @@ export const ContactHomeSpanish = () => {
             multiline
           />
 
-          <Button type="submit" variant="contained" className="buttonsignup">
+          <Button type="submit" variant="contained" className="btnjumbotron">
             Enviar
           </Button>
           {/* {store.signup !=""? store.signup !="Correcto"?
