@@ -80,7 +80,7 @@ const Layout = () => {
                 }
               />
               <Route
-                path="/userprofile"
+                path="/profile"
                 element={
                   <ProtectedRoute
                     enabledProtection={false}

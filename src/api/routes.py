@@ -75,6 +75,7 @@ def login():
     access_token= create_access_token(identity=user.username)
     return jsonify({
         "access_token": access_token,
+        "user_id": user.id,
         "username": user.username,
         "email": user.email,
         "first_name": user.first_name,
@@ -88,6 +89,13 @@ def get_users():
     for singleUser in getAllUsers:
         userlist.append(singleUser.serialize())
     return jsonify(userlist), 200
+
+# Get One user
+
+@api.route('/users/<int:user_id>', methods=['GET'])
+def get_user(user_id):
+    user = db.session.query(User).filter(User.id == user_id).first()
+    return jsonify(user.serialize()), 200
 
 @api.route('/<string:username_var>/appointments', methods=['GET'])
 @jwt_required()

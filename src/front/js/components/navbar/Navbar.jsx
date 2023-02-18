@@ -29,6 +29,7 @@ export const Navbar = () => {
   const theme = useTheme();
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
   const { actions, store } = useContext(Context);
+
   return (
     <React.Fragment>
       <AppBar  sx={{ background: "#F5ECE8 " }} elevation={0} className="navbar">

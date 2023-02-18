@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import PersonIcon from "@mui/icons-material/Person";
 import { Link } from "react-router-dom";
 import { Context } from "../../store/appContext";
@@ -6,6 +6,8 @@ import { Button } from "@mui/material";
 
 export const Dropdown = () => {
   const { store, actions } = useContext(Context);
+  useState(()=>{actions.fetchallusers(sessionStorage.getItem("user_id"))},[])
+
   return (
     <div className="dropdown">
       <button
@@ -18,7 +20,7 @@ export const Dropdown = () => {
       </button>
       {store.access_token ? (
         store.language == "spanish" ? 
-        (store.is_admin? 
+        (store.user.is_admin? 
 
           <ul className="dropdown-menu dropdown-menu-center borderdropdown">
             <li className="text-center">

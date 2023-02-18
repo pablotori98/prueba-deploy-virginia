@@ -7,7 +7,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       blogpost: [],
       access_token: sessionStorage.getItem("access_token"),
       createcontactmessage: "",
-      is_admin: false
+      is_admin: "",
+      user:[],
+      user_id: sessionStorage.getItem("user_id")
     },
     actions: {
       // Change language function
@@ -78,11 +80,14 @@ const getState = ({ getStore, getActions, setStore }) => {
                 result = data;
                 sessionStorage.setItem("access_token", result.access_token);
                 sessionStorage.setItem("current_user", result.username);
+                sessionStorage.setItem("user_id", result.user_id);
+
                 setStore({
                   user: result,
                   login: "Correcto",
                   access_token: result.access_token,
-                  is_admin: result.is_admin
+                  is_admin: result.is_admin,
+                  user_id: result.user_id
                 });
               });
             } else if (response.status == 400) {
@@ -117,6 +122,18 @@ const getState = ({ getStore, getActions, setStore }) => {
         .then(result=>setStore({blogpost : result}))
       },
 
+      //Fetch all users
+      fetchallusers: async(id) =>{
+        const options = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        await fetch(`${process.env.BACKEND_URL}/api/users/${id}`, options)
+        .then(response => response.json())
+        .then(result=>setStore({user : result}))
+      },
 
       // Creacion de post
       handlepost: async (
