@@ -39,8 +39,8 @@ export const Dropdown = () => {
               </Link>
             </li>
             <li className="text-center">
-              <Button onClick={()=> actions.logout()}>
-                Cerrar sesión
+              <Button className="text-black" sx={{textTransform: 'none'}} onClick={()=> actions.logout()}>
+                <strong>Cerrar sesión</strong>
               </Button>
             </li>
           </ul>
@@ -58,7 +58,7 @@ export const Dropdown = () => {
               </Link>
             </li>
             <li className="text-center">
-              <Button onClick={()=> actions.logout()}>
+              <Button className="text-black" sx={{textTransform: 'none'}} onClick={()=> actions.logout()}>
                 Cerrar sesión
               </Button>
             </li>
@@ -76,8 +76,8 @@ export const Dropdown = () => {
               </Link>
             </li>
             <li className="text-center">
-              <Button onClick={()=> actions.logout()}>
-                Logout
+              <Button className="text-black" sx={{textTransform: 'none'}} onClick={()=> actions.logout()}>
+                <strong>Logout</strong>
               </Button>
             </li>
           </ul>
