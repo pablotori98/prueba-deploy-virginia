@@ -11,7 +11,7 @@ class User(db.Model, UserMixin):
     username= db.Column(db.String(), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
-    phone_number = db.Column(db.Integer, unique=False, nullable=False)
+    phone_number = db.Column(db.String(), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
     is_admin = db.Column(db.Boolean(), unique=False, nullable=False)
     is_patient = db.Column(db.Boolean(), unique=False, nullable=True)

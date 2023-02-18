@@ -17,7 +17,6 @@ export const UserProfile = () => {
   }, []);
 
   return (
-    <body style={{backgroundColor:"#F9EDE9", minHeight:"100vh"}}>
     <Box className="d-flex flex-column align-items-center ">
       <h1 className="fontabhaya text-center my-5 py-3">
         Hola {store.user.first_name} {store.user.last_name}
@@ -42,6 +41,5 @@ export const UserProfile = () => {
         </Box>
       </Box>
     </Box>
-    </body>
   );
 };

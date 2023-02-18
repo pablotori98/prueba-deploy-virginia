@@ -6,7 +6,6 @@ import { Button } from "@mui/material";
 
 export const Dropdown = () => {
   const { store, actions } = useContext(Context);
-  useState(()=>{actions.fetchallusers(sessionStorage.getItem("user_id"))},[])
 
   return (
     <div className="dropdown">
