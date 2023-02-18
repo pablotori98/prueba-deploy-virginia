@@ -6,9 +6,11 @@
 
 .blogpost {
   width: 50vw !important;
-  background-color: #dfcbc4;
-  padding: 3rem;
+  background-color: #F5ECE8;
+  padding: 0rem;
   border-radius: 15px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+
 }
 
 .blogbubblesection {
@@ -22,11 +24,14 @@
   max-height: 300px !important;
   width: 100% !important;
   object-fit: cover !important;
+  border-radius: 15px 15px 0 0;
 }
 .imgpost img {
   max-height: 400px !important;
   width: 100% !important;
   object-fit: cover !important;
+  border-radius: 15px;
+
 }
 /* Bubblepost */
 
@@ -61,6 +66,11 @@
 
 }
 
+@media (max-width: 1500px){
+    .blogpost {
+        width: 80vw !important;
+}
+}
 @media (max-width: 1000px){
     .bubblelink {
         background-color: #F5F1EE !important;
@@ -113,4 +123,10 @@
         box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
       
       }
+      .blogpost {
+        width: 95vw !important;
+}
+    .paddingblogmobile{
+        padding: 1rem!important;
+    }
 }
