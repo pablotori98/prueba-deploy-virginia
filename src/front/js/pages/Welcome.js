@@ -1,5 +1,6 @@
 import { Box, useMediaQuery } from "@mui/material";
 import React, { useContext, useEffect, useLayoutEffect } from "react";
+import { CardHome } from "../components/cards/CardHome.jsx";
 import { ContactHome } from "../components/contacthome/ContactHome.jsx";
 import { Faq } from "../components/faq/Faq.jsx";
 import { FaqEnglish } from "../components/faq/FaqEnglish.jsx";

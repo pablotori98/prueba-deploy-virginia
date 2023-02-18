@@ -1,0 +1,18 @@
+.cardhome{
+    /* background-image: url("https://img.freepik.com/vector-gratis/visita-dibujada-mano-al-concepto-psicologo_52683-69069.jpg?w=826&t=st=1676738569~exp=1676739169~hmac=0184382afc76f7f9a4b27970098c6cdcc2e119ee31a450fc58dd35bd6e75d885");
+    background-size: contain; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 250px;
+    border: solid 5px #E1BAAC;
+    border-radius: 15px;
+}
+
+.bordetextocard{
+    border: solid 2px #E1BAAC;
+    padding: 1rem;
+    border-radius: 15px;
+}
+
