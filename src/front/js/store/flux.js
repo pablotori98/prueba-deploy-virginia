@@ -5,7 +5,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       signup: "",
       login: "",
       blogpost: [],
-      access_token: sessionStorage.getItem("access_token")
+      access_token: sessionStorage.getItem("access_token"),
+      createcontactmessage: ""
     },
     actions: {
       // Change language function
@@ -152,6 +153,45 @@ const getState = ({ getStore, getActions, setStore }) => {
             } else if (response.status == 400) {
               setStore({
                 createpost: "Creación post incorrecto, pruebe de nuevo",
+              });
+            }
+          }
+        );
+      },
+
+      //Contact message
+      contacthome: async (
+        first_name,
+        last_name,
+        phone_number,
+        email,
+        problem_description
+      ) => {
+        const options = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            first_name: first_name,
+            last_name: last_name,
+            phone_number: phone_number,
+            email: email,
+            problem_description: problem_description
+          }),
+        };
+        await fetch(`${process.env.BACKEND_URL}/api/contactmessage`, options).then(
+          (response) => {
+            if (response.status == 201) {
+              return (
+                response.json(),
+                setStore({
+                  createcontactmessage: "Correcto",
+                })
+              );
+            } else if (response.status == 400) {
+              setStore({
+                createcontactmessage: "Error en la creación de mensaje, pruebe de nuevo",
               });
             }
           }

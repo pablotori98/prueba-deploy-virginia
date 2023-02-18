@@ -23,7 +23,7 @@ export const ContactHomeEnglish = () => {
       values.last_name,
       values.email,
       values.phone_number,
-      values.description
+      values.problem_description
     );
     if(store.signup=="Correcto"){
       navigate("/")
@@ -36,7 +36,7 @@ export const ContactHomeEnglish = () => {
       last_name: "",
       email: "",
       phone_number: "",
-      description:""
+      problem_description:""
     },
     onSubmit
   });
@@ -81,9 +81,9 @@ export const ContactHomeEnglish = () => {
             variant="standard"
           />
             <TextField
-            values={values.description}
+            values={values.problem_description}
             onChange={handleChange}
-            name="description"
+            name="problem_description"
             label="Tell me your problem"
             className="w-100 my-2"
             variant="standard"
