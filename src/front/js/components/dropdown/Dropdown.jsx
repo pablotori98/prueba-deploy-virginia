@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import PersonIcon from "@mui/icons-material/Person";
 import { Link } from "react-router-dom";
 import { Context } from "../../store/appContext";
+import { Button } from "@mui/material";
 
 export const Dropdown = () => {
   const { store, actions } = useContext(Context);
@@ -15,7 +16,7 @@ export const Dropdown = () => {
       >
         <PersonIcon className="text-white" />
       </button>
-      {store.access_token == sessionStorage.getItem("access_token") ? (
+      {store.access_token ? (
         store.language == "spanish" ? (
           <ul className="dropdown-menu dropdown-menu-center borderdropdown">
             <li className="text-center">
@@ -27,6 +28,11 @@ export const Dropdown = () => {
               <Link className="dropdown-item" to="/calendar">
                 Citas
               </Link>
+            </li>
+            <li className="text-center">
+              <Button onClick={()=> actions.logout()}>
+                Cerrar sesión
+              </Button>
             </li>
           </ul>
         ) : (
@@ -40,6 +46,11 @@ export const Dropdown = () => {
               <Link className="dropdown-item" to="/calendar">
                 Appointments
               </Link>
+            </li>
+            <li className="text-center">
+              <Button onClick={()=> actions.logout()}>
+                Logout
+              </Button>
             </li>
           </ul>
         )

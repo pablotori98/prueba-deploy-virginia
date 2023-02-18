@@ -5,7 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       signup: "",
       login: "",
       blogpost: [],
-      access_token: ""
+      access_token: sessionStorage.getItem("access_token")
     },
     actions: {
       // Change language function
@@ -90,6 +90,18 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
         );
       },
+
+      //logout
+      logout: async () => {
+        sessionStorage.clear();
+        window.location.href = "/";
+        setStore({
+          token_local: null,
+          logged: false,
+        });
+      },
+
+      //Conseguir todos los post
       getallpost: async() =>{
         const options = {
           method: "GET",

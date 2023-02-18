@@ -1,6 +1,6 @@
 //Import React
 import React, { useContext, useLayoutEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 //Import materials
 import { Box, Button, TextField, Typography } from "@mui/material";
@@ -11,6 +11,7 @@ import { CallToActionSharp } from "@mui/icons-material";
 import { Context } from "../store/appContext"
 
 export const Login = () => {
+  const navigate = useNavigate()
     const newTitle = "Login"
     useLayoutEffect(() => {
       document.title = newTitle
@@ -21,6 +22,7 @@ export const Login = () => {
       values.email,
       values.password
     );
+    navigate("/")
   };
 
   const { values, handleSubmit, handleChange, onChange } = useFormik({
