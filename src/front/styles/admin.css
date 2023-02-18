@@ -14,3 +14,17 @@
 .adminmodify img{
     max-width: 30vw;
 }
+
+@media  (max-width: 1300px){
+
+    .fatheradmin{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .adminmodify img{
+        max-width: 44vw;
+    }
+
+}

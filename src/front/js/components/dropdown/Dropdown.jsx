@@ -17,7 +17,33 @@ export const Dropdown = () => {
         <PersonIcon className="text-black" />
       </button>
       {store.access_token ? (
-        store.language == "spanish" ? (
+        store.language == "spanish" ? 
+        (store.is_admin? 
+
+          <ul className="dropdown-menu dropdown-menu-center borderdropdown">
+            <li className="text-center">
+              <Link className="dropdown-item" to="/profile">
+                Perfil
+              </Link>
+            </li>
+            <li className="text-center">
+              <Link className="dropdown-item" to="/calendar">
+                Citas
+              </Link>
+            </li>
+            <li className="text-center">
+              <Link className="dropdown-item" to="/admin">
+                Admin
+              </Link>
+            </li>
+            <li className="text-center">
+              <Button onClick={()=> actions.logout()}>
+                Cerrar sesión
+              </Button>
+            </li>
+          </ul>
+
+:
           <ul className="dropdown-menu dropdown-menu-center borderdropdown">
             <li className="text-center">
               <Link className="dropdown-item" to="/profile">

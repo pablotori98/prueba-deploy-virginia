@@ -6,7 +6,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       login: "",
       blogpost: [],
       access_token: sessionStorage.getItem("access_token"),
-      createcontactmessage: ""
+      createcontactmessage: "",
+      is_admin: false
     },
     actions: {
       // Change language function
@@ -80,7 +81,8 @@ const getState = ({ getStore, getActions, setStore }) => {
                 setStore({
                   user: result,
                   login: "Correcto",
-                  access_token: result.access_token
+                  access_token: result.access_token,
+                  is_admin: result.is_admin
                 });
               });
             } else if (response.status == 400) {
