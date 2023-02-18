@@ -59,7 +59,6 @@ const getState = ({ getStore, getActions, setStore }) => {
       // Login Function
       login: async (email, password) => {
         let result = undefined;
-        console.log("email:", email, "password:", password);
         const options = {
           method: "POST",
           headers: {
@@ -77,7 +76,6 @@ const getState = ({ getStore, getActions, setStore }) => {
                 result = data;
                 sessionStorage.setItem("access_token", result.access_token);
                 sessionStorage.setItem("current_user", result.username);
-                console.log("result:", result);
                 setStore({
                   user: result,
                   login: "Correcto",

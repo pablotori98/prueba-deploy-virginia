@@ -11,7 +11,6 @@ export const Blog = () => {
   useEffect(() => {
     actions.getallpost();
   }, []);
-  console.log("holsa", store.blogpost[0]);
   const [read, setRead] = useState(true);
   return (
     <Box className="container">

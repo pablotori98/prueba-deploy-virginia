@@ -30,12 +30,11 @@ export const Login = () => {
     },
     onSubmit,
   });
-  console.log(values);
 
   return (
     <Box className="login">
       <Box className="cardlogin">
-        <h2 className="fontabhaya">Sign Up text</h2>
+        <h2 className="fontabhaya">Login</h2>
         <form onSubmit={handleSubmit} className="formlogin">
           <TextField
             values={values.email}

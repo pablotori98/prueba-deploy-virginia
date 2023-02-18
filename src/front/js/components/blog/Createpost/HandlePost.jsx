@@ -44,8 +44,7 @@ export const HandlePost = () => {
     },
     onSubmit,
   });
-  console.log(values);
-  console.log(process.env.BACKEND_URL);
+
 
   return (
     <Box className="signup">

@@ -28,7 +28,6 @@ import { NavbarLinksEnglish } from "./english/NavbarLinksEnglish.jsx";
 export const Navbar = () => {
   const theme = useTheme();
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
-  console.log(isMatch);
   const { actions, store } = useContext(Context);
   return (
     <React.Fragment>

@@ -40,8 +40,7 @@ export const ContactHomeSpanish = () => {
     },
     onSubmit
   });
-  console.log(values);
-  console.log(process.env.BACKEND_URL)
+
 
   return (
     <Box className="contactformhome">

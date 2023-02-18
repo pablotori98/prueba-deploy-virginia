@@ -48,8 +48,7 @@ export const SignUp = () => {
     },
     onSubmit,
   });
-  console.log(values);
-  console.log(process.env.BACKEND_URL);
+
 
   return (
     <>{(store.language == "spanish" ? <SignUpSpanish /> : <SignUpEnglish />)}</>

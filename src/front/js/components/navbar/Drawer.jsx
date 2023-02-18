@@ -45,7 +45,6 @@ import { Box } from "@mui/system";
 const DrawerComp = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
   const { actions, store } = useContext(Context);
-  console.log("hola", store.language);
   return (
     <React.Fragment>
       <Drawer
