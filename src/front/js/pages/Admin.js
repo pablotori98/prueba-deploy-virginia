@@ -5,6 +5,13 @@ import { Link } from "react-router-dom";
 //Import materials
 import { Box, Typography } from "@mui/material";
 
+import writepost from "../assets/admin/writepost.png"
 export const Admin = () =>{
-    return(<h1>Admin</h1>)
+    return(
+        <Box>
+            <Box>
+                <img src={writepost}/>
+            </Box>
+        </Box>
+    )
 }
