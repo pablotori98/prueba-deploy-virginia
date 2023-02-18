@@ -14,7 +14,7 @@ export const Dropdown = () => {
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
-        <PersonIcon className="text-white" />
+        <PersonIcon className="text-black" />
       </button>
       {store.access_token ? (
         store.language == "spanish" ? (
