@@ -4,7 +4,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       language: "spanish",
       signup: "",
       login: "",
-      blogpost: []
+      blogpost: [],
+      access_token: ""
     },
     actions: {
       // Change language function
@@ -80,6 +81,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 setStore({
                   user: result,
                   login: "Correcto",
+                  access_token: result.access_token
                 });
               });
             } else if (response.status == 400) {
