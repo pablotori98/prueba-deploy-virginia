@@ -17,7 +17,7 @@ export const FaqSpanish = () =>{
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography>Pregunta frecuente 1</Typography>
+          <Typography className='text-white'><strong>Pregunta frecuente 1</strong></Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography className='m-2'>
@@ -34,7 +34,7 @@ export const FaqSpanish = () =>{
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography>Pregunta frecuente 2</Typography>
+          <Typography className='text-white'><strong>Pregunta frecuente 2</strong></Typography>
         </AccordionSummary>
         <AccordionDetails>
         <Typography className='m-2'>
@@ -52,7 +52,7 @@ export const FaqSpanish = () =>{
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography>Pregunta frecuente 3</Typography>
+          <Typography className='text-white'><strong>Pregunta frecuente 3</strong></Typography>
         </AccordionSummary>
         <AccordionDetails>
         <Typography className='m-2'>
