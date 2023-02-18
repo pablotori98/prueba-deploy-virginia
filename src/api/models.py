@@ -61,7 +61,7 @@ class BlogPost(db.Model):
     tags_post = db.Column(db.String())
 
     def __repr__(self):
-        return f'<Appointment {self.title_post}>'
+        return f'<Blogpost {self.title_post}>'
 
     def serialize(self):
         return {
@@ -75,3 +75,27 @@ class BlogPost(db.Model):
             "language": self.language
 
         }
+
+
+class Contact(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(100), nullable=False)
+    last_name = db.Column(db.String(), nullable=False)
+    phone_number = db.Column(db.String(), nullable=False)
+    email = db.Column(db.String(), nullable=False)
+    problem_description = db.Column(db.String(), nullable=False)
+
+
+    def __repr__(self):
+        return f'<Contact {self.first_name}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "first_name": self.first_name,
+            "last_name": self.last_name,
+            "phone_number": self.phone_number,
+            "email": self.phone_number,
+            "problem_description": self.problem_description
+        }
+

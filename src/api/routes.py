@@ -1,7 +1,7 @@
 from datetime import datetime
 from sqlalchemy import and_, or_, not_
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Appointment, BlogPost
+from api.models import db, User, Appointment, BlogPost, Contact
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -175,3 +175,51 @@ def delete_post(post_id):
     return jsonify({
         'message': 'Post borrado' })
 
+
+# Contact message
+
+# Create message
+@api.route('/contactmessage', methods=['POST'])
+def create_contact_message():
+    request_data = request.get_json(force=True)
+    new_message= Contact(
+        first_name=request_data['first_name'],
+        last_name=request_data['last_name'],
+        phone_number=request_data['phone_number'],
+        email=request_data['email'],
+        problem_description=request_data['problem_description'],
+    )
+    db.session.add(new_message)
+    db.session.commit()
+    return jsonify({
+        'message': 'Contact message created',
+        'New_user': new_message.serialize()
+    }), 201
+
+# Display all messages
+
+@api.route('/contactmessage', methods=['GET'])
+def get_contact_messages():
+    getAllMessages = Contact.query.all()
+    listmessages= []
+    for message in getAllMessages:
+        listmessages.append(message.serialize())
+    return jsonify(listmessages), 200
+
+# Get one message
+
+@api.route('/contactmessage/<int:contactmessage_id>', methods=['GET'])
+def get_one_message(contactmessage_id):
+    contact_message = db.session.query(Contact).filter(Contact.id == contactmessage_id).first()
+    return jsonify(contact_message.serialize()), 200
+
+# Delete message
+
+@api.route('/contactmessage/<int:contactmessage_id>', methods=['DELETE'])
+def delete_contact_message(contactmessage_id):
+    contact_message = db.session.query(Contact).filter(Contact.id == contactmessage_id).first()
+    db.session.delete(contact_message)
+    db.session.commit()
+
+    return jsonify({
+        'message': 'Post borrado' })
