@@ -11,6 +11,7 @@ export const JumbotronMobileSpanish = () =>{
           width: "100vw",
           backgroundSize: "contain",
           height: "80vh",
+          minHeight: "530px",
           backgroundPosition: "center bottom",
           backgroundRepeat: "no-repeat"
         }}
