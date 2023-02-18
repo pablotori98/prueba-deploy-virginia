@@ -22,6 +22,7 @@ const paginas = [
   "Inicio",
   "Terapia",
   "Sobre Mi",
+  "Blog",
   "Contacto",
   "Login",
   "SignUp",
@@ -30,11 +31,12 @@ const linkpaginas = [
   "/",
   "/terapia",
   "/aboutme",
+  "/blog",
   "/contact",
   "/login",
   "/signup",
 ];
-const pages = ["Home", "Therapy", "About Me", "Contact", "Login", "SignUp"];
+const pages = ["Home", "Therapy", "About Me","Blog", "Contact", "Login", "SignUp"];
 
 //Context
 import { Context } from "../../store/appContext";

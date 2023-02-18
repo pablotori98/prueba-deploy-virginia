@@ -51,7 +51,7 @@ export const SignUpSpanish = () => {
   return (
     <Box className="signup">
       <Box className="cardsignup">
-        <h1 className="fontabhaya">Regristro</h1>
+        <h1 className="fontabhaya">Registro</h1>
         <form onSubmit={handleSubmit} className="formsignup">
           <TextField
             values={values.first_name}

@@ -53,6 +53,13 @@ export const NavbarLinksSpanish = () =>{
           </Typography>
         </Button>
       </Link>
+      <Link to="/blog" className="linkremovestyle">
+        <Button>
+          <Typography className="buttonnavbar">
+            Blog
+          </Typography>
+        </Button>
+      </Link>
       <Link to="/contact" className="linkremovestyle">
         <Button>
           <Typography className="buttonnavbar">
