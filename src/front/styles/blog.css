@@ -66,6 +66,10 @@
 
 }
 
+.uploadblogimage{
+  background-color: #E1BAAC!important;
+}
+
 @media (max-width: 1500px){
     .blogpost {
         width: 80vw !important;

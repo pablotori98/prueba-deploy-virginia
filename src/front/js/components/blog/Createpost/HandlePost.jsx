@@ -3,7 +3,15 @@ import React, { useContext, useLayoutEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 //Import materials
-import { Box, Button, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { Formik, useFormik } from "formik";
 import { CallToActionSharp } from "@mui/icons-material";
 
@@ -44,7 +52,6 @@ export const HandlePost = () => {
     },
     onSubmit,
   });
-
 
   return (
     <Box className="signup">
@@ -99,23 +106,32 @@ export const HandlePost = () => {
             className="w-100 my-2"
             variant="standard"
           />
+          <Button
+            className="my-3 uploadblogimage w-100"
+            variant="contained"
+            aria-label="upload picture"
+            component="label"
+          >
+            Subir imagen post
+            <input hidden accept="image/*" type="file" />
+          </Button>
           <Box className="d-flex align-items-center mt-2">
             <Typography className="me-3">Seleccionar idioma</Typography>
-          <InputLabel id="demo-simple-select-label"></InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={values.language}
-            name="language"
-            label="Language"
-            onChange={handleChange}
-          >
-            <MenuItem value="Spanish">Spanish</MenuItem>
-            <MenuItem value="English">English</MenuItem>
-          </Select>
+            <InputLabel id="demo-simple-select-label"></InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={values.language}
+              name="language"
+              label="Language"
+              onChange={handleChange}
+            >
+              <MenuItem value="Spanish">Spanish</MenuItem>
+              <MenuItem value="English">English</MenuItem>
+            </Select>
           </Box>
 
-          <Button type="submit" variant="contained" className="buttonsignup">
+          <Button type="submit" variant="contained" className="buttonsignup mb-5">
             Registro
           </Button>
           {store.signup != "" ? (
