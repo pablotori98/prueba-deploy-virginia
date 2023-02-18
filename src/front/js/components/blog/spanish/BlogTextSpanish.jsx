@@ -10,10 +10,11 @@ export const BlogTextSpanish = () => {
       <Box className="blogsection">
         {store?.blogpost?.map((element, index) => {
           return (
-            <>
+            <Box key={index}>
  
-              <Box className="blogpost mb-5" key={index}>
+              <Box className="blogpost mb-5" >
                 <Link
+                
                   to={`/blog/${element.title_post}`}
                   className="linkremovestyle text-black"
                 >
@@ -34,7 +35,7 @@ export const BlogTextSpanish = () => {
                   Escrito por Nombre psicologa
                 </Typography>
               </Box>
-            </>
+            </Box>
           );
         })}
       </Box>
