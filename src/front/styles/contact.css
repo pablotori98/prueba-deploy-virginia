@@ -48,6 +48,24 @@
     border-radius: 15px;
 }
 
+.plumacontact{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 25vw!important;
+}
+@media (max-width:800px){
+    .fatherpluma{
+        display: flex!important;
+        justify-content: center!important;
+        width: 100vw!important;
+    }
+    .plumacontact{
+        position: inherit!important;
+        width: 25vw!important;
+    }
+}
+
 @media (max-width:800px){
     .formcontacthome{
         display: flex;
