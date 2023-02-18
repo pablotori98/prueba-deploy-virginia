@@ -21,8 +21,8 @@ export const ContactHomeSpanish = () => {
     await actions.contacthome(
       values.first_name,
       values.last_name,
-      values.email,
       values.phone_number,
+      values.email,
       values.problem_description
     );
     if(store.signup=="Correcto"){
