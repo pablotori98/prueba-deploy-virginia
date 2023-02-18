@@ -44,10 +44,10 @@ export const ContactHomeSpanish = () => {
   console.log(process.env.BACKEND_URL)
 
   return (
-    <Box className="signup">
+    <Box className="contactformhome">
       <Box className="cardsignup">
         <h1 className="fontabhaya">Contacto</h1>
-        <form onSubmit={handleSubmit} className="formsignup">
+        <form onSubmit={handleSubmit} className="formcontacthome">
           <TextField
             values={values.first_name}
             onChange={handleChange}
