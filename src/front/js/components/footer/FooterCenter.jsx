@@ -11,35 +11,62 @@ export const FooterCenter = () => {
   return (
     <>
       {store.language == "spanish" ? (
-        <Box className="footercenter">
-          <Typography>Enlaces interés</Typography>
-          <Divider className="w-50" />
-          <Link to="/" className="linkremovestyle">
-            <Typography>Inicio</Typography>
+        <Box className="footercenter  text-white">
+          <Typography><strong>Enlaces</strong></Typography>
+          <Divider className="w-50 my-1"  sx={{ borderBottomWidth: 5, backgroundColor:"white" }}/>
+          <Box className="d-flex text-center mt-3 ">
+          <Box className="mx-4">
+          <Link to="/" className="linkremovestyle text-white">
+            <Typography><strong>Inicio</strong></Typography>
           </Link>
-          <Link to="/services" className="linkremovestyle">
-            <Typography>Servicios</Typography>
+          <Link to="/services" className="linkremovestyle text-white">
+            <Typography><strong>Servicios</strong></Typography>
           </Link>
-          <Link to="/aboutme" className="linkremovestyle">
-            <Typography>Sobremi</Typography>
+          <Link to="/aboutme" className="linkremovestyle text-white">
+            <Typography><strong>Sobre mi</strong></Typography>
           </Link>
-          <Link to="/contact" className="linkremovestyle">
-            <Typography>Contacto</Typography>
+          </Box>
+          <Box className="mx-4">
+          <Link to="/contact" className="linkremovestyle text-white">
+            <Typography><strong>Contacto</strong></Typography>
           </Link>
-          <Link to="/login" className="linkremovestyle">
-            <Typography>Inicio sesión</Typography>
+          <Link to="/login" className="linkremovestyle text-white">
+            <Typography><strong>Inicio sesión</strong></Typography>
           </Link>
-          <Link to="/signup" className="linkremovestyle">
-            <Typography>Registro</Typography>
+          <Link to="/signup" className="linkremovestyle text-white">
+            <Typography><strong>Registro</strong></Typography>
           </Link>
         </Box>
+        </Box>
+        </Box>
       ) : (
-        <Box className="footercenter">
-          <Typography>Links</Typography>
-          <Divider className="w-50" />
-          <Link to="/" className="linkremovestyle">
-            <Typography>Links</Typography>
+        <Box className="footercenter  text-white">
+          <Typography><strong>Links</strong></Typography>
+          <Divider className="w-50 my-1"  sx={{ borderBottomWidth: 5, backgroundColor:"white" }}/>
+          <Box className="d-flex text-center mt-3 ">
+          <Box className="mx-4">
+          <Link to="/" className="linkremovestyle text-white">
+            <Typography><strong>Home</strong></Typography>
           </Link>
+          <Link to="/services" className="linkremovestyle text-white">
+            <Typography><strong>Services</strong></Typography>
+          </Link>
+          <Link to="/aboutme" className="linkremovestyle text-white">
+            <Typography><strong>About me</strong></Typography>
+          </Link>
+          </Box>
+          <Box className="mx-4">
+          <Link to="/contact" className="linkremovestyle text-white">
+            <Typography><strong>Contact</strong></Typography>
+          </Link>
+          <Link to="/login" className="linkremovestyle text-white">
+            <Typography><strong>Login</strong></Typography>
+          </Link>
+          <Link to="/signup" className="linkremovestyle text-white">
+            <Typography><strong>Sign Up</strong></Typography>
+          </Link>
+        </Box>
+        </Box>
         </Box>
       )}
     </>

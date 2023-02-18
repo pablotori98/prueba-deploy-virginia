@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 import { Box, Typography } from "@mui/material";
 export const FooterLeft = () => {
   return (
-    <Box className="footerright">
-        Footer Left
+    <Box className="footerright text-white">
+        <strong>LOGO</strong>
     </Box>
   );
 };
