@@ -31,33 +31,33 @@ export const OnlyPostSpanish = () => {
               <Divider className="my-3" />
 
               <Box className="px-5 py-2 paddingblogmobile">
-                <Typography className="mt-3">{store.singlepost.paragraph1}</Typography>{" "}
+                <Typography className="mt-3">{store.singlepost.paragraph1}</Typography>
 
                 {
-                  (store.singlepost.paragraph2 = " " ? null : (
+                  (store.singlepost.paragraph2 ==" " ? null : (
                     <Typography className="mt-3">
-                      fadsfasdf{store.paragraph2}
+                      fadsfasdf{store.singlepost.paragraph2}
                     </Typography>
                   ))
                 }
                 {
-                  (store.singlepost.paragraph3 = " " ? null : (
+                  (store.singlepost.paragraph3 == " " ? null : (
                     <Typography className="mt-3">
-                      {store.paragraph3}
+                      {store.singlepost.paragraph3}
                     </Typography>
                   ))
                 }
                 {
-                  (store.singlepost.paragraph4 = " " ? null : (
+                  (store.singlepost.paragraph4 == " " ? null : (
                     <Typography className="mt-3">
-                      {store.paragraph4}
+                      {store.singlepost.paragraph4}
                     </Typography>
                   ))
                 }
                 {
-                  (store.singlepost.paragraph5 = " " ? null : (
+                  (store.singlepost.paragraph5 == " " ? null : (
                     <Typography className="mt-3">
-                      {store.paragraph5}
+                      {store.singlepost.paragraph5}
                     </Typography>
                   ))
                 }

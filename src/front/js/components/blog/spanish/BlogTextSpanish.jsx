@@ -29,10 +29,10 @@ export const BlogTextSpanish = () => {
               /> */}
               <Box className="px-5 py-2 paddingblogmobile">
                 <Typography className="mt-3">{element.paragraph1}</Typography>
-                {element.paragraph2=" "? null:<Typography className="mt-3">{element.paragraph2}</Typography>}
-                {element.paragraph3=" "? null:<Typography className="mt-3">{element.paragraph3}</Typography>}
-                {element.paragraph4=" "? null:<Typography className="mt-3">{element.paragraph4}</Typography>}
-                {element.paragraph5=" "? null:<Typography className="mt-3">{element.paragraph5}</Typography>}
+                {element.paragraph2==" "? null:<Typography className="mt-3">{element.paragraph2}</Typography>}
+                {element.paragraph3==" "? null:<Typography className="mt-3">{element.paragraph3}</Typography>}
+                {element.paragraph4==" "? null:<Typography className="mt-3">{element.paragraph4}</Typography>}
+                {element.paragraph5==" "? null:<Typography className="mt-3">{element.paragraph5}</Typography>}
               </Box>
                 <Typography className="mt-5 p-3">
                   Escrito por Nombre psicologa

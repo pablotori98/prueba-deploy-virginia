@@ -191,6 +191,52 @@ const getState = ({ getStore, getActions, setStore }) => {
         );
       },
 
+      // Modificación blog
+
+      modpost: async (
+        title_post,
+        paragraph1,
+        paragraph2,
+        paragraph3,
+        paragraph4,
+        paragraph5,
+        language,
+        id
+      ) => {
+        const options = {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title_post: title_post,
+            paragraph1: paragraph1,
+            paragraph2: paragraph2,
+            paragraph3: paragraph3,
+            paragraph4: paragraph4,
+            paragraph5: paragraph5,
+            language: language,
+          }),
+        };
+        await fetch(`${process.env.BACKEND_URL}/api/blogpost/${id}`, options).then(
+          (response) => {
+            if (response.status == 201) {
+              return (
+                response.json(),
+                setStore({
+                  createpost: "Correcto",
+                })
+              );
+            } else if (response.status == 400) {
+              setStore({
+                createpost: "Creación post incorrecto, pruebe de nuevo",
+              });
+            }
+          }
+        );
+      },
+
+
       //Contact message
       contacthome: async (
         first_name,
