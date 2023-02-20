@@ -1,0 +1,38 @@
+.leftaboutme{
+    width: 30vw;
+    background: linear-gradient(180deg, rgba(223,165,144,1) 0%, rgba(225,186,172,1) 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    animation: 1s ease-out 0s 1 slideInFromLeft;
+    border-radius: 0 15px 0 0 ;
+}
+.bgcoloraboutme{
+    background-color: #F5ECE8;
+
+}
+
+.rightaboutme{
+    width: 70vw;
+    background-color: #F5ECE8;
+}
+
+.aboutmetitle{
+    font-size: 8rem;
+    padding: 3rem;
+}
+.imgaboutme{
+    width: 70%;
+    border-radius: 50%;
+    margin-top: 2rem;
+}
+
+@keyframes slideInFromLeft {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
