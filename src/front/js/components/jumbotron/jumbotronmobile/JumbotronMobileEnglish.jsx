@@ -20,11 +20,13 @@ export const JumbotronMobileEnglish = () =>{
       >
         <h1 className="fontabhaya mt-5">Name of psichologist</h1>
         <h3 className="fontabhaya my-2">Brief description psychologist</h3>
+        <Link className="linkremovestyle" to="/contact">
         <Button
       variant="contained"
       className="btnjumbotron my-2"
       >CTA text
       </Button>
+      </Link>
       </Box>
   
     )

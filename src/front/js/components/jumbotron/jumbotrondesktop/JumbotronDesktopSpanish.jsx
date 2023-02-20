@@ -28,11 +28,13 @@ export const JumbotronDesktopSpanish = () => {
     >
       <h1 className="fontabhaya mt-5">Nombre psicologa</h1>
       <h3 className="fontabhaya my-2">Breve descripcion psicologa</h3>
+      <Link className="linkremovestyle" to="/contact">
       <Button
       variant="contained"
       className="btnjumbotron my-2"
       >CTA texto
       </Button>
+      </Link>
     </Box>
   );
 };

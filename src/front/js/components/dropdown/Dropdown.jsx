@@ -28,7 +28,7 @@ export const Dropdown = () => {
               </Link>
             </li>
             <li className="text-center">
-              <Link className="dropdown-item" to="/calendar">
+              <Link className="dropdown-item" to="/citas">
                 Citas
               </Link>
             </li>
@@ -52,7 +52,7 @@ export const Dropdown = () => {
               </Link>
             </li>
             <li className="text-center">
-              <Link className="dropdown-item" to="/calendar">
+              <Link className="dropdown-item" to="/tuscitas">
                 Citas
               </Link>
             </li>
@@ -70,7 +70,7 @@ export const Dropdown = () => {
               </Link>
             </li>
             <li className="text-center">
-              <Link className="dropdown-item" to="/calendar">
+              <Link className="dropdown-item" to="/tuscitas">
                 Appointments
               </Link>
             </li>

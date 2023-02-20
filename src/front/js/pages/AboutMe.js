@@ -7,6 +7,8 @@ import { Box, Typography } from "@mui/material";
 
 export const AboutMe = () =>{
     return(
-        <Box>About me</Box>
+        <Box className="d-flex justify-content-center">
+            <h1 className="fontabhaya ">Sobre mi</h1>
+        </Box>
     )
 }
