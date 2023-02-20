@@ -13,7 +13,7 @@ export const BlogTextSpanish = () => {
             <Box key={index}>
               <Box className="blogpost mb-5">
                 <Link
-                  to={`/blog/${element.title_post}`}
+                  to={`/blog/${element.id}/${element.title_post}`}
                   className="linkremovestyle text-black"
                 >
                   <img

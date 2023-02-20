@@ -5,6 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       signup: "",
       login: "",
       blogpost: [],
+      singlepost: [],
       access_token: sessionStorage.getItem("access_token"),
       createcontactmessage: "",
       is_admin: "",
@@ -133,6 +134,18 @@ const getState = ({ getStore, getActions, setStore }) => {
         await fetch(`${process.env.BACKEND_URL}/api/users/${id}`, options)
         .then(response => response.json())
         .then(result=>setStore({user : result}))
+      },
+      
+      singleblogpost: async(id) =>{
+        const options = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        await fetch(`${process.env.BACKEND_URL}/api/blogpost/${id}`, options)
+        .then(response => response.json())
+        .then(result=>setStore({singlepost : result}))
       },
 
       // Creacion de post

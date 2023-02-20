@@ -15,6 +15,7 @@ import { SignUp } from "./pages/SignUp";
 import { Servicios } from "./pages/Servicios";
 import AdminPanel from "./pages/adminpanel";
 import { Blog } from "./pages/Blog";
+import { BlogPost } from "./pages/BlogPost";
 
 //Pages and views
 
@@ -85,6 +86,15 @@ const Layout = () => {
                   <ProtectedRoute
                     enabledProtection={false}
                     component={<UserProfile />}
+                  />
+                }
+              />
+              <Route
+                path="/blog/:idpost/:titlepost"
+                element={
+                  <ProtectedRoute
+                    enabledProtection={false}
+                    component={<BlogPost />}
                   />
                 }
               />
