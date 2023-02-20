@@ -12,9 +12,17 @@
   animation: 1s ease-out 0s 1 slideInFromLeft;
   border-radius: 0 15px 0 0;
 }
+
+.titleandphotoabout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .bgcoloraboutme {
   background-color: #f5ece8;
-  overflow-x: hidden; 
+  overflow-x: hidden;
+
 }
 
 .rightaboutme {
@@ -24,20 +32,18 @@
   width: 70vw;
   background-color: #f5ece8;
   animation: 1s ease-out 0s 1 slideInFromRight;
-
 }
 
-.boxcardaboutme{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 70vw;
-
+.boxcardaboutme {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 70vw;
 }
-.aboutmeinfocard{
-    width: 25vw;
-    height: 20vh;
-    margin: 0 3rem 4.5rem 0;
+.aboutmeinfocard {
+  width: 25vw;
+  height: 20vh;
+  margin: 0 3rem 4.5rem 0;
 }
 
 .aboutmetitle {
@@ -50,6 +56,125 @@
   margin-top: 2rem;
 }
 
+/* Media queries */
+
+@media (max-width: 1000px) {
+  .leftaboutme {
+    display: flex;
+    flex-direction: row;
+    align-items: center !important;
+    justify-content: center;
+    min-width: 100vw !important;
+    min-height: 0 !important;
+    height: 34vh;
+    background: linear-gradient(
+      180deg,
+      rgba(223, 165, 144, 1) 0%,
+      rgba(225, 186, 172, 1) 100%
+    );
+    border-radius: 0 0 15px 15px;
+  }
+  .leftheaderabout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50vw;
+  }
+  .rightheaderabout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50vw;
+  }
+  .imgaboutme {
+    min-width: 250px;
+    width: 25vw !important;
+    border-radius: 50%;
+    margin: 0;
+  }
+
+  .rightaboutme {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    background-color: #f5ece8;
+    animation: 1s ease-out 0s 1 slideInFromRight;
+  }
+  .titleaboutme {
+    font-size: 2.5rem !important;
+  }
+}
+
+@media (max-width: 620px) {
+  .leftaboutme {
+    display: flex;
+    flex-direction: row;
+    align-items: center !important;
+    justify-content: center!important;
+    flex-wrap: wrap;
+    min-width: 100vw !important;
+    min-height: 250px !important;
+    height: 250px!important;
+    background: linear-gradient(
+      180deg,
+      rgba(223, 165, 144, 1) 0%,
+      rgba(225, 186, 172, 1) 100%
+    );
+    border-radius: 0 0 15px 15px;
+  }
+  .aboutmetitle{
+    font-size: 3rem!important;
+    padding: 0;
+    
+  }
+
+  .leftheaderabout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+  }
+  .rightheaderabout {
+    display: flex;
+    flex-direction: column;
+    align-items: center!important;
+    text-align: center!important;
+    width: 100vw;
+  }
+  .imgaboutme {
+    min-width: 0;            
+    width: 30vw !important;
+    border-radius: 50%;
+    margin: 0!important;
+  }
+  
+  .contentaboutmemobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    background-color: #f5ece8;
+    animation: 1s ease-out 0s 1 slideInFromRight;
+  }
+  .titleaboutme {
+    font-size: 2rem !important;
+  }
+  .subtitleaboutme{
+    font-size: 1rem!important;
+  }
+  .contentaboutmemobile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    margin-top: 1rem;
+
+  }
+
+}
+
+/* Animaciones */
 @keyframes slideInFromLeft {
   0% {
     transform: translateX(-100%);
@@ -60,10 +185,10 @@
 }
 
 @keyframes slideInFromRight {
-    0% {
-      transform: translateX(100%);
-    }
-    100% {
-      transform: translateX(0);
-    }
+  0% {
+    transform: translateX(100%);
   }
+  100% {
+    transform: translateX(0);
+  }
+}
