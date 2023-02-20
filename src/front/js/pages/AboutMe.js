@@ -23,7 +23,34 @@ export const AboutMe = () => {
         </Typography>
       </Box>
       <Box className="rightaboutme">
-        <h1 className="fontabhaya">Sobre Mi</h1>
+        <h1 className="fontabhaya aboutmetitle">Sobre Mi</h1>
+        <Box className="boxcardaboutme">
+          <Box className="aboutmeinfocard text-center">
+            <h3 className="fontabhaya">Especialidades</h3>
+            <p>Especialidad 1</p>
+            <p>Especialidad 2</p>
+            <p>Especialidad 3</p>
+
+          </Box>
+          <Box className="aboutmeinfocard text-center">
+            <h3 className="fontabhaya">Estudios</h3>
+            <p>Estudios 1</p>
+            <p>Estudios 2</p>
+            <p>Estudios 3</p>
+          </Box>
+          <Box className="aboutmeinfocard text-center">
+            <h3 className="fontabhaya">Información adicional</h3>
+            <p>Información adicional 1</p>
+            <p>Información adicional 2</p>
+            <p>Información adicional 3</p>
+          </Box>
+          <Box className="aboutmeinfocard text-center">
+            <h3 className="fontabhaya">Información adicional</h3>
+            <p>Información adicional 4</p>
+            <p>Información adicional 5</p>
+            <p>Información adicional 6</p>
+          </Box>
+        </Box>
       </Box>
     </Box>
   );
