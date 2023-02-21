@@ -1,5 +1,5 @@
 //Import React
-import React, { useContext, useEffect, useLayoutEffect } from "react";
+import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 //Import materials
@@ -30,6 +30,19 @@ export const ModPost = () => {
     actions.singleblogpost(params.idpost);
   }, []);
 
+  const [image, setImage] = useState("");
+  const convertiraBase64 = (archivos) => {
+    Array.from(archivos).forEach((archivo) => {
+      var reader = new FileReader();
+      reader.readAsDataURL(archivo);
+      reader.onload = function () {
+        var base64 = reader.result;
+        console.log(base64);
+        setImage(base64);
+      };
+    });
+  };
+
   const onSubmit = async (values, ax) => {
     await actions.modpost(
       values.title_post,
@@ -39,6 +52,7 @@ export const ModPost = () => {
       values.paragraph4,
       values.paragraph5,
       values.language,
+      image,
       params.idpost
     );
   };
@@ -62,10 +76,7 @@ export const ModPost = () => {
       <Box>
         <form onSubmit={handleSubmit}>
           <Box className="blogpost mb-5">
-            <img
-              className="imgpost"
-              src={store.singlepost.image_post}
-            />
+            <img className="imgpost" src={store.singlepost.image_post} />
             <Box className="px-5">
               <TextField
                 values={values.title_post}
@@ -142,7 +153,16 @@ export const ModPost = () => {
                 component="label"
               >
                 Subir imagen post
-                <input hidden accept="image/*" type="file" />
+                <input
+                  values={values.image_post}
+                  name="image"
+                  onChange={(e) => {
+                    convertiraBase64(e.target.files);
+                    React.ChangeEvent(values.image_post);
+                  }}
+                  hidden
+                  type="file"
+                />{" "}
               </Button>
               <Box className="d-flex align-items-center mt-2">
                 <Typography className="me-3">Seleccionar idioma</Typography>

@@ -203,6 +203,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         paragraph4,
         paragraph5,
         language,
+        image_post,
         id
       ) => {
         const options = {
@@ -218,6 +219,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             paragraph4: paragraph4,
             paragraph5: paragraph5,
             language: language,
+            image_post: image_post
           }),
         };
         await fetch(`${process.env.BACKEND_URL}/api/blogpost/${id}`, options).then(
