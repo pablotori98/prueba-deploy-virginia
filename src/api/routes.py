@@ -164,7 +164,14 @@ def modificate_post(post_id):
     request_data = request.get_json(force=True)
 
     blogpost.title_post = request_data.get('title_post', default_values.title_post)
-    blogpost.body_post = request_data.get('body_post', default_values.title_post)
+    blogpost.paragraph1 = request_data.get('paragraph1', default_values.paragraph1)
+    blogpost.paragraph2 = request_data.get('paragraph2', default_values.paragraph2)
+    blogpost.paragraph3 = request_data.get('paragraph3', default_values.paragraph3)
+    blogpost.paragraph4 = request_data.get('paragraph4', default_values.paragraph4)
+    blogpost.paragraph5 = request_data.get('paragraph5', default_values.paragraph5)
+    blogpost.language = request_data.get('language', default_values.language)
+
+
     db.session.commit()
 
     return jsonify({

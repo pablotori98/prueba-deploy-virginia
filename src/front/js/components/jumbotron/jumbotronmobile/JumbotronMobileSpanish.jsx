@@ -1,7 +1,9 @@
 import { Box, Button } from "@mui/material";
 import React from "react";
+import { Link } from "react-router-dom";
 import imgjumbo from "../../../assets/jumbotron/jumbotroncenter.png";
 import imgjumbomobile from "../../../assets/jumbotron/jumbotroncentermobile.png";
+
 export const JumbotronMobileSpanish = () =>{
     return(
         <Box
@@ -19,11 +21,13 @@ export const JumbotronMobileSpanish = () =>{
       >
         <h1 className="fontabhaya mt-5">Nombre psicologa</h1>
         <h3 className="fontabhaya my-2">Breve descripcion psicologa</h3>
+        <Link className="linkremovestyle" to="/contact">
         <Button
       variant="contained"
       className="btnjumbotron my-2"
       >CTA texto
       </Button>
+      </Link>
       </Box>
   
     )

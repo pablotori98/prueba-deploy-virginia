@@ -24,8 +24,8 @@ const paginas = [
   "Sobre Mi",
   "Blog",
   "Contacto",
-  "Login",
-  "SignUp",
+  "Iniciar sesión",
+  "Registro",
 ];
 const linkpaginas = [
   "/",
@@ -36,7 +36,15 @@ const linkpaginas = [
   "/login",
   "/signup",
 ];
-const pages = ["Home", "Therapy", "About Me","Blog", "Contact", "Login", "SignUp"];
+const pages = [
+  "Home",
+  "Therapy",
+  "About Me",
+  "Blog",
+  "Contact",
+  "Login",
+  "Sign Up",
+];
 
 //Context
 import { Context } from "../../store/appContext";
@@ -51,11 +59,11 @@ const DrawerComp = () => {
         anchor="top"
         open={openDrawer}
         onClose={() => setOpenDrawer(false)}
-        sx={{
-          "& .MuiDrawer-paper  *": {
-            border: "1px solid red",
-          },
-        }}
+        // sx={{
+        //   "& .MuiDrawer-paper  *": {
+        //     border: "1px solid red",
+        //   },
+        // }}
       >
         <List
           sx={{
@@ -75,12 +83,12 @@ const DrawerComp = () => {
           {store.language == "spanish" ? (
             <>
               {paginas.map((page, index) => (
-                <Box key={index} width="100%">
+                <Box key={index} width="100%" className="d-flex flex-column align-items-center">
                   <Link
                     to={linkpaginas[index]}
-                    className="linkremovestyle text-black linkheight"
+                    className="linkremovestyle text-black linkheight my-4"
                   >
-                    <ListItemText onClick={() => setOpenDrawer(false)}>
+                    <ListItemText  onClick={() => setOpenDrawer(false)}>
                       {page}
                     </ListItemText>
                   </Link>
@@ -90,17 +98,17 @@ const DrawerComp = () => {
           ) : (
             <>
               {pages.map((page, index) => (
-                <ListItemButton key={index}>
-                  <ListItemIcon>
-                    <Link to={linkpaginas[index]} className="linkremovestyle">
-                      <ListItemText onClick={() => setOpenDrawer(false)}>
-                        {page}
-                      </ListItemText>
-                    </Link>
-                  </ListItemIcon>
-                </ListItemButton>
-              ))}
-            </>
+                <Box key={index} width="100%" className="d-flex flex-column align-items-center">
+                <Link
+                    to={linkpaginas[index]}
+                    className="linkremovestyle text-black linkheight my-4"
+                  >
+                    <ListItemText onClick={() => setOpenDrawer(false)}>
+                      {page}
+                    </ListItemText>
+                  </Link>
+                </Box>
+              ))}            </>
           )}
         </List>
       </Drawer>

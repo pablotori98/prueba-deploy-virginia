@@ -16,6 +16,9 @@ import { Servicios } from "./pages/Servicios";
 import AdminPanel from "./pages/adminpanel";
 import { Blog } from "./pages/Blog";
 import Testing from "./pages/testting.js"
+import { BlogPost } from "./pages/BlogPost";
+import { Citas } from "./pages/adminpanel/Citas";
+import { CitasPaciente } from "./pages/CitasPaciente";
 
 //Pages and views
 
@@ -89,6 +92,15 @@ const Layout = () => {
                   />
                 }
               />
+              <Route
+                path="/blog/:idpost/:titlepost"
+                element={
+                  <ProtectedRoute
+                    enabledProtection={false}
+                    component={<BlogPost />}
+                  />
+                }
+              />
 
               <Route
                 path="/login"
@@ -128,12 +140,19 @@ const Layout = () => {
                 }
               />
               <Route
-                path="/admin/blog"
+                path="/tuscitas"
                 element={
                   <ProtectedRoute
                     enabledProtection={false}
-                    component={<HandlePost />}
+                    component={<CitasPaciente />}
                   />
+                }
+              />
+
+              <Route
+                path="/admin/blog"
+                element={
+                  <AdminRoute isEnabled={true} component={<HandlePost />} />
                 }
               />
               <Route
@@ -142,7 +161,14 @@ const Layout = () => {
                   <AdminRoute isEnabled={true} component={<AdminPanel />} />
                 }
               />
+
               <Route path="/testing" element={<Testing/>} />
+
+              <Route
+                path="/citas"
+                element={<AdminRoute isEnabled={true} component={<Citas />} />}
+              />
+
             </Routes>
             <Contact />
           </Box>
