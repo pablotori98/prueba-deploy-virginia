@@ -15,9 +15,11 @@ import { SignUp } from "./pages/SignUp";
 import { Servicios } from "./pages/Servicios";
 import AdminPanel from "./pages/adminpanel";
 import { Blog } from "./pages/Blog";
+import Testing from "./pages/testting.js"
 import { BlogPost } from "./pages/BlogPost";
 import { Citas } from "./pages/adminpanel/Citas";
 import { CitasPaciente } from "./pages/CitasPaciente";
+
 //Pages and views
 
 //Components and features
@@ -28,7 +30,7 @@ import ProtectedRoute from "./app/ProtectedRoute.js";
 import AdminRoute from "./app/AdminRoute";
 //Components and features
 import injectContext from "./store/appContext";
-import { HandlePost } from "./components/blog/Createpost/HandlePost.jsx";
+import { HandlePost } from "./components/blog/Createpost/HandlePost.js";
 
 //create your first component
 const Layout = () => {
@@ -159,10 +161,14 @@ const Layout = () => {
                   <AdminRoute isEnabled={true} component={<AdminPanel />} />
                 }
               />
+
+              <Route path="/testing" element={<Testing/>} />
+
               <Route
                 path="/citas"
                 element={<AdminRoute isEnabled={true} component={<Citas />} />}
               />
+
             </Routes>
             <Contact />
           </Box>

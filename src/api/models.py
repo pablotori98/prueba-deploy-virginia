@@ -36,6 +36,9 @@ class Appointment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.DateTime, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    # Meet Link
+    # Remarks
+    # subject
     user = db.relationship('User', backref=db.backref('appointments', lazy=True))
 
     def __repr__(self):
