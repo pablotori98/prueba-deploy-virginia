@@ -1,6 +1,7 @@
 //Import React
 import React, { useContext, useLayoutEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Calendar from "../components/calendar/Calendar.js";
 
 //Import materials
 import { Box, Typography } from "@mui/material";
@@ -23,8 +24,7 @@ export const UserProfile = () => {
       </h1>
       <Box className="d-flex justify-content-evenly w-100">
         <Box className="leftprofile">
-          <h3 className="fontabhaya">Tu próxima cita es el 15 de febrero</h3>
-          <p>aqui iría el calendario</p>
+          <Calendar />
         </Box>
         <Box className="rightprofile">
           <h3 className="fontabhaya">Mensajes de Psicologa</h3>

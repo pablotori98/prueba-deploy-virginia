@@ -44,10 +44,10 @@ export const HandlePost = () => {
     initialValues: {
       title_post: "",
       paragraph1: "",
-      paragraph2: "",
+      paragraph2: "", 
       paragraph3: "",
       paragraph4: "",
-      paragraph5: "",
+      paragraph5: "", 
       language: "",
     },
     onSubmit,
