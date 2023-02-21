@@ -36,7 +36,7 @@ export const NavbarLinksEnglish = () => {
         </Box>
       </Link>
       <Box className="linksnavbar">
-        <Link to="/home" className="linkremovestyle">
+        <Link to="/" className="linkremovestyle">
           <Button>
           <Typography className="buttonnavbar">Home</Typography>
           </Button>
