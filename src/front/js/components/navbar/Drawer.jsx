@@ -48,7 +48,7 @@ const DrawerComp = () => {
 
   const linkpaginaslogged = [
     "/",
-    "/terapia",
+    "/services",
     "/aboutme",
     "/blog",
     "/contact",
@@ -59,7 +59,7 @@ const DrawerComp = () => {
 
   const linkpaginas = [
     "/",
-    "/terapia",
+    "/services",
     "/aboutme",
     "/blog",
     "/contact",
