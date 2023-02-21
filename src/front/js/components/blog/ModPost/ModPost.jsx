@@ -158,7 +158,6 @@ export const ModPost = () => {
                   name="image"
                   onChange={(e) => {
                     convertiraBase64(e.target.files);
-                    React.ChangeEvent(values.image_post);
                   }}
                   hidden
                   type="file"

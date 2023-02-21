@@ -17,15 +17,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40%;
+    width: 44%;
 }
 
 .rightbanner{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-right: 5rem;
-    width: 60%;
+    padding-right: 7rem;
+    width: 56%;
+}
+
+.infopsico{
+    color: white;
+    font-weight: 600;
 }
 
 
