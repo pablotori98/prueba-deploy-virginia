@@ -18,11 +18,18 @@ import { SignUpEnglish } from "../components/signup/SignupEnglish.jsx";
 
 export const SignUp = () => {
   const navigate = useNavigate();
-  const newTitle = "SignUp";
-  useLayoutEffect(() => {
-    document.title = newTitle;
-  }, []);
   const { actions, store } = useContext(Context);
+
+  if(store.language=="spanish"){
+    const newTitle = "Registro";
+    useLayoutEffect(() => {
+      document.title = newTitle;
+    }, []);}else{
+      const newTitle = "Sign Up";
+      useLayoutEffect(() => {
+        document.title = newTitle;
+      }, []);
+    }
   const onSubmit = async (values, ax) => {
     await actions.signup(
       values.first_name,

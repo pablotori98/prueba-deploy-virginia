@@ -1,5 +1,5 @@
 import { Box, Button, Typography } from "@mui/material";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { BlogTextSpanish } from "../components/blog/spanish/BlogTextSpanish.jsx";
 import { Context } from "../store/appContext";
@@ -8,6 +8,16 @@ import { BlogBubbleSpanish } from "../components/blog/spanish/BlogBubbleSpanish.
 
 export const Blog = () => {
   const { actions, store } = useContext(Context);
+  if(store.language=="spanish"){
+    const newTitle = "Blog";
+    useLayoutEffect(() => {
+      document.title = newTitle;
+    }, []);}else{
+      const newTitle = "Blog";
+      useLayoutEffect(() => {
+        document.title = newTitle;
+      }, []);
+    }
   useEffect(() => {
     actions.getallpost();
   }, []);

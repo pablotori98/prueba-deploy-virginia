@@ -215,7 +215,7 @@ const DrawerComp = () => {
                   className="d-flex flex-column align-items-center"
                 >
                   <Link
-                    to={linkpaginaslogged[index]}
+                    to={linkpaginas[index]}
                     className="linkremovestyle text-black linkheight my-4"
                   >
                     <ListItemText onClick={() => setOpenDrawer(false)}>
