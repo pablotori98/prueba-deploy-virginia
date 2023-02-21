@@ -16,9 +16,7 @@ export const BlogPost = () => {
     <Box className="container">
       <Box className="d-flex justify-content-end ps-5">
       <Button  className="text-black"
-        onClick={read == true ? () => setRead(false) : () => setRead(true)}
       >
-        Cambiar disposición <ChromeReaderModeIcon className="ms-1"/>
       </Button>
       </Box>
       <Box className="d-flex justify-content-center text-center">

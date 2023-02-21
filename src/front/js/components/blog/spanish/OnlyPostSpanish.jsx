@@ -16,7 +16,7 @@ export const OnlyPostSpanish = () => {
       {openMod == false ? (
         <Box className="blogsection">
           <Box>
-            <Button onClick={() => setOpenMod(true)}>
+            <Button className="text-black" onClick={() => setOpenMod(true)}>
               Modificar post <EditIcon />
             </Button>
             <Box className="blogpost mb-5">

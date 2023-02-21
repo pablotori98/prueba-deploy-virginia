@@ -182,7 +182,7 @@ export const ModPost = () => {
               <Button
                 type="submit"
                 variant="contained"
-                className="buttonsignup mb-5"
+                className="buttonsignup mb-5 text-black"
               >
                 Modificar Post
               </Button>
