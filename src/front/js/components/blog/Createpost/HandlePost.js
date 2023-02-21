@@ -22,7 +22,12 @@ import { Context } from "../../../store/appContext";
 import Alert from "@mui/material/Alert";
 
 export const HandlePost = () => {
+  const newTitle = "Crear Post";
+  useLayoutEffect(() => {
+    document.title = newTitle;
+  }, []);
   const navigate = useNavigate();
+  //Convertir imagen a b64
   const [image, setImage]= useState("")
   const convertiraBase64=(archivos)=>{
     Array.from(archivos).forEach(archivo=>{
@@ -160,7 +165,7 @@ export const HandlePost = () => {
             variant="contained"
             className="buttonsignup mb-5"
           >
-            Registro
+            Crear Post
           </Button>
           {store.signup != "" ? (
             store.signup != "Correcto" ? (
