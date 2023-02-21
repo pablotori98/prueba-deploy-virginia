@@ -76,6 +76,17 @@ const DrawerComp = () => {
     "Sign Up",
   ];
 
+  const pageslogged = [
+    "Home",
+    "Therapy",
+    "About Me",
+    "Blog",
+    "Contact",
+    "Profile",
+    "Appointments",
+  ];
+
+
   return (
     <React.Fragment>
       <Drawer
@@ -101,7 +112,7 @@ const DrawerComp = () => {
             onClick={() => setOpenDrawer(false)}
             className="closebutton p-0 m-0"
           >
-            <CloseIcon />
+            <CloseIcon className="text-black"/>
           </Button>
           {store.language == "spanish" ? (
             <>
@@ -118,7 +129,7 @@ const DrawerComp = () => {
                         className="linkremovestyle text-black linkheight my-4"
                       >
                         <ListItemText onClick={() => setOpenDrawer(false)}>
-                          {page}
+                          <strong>{page}</strong>
                         </ListItemText>
                       </Link>
                     </Box>
@@ -130,14 +141,14 @@ const DrawerComp = () => {
                       to="/admin"
                       onClick={() => setOpenDrawer(false)}
                     >
-                      Admin
+                      <strong>Admin</strong>
                     </Link>
                   ) : null}
                   <Button
                     className="linkremovestyle text-black linkheight my-4"
                     onClick={() => actions.logout()}
                   >
-                    Cerrar sesión
+                    <strong>Cerrar sesión</strong>
                   </Button>
                 </>
               ) : (
@@ -152,7 +163,7 @@ const DrawerComp = () => {
                       className="linkremovestyle text-black linkheight my-4"
                     >
                       <ListItemText onClick={() => setOpenDrawer(false)}>
-                        {page}
+                        <strong>{page}</strong>
                       </ListItemText>
                     </Link>
                   </Box>
@@ -160,6 +171,42 @@ const DrawerComp = () => {
               )}
             </>
           ) : (
+            store.access_token?
+            <>
+                          {pageslogged.map((page, index) => (
+                <Box
+                  key={index}
+                  width="100%"
+                  className="d-flex flex-column align-items-center"
+                >
+                  <Link
+                    to={linkpaginaslogged[index]}
+                    className="linkremovestyle text-black linkheight my-4"
+                  >
+                    <ListItemText onClick={() => setOpenDrawer(false)}>
+                      <strong>{page}</strong>
+                    </ListItemText>
+                  </Link>
+                </Box>
+              ))}
+                                {store.user.is_admin ? (
+                    <Link
+                      className="linkremovestyle text-black linkheight my-4"
+                      to="/admin"
+                      onClick={() => setOpenDrawer(false)}
+                    >
+                      <strong>Admin</strong>
+                    </Link>
+                  ) : null}
+                  <Button
+                    className="linkremovestyle text-black linkheight my-4"
+                    onClick={() => actions.logout()}
+                  >
+                    <strong>LogOut</strong>
+                  </Button>
+
+            </>
+            :
             <>
               {pages.map((page, index) => (
                 <Box
@@ -168,15 +215,15 @@ const DrawerComp = () => {
                   className="d-flex flex-column align-items-center"
                 >
                   <Link
-                    to={linkpaginas[index]}
+                    to={linkpaginaslogged[index]}
                     className="linkremovestyle text-black linkheight my-4"
                   >
                     <ListItemText onClick={() => setOpenDrawer(false)}>
-                      {page}
+                      <strong>{page}</strong>
                     </ListItemText>
                   </Link>
                 </Box>
-              ))}{" "}
+              ))}
             </>
           )}
         </List>
