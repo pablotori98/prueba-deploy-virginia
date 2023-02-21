@@ -1,5 +1,5 @@
 //Import React
-import React, { useContext, useLayoutEffect } from "react";
+import React, { useContext, useLayoutEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 //Import materials
@@ -23,6 +23,18 @@ import Alert from "@mui/material/Alert";
 
 export const HandlePost = () => {
   const navigate = useNavigate();
+  const [image, setImage]= useState("")
+  const convertiraBase64=(archivos)=>{
+    Array.from(archivos).forEach(archivo=>{
+      var reader= new FileReader();
+      reader.readAsDataURL(archivo)
+      reader.onload=function(){
+        var base64 = reader.result;
+        console.log(base64)
+        setImage(base64)
+      }
+    })
+  }
 
   const { actions, store } = useContext(Context);
   const onSubmit = async (values, ax) => {
@@ -33,25 +45,29 @@ export const HandlePost = () => {
       values.paragraph3,
       values.paragraph4,
       values.paragraph5,
-      values.language
+      values.language,
+      image
     );
     // if(store.signup=="Correcto"){
     //   navigate("/")
     // }
   };
-
   const { values, handleSubmit, handleChange, onChange } = useFormik({
     initialValues: {
       title_post: "",
       paragraph1: "",
-      paragraph2: "", 
+      paragraph2: "",
       paragraph3: "",
       paragraph4: "",
-      paragraph5: "", 
+      paragraph5: "",
       language: "",
+      image_post: "",
     },
     onSubmit,
   });
+  console.log(values)
+  console.log(image)
+
 
   return (
     <Box className="signup">
@@ -113,8 +129,16 @@ export const HandlePost = () => {
             component="label"
           >
             Subir imagen post
-            <input hidden accept="image/*" type="file" />
+            <input
+              values={values.image_post}
+              name="image"
+              onChange={(e)=>{convertiraBase64(e.target.files); React.ChangeEvent(values.image_post) }}
+              hidden
+              type="file"
+            />
+            
           </Button>
+
           <Box className="d-flex align-items-center mt-2">
             <Typography className="me-3">Seleccionar idioma</Typography>
             <InputLabel id="demo-simple-select-label"></InputLabel>
@@ -131,7 +155,11 @@ export const HandlePost = () => {
             </Select>
           </Box>
 
-          <Button type="submit" variant="contained" className="buttonsignup mb-5">
+          <Button
+            type="submit"
+            variant="contained"
+            className="buttonsignup mb-5"
+          >
             Registro
           </Button>
           {store.signup != "" ? (

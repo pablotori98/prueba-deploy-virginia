@@ -156,7 +156,8 @@ const getState = ({ getStore, getActions, setStore }) => {
         paragraph3,
         paragraph4,
         paragraph5,
-        language
+        language,
+        image_post
       ) => {
         const options = {
           method: "POST",
@@ -170,7 +171,8 @@ const getState = ({ getStore, getActions, setStore }) => {
             paragraph3: paragraph3,
             paragraph4: paragraph4,
             paragraph5: paragraph5,
-            language: language
+            language: language,
+            image_post: image_post
           }),
         };
         await fetch(`${process.env.BACKEND_URL}/api/blogpost`, options).then(

@@ -144,7 +144,8 @@ def create_post():
         paragraph3=request_data['paragraph3'],
         paragraph4=request_data['paragraph4'],
         paragraph5=request_data['paragraph5'],
-        language=request_data['language']
+        language=request_data['language'],
+        image_post = request_data['image_post']
 
     )
 
@@ -170,6 +171,7 @@ def modificate_post(post_id):
     blogpost.paragraph4 = request_data.get('paragraph4', default_values.paragraph4)
     blogpost.paragraph5 = request_data.get('paragraph5', default_values.paragraph5)
     blogpost.language = request_data.get('language', default_values.language)
+    blogpost.image_post=request_data.get('image_post', default_values.image_post)
 
 
     db.session.commit()

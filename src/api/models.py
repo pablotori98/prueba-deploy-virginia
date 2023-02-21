@@ -62,6 +62,7 @@ class BlogPost(db.Model):
     paragraph5 = db.Column(db.String(), nullable=True)
     language = db.Column(db.String(),nullable=False)
     tags_post = db.Column(db.String())
+    image_post = db.Column(db.Unicode)
 
     def __repr__(self):
         return f'<Blogpost {self.title_post}>'
@@ -75,7 +76,8 @@ class BlogPost(db.Model):
             "paragraph3": self.paragraph3,
             "paragraph4": self.paragraph4,
             "paragraph5": self.paragraph5,
-            "language": self.language
+            "language": self.language,
+            "image_post": self.image_post
 
         }
 
