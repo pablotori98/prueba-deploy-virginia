@@ -157,7 +157,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         paragraph4,
         paragraph5,
         language,
-        image_post
+        image_post,
       ) => {
         const options = {
           method: "POST",

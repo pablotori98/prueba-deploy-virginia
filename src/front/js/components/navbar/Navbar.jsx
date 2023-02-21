@@ -30,7 +30,8 @@ export const Navbar = () => {
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
   const { actions, store } = useContext(Context);
   useEffect(()=>{
-  actions.fetchallusers(sessionStorage.getItem("user_id"));
+    if(sessionStorage.getItem("user_id")){
+  actions.fetchallusers(sessionStorage.getItem("user_id"))}
 }, []);
   return (
     <React.Fragment>
