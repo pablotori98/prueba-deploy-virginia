@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../../../store/appContext";
@@ -23,7 +23,7 @@ export const BlogBubbleSpanish = () => {
               />
                 <Typography variant="h4" className="pt-2">{element.title_post}</Typography>
                 <Typography className="p-3">{element.paragraph1.substring(0, 100)} <strong>read more...</strong></Typography>
-
+            <Button className="buttonbubblereadmore"><strong>Leer artículo</strong></Button>
             </Box>
             </Link>
           );

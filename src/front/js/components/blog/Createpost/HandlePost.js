@@ -86,6 +86,7 @@ export const HandlePost = () => {
             label="Titulo post"
             className="w-100 my-2"
             variant="standard"
+            multiline
           />
           <TextField
             values={values.paragraph1}
@@ -94,6 +95,8 @@ export const HandlePost = () => {
             label="Primer párrafo"
             className="w-100 my-2"
             variant="standard"
+            multiline
+
           />
           <TextField
             values={values.paragraph2}
@@ -102,6 +105,8 @@ export const HandlePost = () => {
             label="Segundo párrafo"
             className="w-100 my-2"
             variant="standard"
+            multiline
+
           />
           <TextField
             values={values.paragraph3}
@@ -110,6 +115,8 @@ export const HandlePost = () => {
             label="Tercer párrafo"
             className="w-100 my-2"
             variant="standard"
+            multiline
+
           />
           <TextField
             values={values.paragraph4}
@@ -118,6 +125,8 @@ export const HandlePost = () => {
             label="Cuarto Párrafo"
             className="w-100 my-2"
             variant="standard"
+            multiline
+
           />
           <TextField
             values={values.paragraph5}
@@ -126,6 +135,8 @@ export const HandlePost = () => {
             label="Quinto párrafo"
             className="w-100 my-2"
             variant="standard"
+            multiline
+
           />
           <Button
             className="my-3 uploadblogimage w-100"
