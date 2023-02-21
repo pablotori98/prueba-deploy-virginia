@@ -1,11 +1,22 @@
 import { Box } from "@mui/material";
-import React from "react";
+import React, { useContext, useLayoutEffect } from "react";
 import writepost from "../../assets/admin/writepost.png";
 import calendar from "../../assets/admin/calendar.png";
 import message from "../../assets/admin/message.png";
 import { Link } from "react-router-dom";
-
+import { Context } from "../../store/appContext";
 const AdminPanel = () => {
+  const {actions, store} = useContext(Context)
+  if(store.language=="spanish"){
+    const newTitle = "Administrador";
+    useLayoutEffect(() => {
+      document.title = newTitle;
+    }, []);}else{
+      const newTitle = "Admin";
+      useLayoutEffect(() => {
+        document.title = newTitle;
+      }, []);
+    }
   return (
     <Box className="fatheradmin">
       <Link to="/admin/blog" className="linkremovestyle text-black">
