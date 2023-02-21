@@ -17,35 +17,6 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 
-//paginas y links
-const paginas = [
-  "Inicio",
-  "Terapia",
-  "Sobre Mi",
-  "Blog",
-  "Contacto",
-  "Iniciar sesión",
-  "Registro",
-];
-const linkpaginas = [
-  "/",
-  "/terapia",
-  "/aboutme",
-  "/blog",
-  "/contact",
-  "/login",
-  "/signup",
-];
-const pages = [
-  "Home",
-  "Therapy",
-  "About Me",
-  "Blog",
-  "Contact",
-  "Login",
-  "Sign Up",
-];
-
 //Context
 import { Context } from "../../store/appContext";
 import { Box } from "@mui/system";
@@ -53,6 +24,58 @@ import { Box } from "@mui/system";
 const DrawerComp = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
   const { actions, store } = useContext(Context);
+
+  //paginas y links
+
+  const paginas = [
+    "Inicio",
+    "Terapia",
+    "Sobre Mi",
+    "Blog",
+    "Contacto",
+    "Iniciar sesión",
+    "Registro",
+  ];
+  const paginaslogged = [
+    "Inicio",
+    "Terapia",
+    "Sobre Mi",
+    "Blog",
+    "Contacto",
+    "Perfil",
+    "Citas",
+  ];
+
+  const linkpaginaslogged = [
+    "/",
+    "/terapia",
+    "/aboutme",
+    "/blog",
+    "/contact",
+    "/profile",
+    "/citas",
+    "/admin",
+  ];
+
+  const linkpaginas = [
+    "/",
+    "/terapia",
+    "/aboutme",
+    "/blog",
+    "/contact",
+    "/login",
+    "/signup",
+  ];
+  const pages = [
+    "Home",
+    "Therapy",
+    "About Me",
+    "Blog",
+    "Contact",
+    "Login",
+    "Sign Up",
+  ];
+
   return (
     <React.Fragment>
       <Drawer
@@ -82,24 +105,69 @@ const DrawerComp = () => {
           </Button>
           {store.language == "spanish" ? (
             <>
-              {paginas.map((page, index) => (
-                <Box key={index} width="100%" className="d-flex flex-column align-items-center">
-                  <Link
-                    to={linkpaginas[index]}
+              {store.access_token ? (
+                <>
+                  {paginaslogged.map((page, index) => (
+                    <Box
+                      key={index}
+                      width="100%"
+                      className="d-flex flex-column align-items-center"
+                    >
+                      <Link
+                        to={linkpaginaslogged[index]}
+                        className="linkremovestyle text-black linkheight my-4"
+                      >
+                        <ListItemText onClick={() => setOpenDrawer(false)}>
+                          {page}
+                        </ListItemText>
+                      </Link>
+                    </Box>
+                  ))}
+
+                  {store.user.is_admin ? (
+                    <Link
+                      className="linkremovestyle text-black linkheight my-4"
+                      to="/admin"
+                      onClick={() => setOpenDrawer(false)}
+                    >
+                      Admin
+                    </Link>
+                  ) : null}
+                  <Button
                     className="linkremovestyle text-black linkheight my-4"
+                    onClick={() => actions.logout()}
                   >
-                    <ListItemText  onClick={() => setOpenDrawer(false)}>
-                      {page}
-                    </ListItemText>
-                  </Link>
-                </Box>
-              ))}
+                    Cerrar sesión
+                  </Button>
+                </>
+              ) : (
+                paginas.map((page, index) => (
+                  <Box
+                    key={index}
+                    width="100%"
+                    className="d-flex flex-column align-items-center"
+                  >
+                    <Link
+                      to={linkpaginas[index]}
+                      className="linkremovestyle text-black linkheight my-4"
+                    >
+                      <ListItemText onClick={() => setOpenDrawer(false)}>
+                        {page}
+                      </ListItemText>
+                    </Link>
+                  </Box>
+                ))
+              )}
             </>
           ) : (
             <>
               {pages.map((page, index) => (
-                <Box key={index} width="100%" className="d-flex flex-column align-items-center">
-                <Link
+                <Box
+                  key={index}
+                  width="100%"
+                  className="d-flex flex-column align-items-center"
+                >
+                  <Link
                     to={linkpaginas[index]}
                     className="linkremovestyle text-black linkheight my-4"
                   >
@@ -108,7 +176,8 @@ const DrawerComp = () => {
                     </ListItemText>
                   </Link>
                 </Box>
-              ))}            </>
+              ))}{" "}
+            </>
           )}
         </List>
       </Drawer>
