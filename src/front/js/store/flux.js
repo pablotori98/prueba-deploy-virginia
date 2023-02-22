@@ -10,6 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       createcontactmessage: "",
       is_admin: "",
       user:[],
+      createpost:"",
       user_id: sessionStorage.getItem("user_id")
     },
     actions: {
@@ -181,13 +182,15 @@ const getState = ({ getStore, getActions, setStore }) => {
               return (
                 response.json(),
                 setStore({
-                  createpost: "Correcto",
+                  createpost: "Post creado correctamente",
                 })
               );
-            } else if (response.status == 400) {
+            } else if (response.status == 401) {
+              return(
               setStore({
                 createpost: "Creación post incorrecto, pruebe de nuevo",
-              });
+              })
+              )
             }
           }
         );
@@ -231,10 +234,12 @@ const getState = ({ getStore, getActions, setStore }) => {
                   createpost: "Correcto",
                 })
               );
-            } else if (response.status == 400) {
+            } else if(response.status == 401){
+              return(
               setStore({
                 createpost: "Creación post incorrecto, pruebe de nuevo",
-              });
+              })
+              )
             }
           }
         );

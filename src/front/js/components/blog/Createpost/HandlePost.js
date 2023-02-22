@@ -28,18 +28,18 @@ export const HandlePost = () => {
   }, []);
   const navigate = useNavigate();
   //Convertir imagen a b64
-  const [image, setImage]= useState("")
-  const convertiraBase64=(archivos)=>{
-    Array.from(archivos).forEach(archivo=>{
-      var reader= new FileReader();
-      reader.readAsDataURL(archivo)
-      reader.onload=function(){
+  const [image, setImage] = useState("");
+  const convertiraBase64 = (archivos) => {
+    Array.from(archivos).forEach((archivo) => {
+      var reader = new FileReader();
+      reader.readAsDataURL(archivo);
+      reader.onload = function () {
         var base64 = reader.result;
-        console.log(base64)
-        setImage(base64)
-      }
-    })
-  }
+        console.log(base64);
+        setImage(base64);
+      };
+    });
+  };
 
   const { actions, store } = useContext(Context);
   const onSubmit = async (values, ax) => {
@@ -70,9 +70,9 @@ export const HandlePost = () => {
     },
     onSubmit,
   });
-  console.log(values)
-  console.log(image)
-
+  console.log(values);
+  console.log(image);
+  console.log("create", store.createpost)
 
   return (
     <Box className="signup">
@@ -96,7 +96,6 @@ export const HandlePost = () => {
             className="w-100 my-2"
             variant="standard"
             multiline
-
           />
           <TextField
             values={values.paragraph2}
@@ -106,7 +105,6 @@ export const HandlePost = () => {
             className="w-100 my-2"
             variant="standard"
             multiline
-
           />
           <TextField
             values={values.paragraph3}
@@ -116,7 +114,6 @@ export const HandlePost = () => {
             className="w-100 my-2"
             variant="standard"
             multiline
-
           />
           <TextField
             values={values.paragraph4}
@@ -126,7 +123,6 @@ export const HandlePost = () => {
             className="w-100 my-2"
             variant="standard"
             multiline
-
           />
           <TextField
             values={values.paragraph5}
@@ -136,7 +132,6 @@ export const HandlePost = () => {
             className="w-100 my-2"
             variant="standard"
             multiline
-
           />
           <Button
             className="my-3 uploadblogimage w-100"
@@ -148,11 +143,13 @@ export const HandlePost = () => {
             <input
               values={values.image_post}
               name="image"
-              onChange={(e)=>{convertiraBase64(e.target.files); React.ChangeEvent(values.image_post) }}
+              onChange={(e) => {
+                convertiraBase64(e.target.files);
+                React.ChangeEvent(values.image_post);
+              }}
               hidden
               type="file"
             />
-            
           </Button>
 
           <Box className="d-flex align-items-center mt-2">
@@ -178,11 +175,14 @@ export const HandlePost = () => {
           >
             Crear Post
           </Button>
-          {store.signup != "" ? (
-            store.signup != "Correcto" ? (
-              <Alert severity="error">{store.signup}</Alert>
-            ) : null
-          ) : null}
+          {store.createpost != ""
+            ? (store.createpost == "Post creado correctamente" ? (
+              <>
+                <Alert severity="success">Post creado correctamente</Alert>
+                <Button variant="contained" className="mt-3 buttonbubblereadmore"><Link className="linkremovestyle text-white" to="/blog"><strong>Ver post</strong></Link></Button>
+                </>
+              ) : <Alert severity="error" className="d-flex align-items-center text-center">El post no fue creado correctamente, revise los campos y recuerde siempre rellenar como mínimo el título del post y el primer párrafo</Alert>)
+            : null}
         </form>
       </Box>
     </Box>

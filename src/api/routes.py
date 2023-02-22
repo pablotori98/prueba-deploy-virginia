@@ -137,25 +137,29 @@ def get_post(post_id):
 @api.route('/blogpost', methods=['POST'])
 def create_post():
     request_data = request.get_json(force=True)
-    new_post= BlogPost(
-        title_post=request_data['title_post'],
-        paragraph1=request_data['paragraph1'],
-        paragraph2=request_data['paragraph2'],
-        paragraph3=request_data['paragraph3'],
-        paragraph4=request_data['paragraph4'],
-        paragraph5=request_data['paragraph5'],
-        language=request_data['language'],
-        image_post = request_data['image_post']
+    if request_data['title_post']=="":
+        return jsonify({'message': 'Creacion incorrecta'}), 401
 
-    )
+    else:
+        new_post= BlogPost(
+            title_post=request_data['title_post'],
+            paragraph1=request_data['paragraph1'],
+            paragraph2=request_data['paragraph2'],
+            paragraph3=request_data['paragraph3'],
+            paragraph4=request_data['paragraph4'],
+            paragraph5=request_data['paragraph5'],
+            language=request_data['language'],
+            image_post = request_data['image_post']
 
-    db.session.add(new_post)
-    db.session.commit()
+        )
 
-    return jsonify({
-        'message': 'Post Creado',
-        'New_user': new_post.serialize()
-    }), 201
+        db.session.add(new_post)
+        db.session.commit()
+
+        return jsonify({
+            'message': 'Post Creado',
+            'New_user': new_post.serialize()
+        }), 201
 
 # Modify post 
 @api.route('/blogpost/<int:post_id>', methods=['PUT'])
