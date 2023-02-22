@@ -3,6 +3,8 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import { Context } from "../../store/appContext";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -21,10 +23,12 @@ export default function ModalDeleteBlog() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
+const {actions, store} = React.useContext(Context)
+const params = useParams();
+ const navigate = useNavigate()
   return (
     <div>
-      <Button onClick={handleOpen}>Borrar Post</Button>
+      <Button sx={{color:"black"}} onClick={handleOpen}>Borrar Post</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -36,7 +40,7 @@ export default function ModalDeleteBlog() {
             <strong>¿Estas segur@ de borrar el post?</strong>
           </Typography>
           <Box className="d-flex justify-content-center mt-3">
-            <Button variant="contained" sx={{ backgroundColor: "red",  marginRight:"0.5rem" }}>
+            <Button onClick={()=>{actions.deletepost(params.idpost); navigate("/blog")}} variant="contained" sx={{ backgroundColor: "red",  marginRight:"0.5rem" }}>
               <strong>Borrar</strong>
             </Button>
             <Button onClick={()=>setOpen(false)} sx={{color:"black", marginLeft:"0.5rem"}}>Cancelar</Button>

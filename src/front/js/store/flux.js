@@ -245,6 +245,37 @@ const getState = ({ getStore, getActions, setStore }) => {
         );
       },
 
+      //Delete post
+      deletepost: async(
+        id
+      )=>{
+        const options = {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          }
+        }
+        await fetch(`${process.env.BACKEND_URL}/api/blogpost/${id}`, options).then(
+          (response) => {
+            if (response.status == 201) {
+              return (
+                response.json(),
+                setStore({
+                  deletepost: "Post borrado",
+                })
+              );
+            } else if(response.status == 401){
+              return(
+              setStore({
+                deletepost: "No se pudo borrar el post",
+              })
+              )
+            }
+          }
+        );
+
+      },
+
 
       //Contact message
       contacthome: async (

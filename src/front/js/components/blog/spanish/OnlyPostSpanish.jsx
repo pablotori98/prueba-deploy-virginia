@@ -19,12 +19,12 @@ export const OnlyPostSpanish = () => {
       {openMod == false ? (
         <Box className="blogsection">
           <Box>
+            <Box className="d-flex justify-content-center"> 
             <Button className="text-black" onClick={() => setOpenMod(true)}>
               Modificar post <EditIcon />
             </Button>
-            <Button className="text-black" >
           <ModalDeleteBlog/>
-            </Button>
+          </Box>
             <Box className="blogpost mb-5">
               <img className="imgpost" src={store.singlepost.image_post} />
               <Typography variant="h3" className="p-2">
@@ -40,7 +40,7 @@ export const OnlyPostSpanish = () => {
 
                 {store.singlepost.paragraph2 == " " ? null : (
                   <Typography className="mt-3">
-                    fadsfasdf{store.singlepost.paragraph2}
+                    {store.singlepost.paragraph2}
                   </Typography>
                 )}
                 {store.singlepost.paragraph3 == " " ? null : (
