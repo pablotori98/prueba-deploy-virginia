@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { Context } from "../../../store/appContext";
 import EditIcon from "@mui/icons-material/Edit";
 import { ModPost } from "../ModPost/ModPost.jsx";
+import ModalDeleteBlog from "../../modals/ModalDeleteBlog.jsx";
 
 export const OnlyPostSpanish = () => {
   const { store, actions } = useContext(Context);
@@ -20,6 +21,9 @@ export const OnlyPostSpanish = () => {
           <Box>
             <Button className="text-black" onClick={() => setOpenMod(true)}>
               Modificar post <EditIcon />
+            </Button>
+            <Button className="text-black" >
+          <ModalDeleteBlog/>
             </Button>
             <Box className="blogpost mb-5">
               <img className="imgpost" src={store.singlepost.image_post} />
