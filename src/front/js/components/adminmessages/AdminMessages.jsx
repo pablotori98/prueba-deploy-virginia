@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import mensajesadmin from "../../assets/admin/mensajesadmin.png"
 import chatimg from "../../assets/admin/chat.png"
 import { width } from "@mui/system";
+import { DirectMessage } from "./DirectMessage.jsx";
 
 export const AdminMessages = () =>{
     const [chat, setChat] = useState(false)
@@ -24,7 +25,7 @@ return(
             {chat==true?
         <p>Abierta pestaña de chat</p>  
         :
-        <p>Abierta pestaña de mensajes</p>    
+        <DirectMessage />
   
         }
         </Box>
