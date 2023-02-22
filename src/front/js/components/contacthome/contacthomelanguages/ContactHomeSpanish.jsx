@@ -1,5 +1,5 @@
 //Import React
-import React, { useContext, useLayoutEffect } from "react";
+import React, { useContext, useEffect, useLayoutEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 //Import materials
@@ -40,6 +40,8 @@ export const ContactHomeSpanish = () => {
     },
     onSubmit,
   });
+
+  useEffect(()=>{store.createcontactmessage = ""}, [])
 
   return (
     <Box className="contactformhome">
@@ -95,7 +97,9 @@ export const ContactHomeSpanish = () => {
           </Button>
           {store.createcontactmessage != "" ? (
             store.createcontactmessage == "correcto" ? (
+              <>
               <Alert severity="success" className="mt-3">Mensaje enviado con éxito</Alert>
+              </>
             ) : null
           ) : null}
         </form>
