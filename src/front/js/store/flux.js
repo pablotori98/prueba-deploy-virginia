@@ -304,7 +304,7 @@ const getState = ({ getStore, getActions, setStore }) => {
               return (
                 response.json(),
                 setStore({
-                  createcontactmessage: "Correcto",
+                  createcontactmessage: "correcto",
                 })
               );
             } else if (response.status == 400) {

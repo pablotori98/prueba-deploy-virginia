@@ -11,10 +11,10 @@ import { CallToActionSharp } from "@mui/icons-material";
 import { Context } from "../../../store/appContext";
 
 //Import img
-import Alert from '@mui/material/Alert';
+import Alert from "@mui/material/Alert";
 
 export const ContactHomeSpanish = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const { actions, store } = useContext(Context);
   const onSubmit = async (values, ax) => {
@@ -25,8 +25,8 @@ export const ContactHomeSpanish = () => {
       values.email,
       values.problem_description
     );
-    if(store.signup=="Correcto"){
-      navigate("/")
+    if (store.signup == "Correcto") {
+      navigate("/");
     }
   };
 
@@ -36,11 +36,10 @@ export const ContactHomeSpanish = () => {
       last_name: "",
       email: "",
       phone_number: "",
-      problem_description:""
+      problem_description: "",
     },
-    onSubmit
+    onSubmit,
   });
-
 
   return (
     <Box className="contactformhome">
@@ -80,7 +79,7 @@ export const ContactHomeSpanish = () => {
             className="w-100 my-2"
             variant="standard"
           />
-            <TextField
+          <TextField
             values={values.problem_description}
             onChange={handleChange}
             name="problem_description"
@@ -94,11 +93,11 @@ export const ContactHomeSpanish = () => {
           <Button type="submit" variant="contained" className="btnjumbotron">
             Enviar
           </Button>
-          {/* {store.signup !=""? store.signup !="Correcto"?
-        <Alert severity="error">{store.signup}</Alert>  : null
-        :
-        null
-        } */}
+          {store.createcontactmessage != "" ? (
+            store.createcontactmessage == "correcto" ? (
+              <Alert severity="success" className="mt-3">Mensaje enviado con éxito</Alert>
+            ) : null
+          ) : null}
         </form>
       </Box>
     </Box>
