@@ -34,8 +34,8 @@ export const ContactHomeSpanish = () => {
     initialValues: {
       first_name: "",
       last_name: "",
-      email: "",
       phone_number: "",
+      email: "",
       problem_description: "",
     },
     onSubmit,

@@ -100,7 +100,7 @@ class Contact(db.Model):
             "first_name": self.first_name,
             "last_name": self.last_name,
             "phone_number": self.phone_number,
-            "email": self.phone_number,
+            "email": self.email,
             "problem_description": self.problem_description
         }
 

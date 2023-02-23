@@ -9,6 +9,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       access_token: sessionStorage.getItem("access_token"),
       createcontactmessage: "",
       contactmessage:[],
+      contactonlyonemessage:[],
       is_admin: "",
       user:[],
       createpost:"",
@@ -328,6 +329,19 @@ const getState = ({ getStore, getActions, setStore }) => {
         .then(response => response.json())
         .then(result=>setStore({contactmessage : result}))
       },
+
+      fetchonlyonemessage: async(id) =>{
+        if(id==null){}else{
+        const options = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        await fetch(`${process.env.BACKEND_URL}/api/contactmessage/${id}`, options)
+        .then(response => response.json())
+        .then(result=>setStore({contactonlyonemessage : result}))
+      }}
       
 
 
