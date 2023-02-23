@@ -104,3 +104,19 @@ class Contact(db.Model):
             "problem_description": self.problem_description
         }
 
+class Reviews(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    person_review = db.Column(db.String(), nullable=False)
+    first_name = db.Column(db.String(100), nullable=False)
+    last_name = db.Column(db.String(), nullable=False)
+
+    def __repr__(self):
+        return f'<Contact {self.first_name}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "person_review": self.person_review,
+            "first_name": self.first_name,
+            "last_name": self.last_name,
+        }

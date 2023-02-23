@@ -1,7 +1,7 @@
 from datetime import datetime
 from sqlalchemy import and_, or_, not_
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Appointment, BlogPost, Contact
+from api.models import db, User, Appointment, BlogPost, Contact, Reviews
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -244,3 +244,77 @@ def delete_contact_message(contactmessage_id):
 
     return jsonify({
         'message': 'Post borrado' })
+
+
+
+# Review
+
+# Display all reviews
+
+@api.route('/reviews', methods=['GET'])
+def get_reviews():
+    getAllReviews = Reviews.query.all()
+    listreviews= []
+    for review in getAllReviews:
+        listreviews.append(review.serialize())
+    return jsonify(listreviews), 200
+
+# Display one review
+
+@api.route('/reviews/<int:review_id>', methods=['GET'])
+def get_review(review_id):
+    review = db.session.query(Reviews).filter(Reviews.id == review_id).first()
+    return jsonify(review.serialize()), 200
+
+# Create post
+@api.route('/reviews', methods=['POST'])
+def create_review():
+    request_data = request.get_json(force=True)
+    if request_data['person_review']=="":
+        return jsonify({'message': 'Creacion incorrecta'}), 401
+
+    else:
+        new_review= Reviews(
+            person_review=request_data['person_review'],
+            first_name=request_data['first_name'],
+            last_name=request_data['last_name'],
+        )
+        db.session.add(new_review)
+        db.session.commit()
+
+        return jsonify({
+            'message': 'Review Creado',
+            'New_review': new_review.serialize()
+        }), 201
+
+# Modify post 
+@api.route('/reviews/<int:review_id>', methods=['PUT'])
+def modificate_review(review_id):
+    review = db.session.query(Reviews).filter(Reviews.id == review_id).first()
+    default_values = review
+    request_data = request.get_json(force=True)
+
+    review.person_review = request_data.get('person_review', default_values.person_review)
+    review.first_name = request_data.get('first_name', default_values.first_name)
+    review.last_name = request_data.get('last_name', default_values.last_name)
+
+
+
+    db.session.commit()
+
+    return jsonify({
+        'message': 'Review Modificada',
+        'New_review': review.serialize()
+    }), 201
+
+# Delete Post
+
+@api.route('/reviews/<int:review_id>', methods=['DELETE'])
+def delete_review(review_id):
+    review = db.session.query(Reviews).filter(Reviews.id == review_id).first()
+    db.session.delete(review)
+    db.session.commit()
+
+    return jsonify({
+        'message': 'Post borrado' })
+
