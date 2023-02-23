@@ -10,6 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       createcontactmessage: "",
       contactmessage:[],
       createreview:"",
+      reviews:[],
       contactonlyonemessage:[],
       is_admin: "",
       user:[],
@@ -378,6 +379,18 @@ const getState = ({ getStore, getActions, setStore }) => {
             }
           }
         );
+      },
+
+      displayreviews: async() =>{
+        const options = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        await fetch(`${process.env.BACKEND_URL}/api/reviews`, options)
+        .then(response => response.json())
+        .then(result=>setStore({reviews : result}))
       },
 
 
