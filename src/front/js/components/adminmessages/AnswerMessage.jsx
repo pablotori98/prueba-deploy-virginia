@@ -28,7 +28,7 @@ console.log(values)
       <TextField className="mb-2" name="email" label="Email" values={values.email} onChange={handleChange} defaultValue={store.contactonlyonemessage.email}/>
       <TextField className="mb-2" name="subject" label="Asunto" values={values.subject} onChange={handleChange}/>
       <TextField className="mb-2" name="text" label="Mensaje" values={values.text} onChange={handleChange}/>
-    <Button sx={{background:"#E1BAAC"}} variant="contained"><a className="linkremovestyle text-white" href={`mailto:${values.email}?subject=${values.subject}!&body=${values.text}!`}><strong>Enviar Correo</strong></a></Button>
+    <Button variant="contained" className="answerquestion"><a className="linkremovestyle text-white" href={`mailto:${values.email}?subject=${values.subject}!&body=${values.text}!`}><strong>Enviar Correo</strong></a></Button>
     </Box>
   );
 };
