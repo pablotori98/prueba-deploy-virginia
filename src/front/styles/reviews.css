@@ -26,6 +26,8 @@
     margin: 2rem;
     min-width: 40%;
     width: 40%;
+    min-width: 40vw;
+
 }
 
 .buttonreview{

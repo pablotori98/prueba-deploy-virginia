@@ -11,12 +11,11 @@ export const AllReviewsSpanish = () => {
   }, []);
 
   const [newReview, setNewReview] = useState(false);
-  console.log(store.user.is_admin);
   return (
     <Box className="reviewsfather">
       <h1 className="fontabhaya text-center mt-2">Reseñas</h1>
       <Box>
-        <ModalCreateReview />
+        {store.user.is_admin? <ModalCreateReview />:null}
       </Box>
       <Box className="reviewsfatherbubbles">
         {store.reviews.map((element, index) => {
