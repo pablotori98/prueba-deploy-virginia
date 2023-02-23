@@ -19,13 +19,14 @@ const style = {
   borderRadius: "15px",
 };
 
-export default function ModalDeleteReview() {
+export default function ModalDeleteReview({id}) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 const {actions, store} = React.useContext(Context)
 const params = useParams();
  const navigate = useNavigate()
+ console.log(id)
   return (
     <div>
       <Button className="buttonreview" sx={{color:"white"}} onClick={handleOpen}><strong>Borrar Review</strong></Button>
@@ -40,7 +41,7 @@ const params = useParams();
             <strong>¿Estas segur@ de borrar la review?</strong>
           </Typography>
           <Box className="d-flex justify-content-center mt-3">
-            <Button onClick={()=>{actions.deletepost(params.idpost); navigate("/blog")}} variant="contained" sx={{ backgroundColor: "red",  marginRight:"0.5rem" }}>
+            <Button onClick={()=>{actions.deletereview(id); location.reload("/")}} variant="contained" sx={{ backgroundColor: "red",  marginRight:"0.5rem" }}>
               <strong>Borrar</strong>
             </Button>
             <Button onClick={()=>setOpen(false)} sx={{color:"black", marginLeft:"0.5rem"}}>Cancelar</Button>

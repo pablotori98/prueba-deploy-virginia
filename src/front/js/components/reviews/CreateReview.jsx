@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 import { Context } from "../../store/appContext";
 
 export const CreateReview = () => {
-    const {actions, store} = useContext(Context)
+  const { actions, store } = useContext(Context);
   const onSubmit = async (values, ax) => {
     await actions.createreview(
       values.person_review,
@@ -12,7 +12,6 @@ export const CreateReview = () => {
       values.last_name
     );
     location.reload();
-
   };
   const { values, handleSubmit, handleChange, onChange } = useFormik({
     initialValues: {
@@ -24,15 +23,17 @@ export const CreateReview = () => {
   });
   console.log(values);
   return (
-    <Box >
+    <Box>
       <form onSubmit={handleSubmit} className="d-flex flex-column">
         <TextField
+          className="mb-2"
           label="Review"
           name="person_review"
           values={values.person_review}
           onChange={handleChange}
         />
         <TextField
+          className="mb-2"
           label="Nombre"
           name="first_name"
           values={values.first_name}
@@ -44,7 +45,14 @@ export const CreateReview = () => {
           values={values.last_name}
           onChange={handleChange}
         />
-        <Button variant="contained" sx={{backgroundColor:"#E1BAAC"}} type="submit">enviar</Button>
+        <Button
+          className="buttonreview my-3"
+          variant="contained"
+          sx={{ backgroundColor: "#E1BAAC" }}
+          type="submit"
+        >
+          enviar
+        </Button>
       </form>
     </Box>
   );

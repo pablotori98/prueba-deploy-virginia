@@ -393,6 +393,37 @@ const getState = ({ getStore, getActions, setStore }) => {
         .then(result=>setStore({reviews : result}))
       },
 
+      // Delete review
+      deletereview: async(
+        id
+      )=>{
+        const options = {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          }
+        }
+        await fetch(`${process.env.BACKEND_URL}/api/reviews/${id}`, options).then(
+          (response) => {
+            if (response.status == 200) {
+              return (
+                response.json(),
+                setStore({
+                  deletereview: "Post borrado",
+                })
+              );
+            } else if(response.status == 401){
+              return(
+              setStore({
+                deletereview: "No se pudo borrar el post",
+              })
+              )
+            }
+          }
+        );
+
+      },
+
 
     },
   };

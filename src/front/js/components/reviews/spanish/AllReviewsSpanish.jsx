@@ -23,7 +23,7 @@ export const AllReviewsSpanish = () => {
           return (
             <Box className="bubblereview" key={index}>
               {store.user.is_admin ? (
-                <ModalDeleteReview />
+                <ModalDeleteReview id={`${element.id}`}/>
               ) : null}
               <p className="p-3 text-center">{element.person_review}</p>
               <p className="p-1">
