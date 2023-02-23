@@ -38,3 +38,18 @@
     background-color: #d6a18e!important;
 
 }
+
+@media (max-width: 750px){
+    .bubblereview{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 5px solid #E1BAAC;
+        border-radius: 15px;
+        margin: 2rem;
+        min-width: 80vw!important;
+    
+    }
+
+}
