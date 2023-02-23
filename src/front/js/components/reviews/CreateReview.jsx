@@ -11,6 +11,8 @@ export const CreateReview = () => {
       values.first_name,
       values.last_name
     );
+    location.reload();
+
   };
   const { values, handleSubmit, handleChange, onChange } = useFormik({
     initialValues: {
@@ -22,8 +24,8 @@ export const CreateReview = () => {
   });
   console.log(values);
   return (
-    <Box>
-      <form onSubmit={handleSubmit}>
+    <Box >
+      <form onSubmit={handleSubmit} className="d-flex flex-column">
         <TextField
           label="Review"
           name="person_review"
@@ -42,7 +44,7 @@ export const CreateReview = () => {
           values={values.last_name}
           onChange={handleChange}
         />
-        <Button type="submit">enviar</Button>
+        <Button variant="contained" sx={{backgroundColor:"#E1BAAC"}} type="submit">enviar</Button>
       </form>
     </Box>
   );

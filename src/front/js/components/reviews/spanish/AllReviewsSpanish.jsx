@@ -2,6 +2,7 @@ import { Box, Button } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../../../store/appContext";
 import ModalCreateReview from "../../modals/ModalCreateReview.jsx";
+import ModalDeleteReview from "../../modals/ModalDeleteReview.jsx";
 
 export const AllReviewsSpanish = () => {
   const { actions, store } = useContext(Context);
@@ -21,7 +22,9 @@ export const AllReviewsSpanish = () => {
         {store.reviews.map((element, index) => {
           return (
             <Box className="bubblereview" key={index}>
-              {store.user.is_admin ? <Button>Borrar Review</Button> : null}
+              {store.user.is_admin ? (
+                <ModalDeleteReview />
+              ) : null}
               <p className="p-3 text-center">{element.person_review}</p>
               <p className="p-1">
                 <strong>
