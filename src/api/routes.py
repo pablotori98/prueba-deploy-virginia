@@ -297,9 +297,6 @@ def modificate_review(review_id):
     review.person_review = request_data.get('person_review', default_values.person_review)
     review.first_name = request_data.get('first_name', default_values.first_name)
     review.last_name = request_data.get('last_name', default_values.last_name)
-
-
-
     db.session.commit()
 
     return jsonify({

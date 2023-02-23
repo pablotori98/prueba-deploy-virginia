@@ -9,6 +9,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       access_token: sessionStorage.getItem("access_token"),
       createcontactmessage: "",
       contactmessage:[],
+      createreview:"",
       contactonlyonemessage:[],
       is_admin: "",
       user:[],
@@ -341,8 +342,43 @@ const getState = ({ getStore, getActions, setStore }) => {
         await fetch(`${process.env.BACKEND_URL}/api/contactmessage/${id}`, options)
         .then(response => response.json())
         .then(result=>setStore({contactonlyonemessage : result}))
-      }}
+      }},
       
+
+      // Crear review
+      createreview: async (
+        person_review,
+        first_name,
+        last_name,
+      ) => {
+        const options = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            person_review: person_review,
+            first_name: first_name,
+            last_name: last_name,
+          }),
+        };
+        await fetch(`${process.env.BACKEND_URL}/api/reviews`, options).then(
+          (response) => {
+            if (response.status == 201) {
+              return (
+                response.json(),
+                setStore({
+                  createreview: "correcto",
+                })
+              );
+            } else if (response.status == 400) {
+              setStore({
+                createreview: "Error en la creación de mensaje, pruebe de nuevo",
+              });
+            }
+          }
+        );
+      },
 
 
     },

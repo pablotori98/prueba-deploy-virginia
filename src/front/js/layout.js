@@ -32,6 +32,7 @@ import AdminRoute from "./app/AdminRoute";
 import injectContext from "./store/appContext";
 import { HandlePost } from "./components/blog/Createpost/HandlePost.js";
 import { AdminMessages } from "./components/adminmessages/AdminMessages.jsx";
+import { Reviews } from "./pages/Reviews";
 
 //create your first component
 const Layout = () => {
@@ -99,6 +100,15 @@ const Layout = () => {
                   <ProtectedRoute
                     enabledProtection={false}
                     component={<BlogPost />}
+                  />
+                }
+              />
+              <Route
+                path="/reviews"
+                element={
+                  <ProtectedRoute
+                    enabledProtection={false}
+                    component={<Reviews />}
                   />
                 }
               />

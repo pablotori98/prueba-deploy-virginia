@@ -60,6 +60,11 @@ export const NavbarLinksEnglish = () => {
             <Typography className="buttonnavbar">Blog</Typography>
           </Button>
         </Link>
+        <Link to="/reviews" className="linkremovestyle">
+          <Button>
+            <Typography className="buttonnavbar">Reviews</Typography>
+          </Button>
+        </Link>
         <Link to="/contact" className="linkremovestyle">
           <Button>
           <Typography className="buttonnavbar">
