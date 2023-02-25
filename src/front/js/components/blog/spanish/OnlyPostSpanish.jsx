@@ -20,7 +20,7 @@ export const OnlyPostSpanish = () => {
         <Box className="blogsection">
           <Box>
             <Box className="d-flex justify-content-center"> 
-            <Button className="text-black" onClick={() => setOpenMod(true)}>
+            <Button className="buttonreview text-white mx-2 mt-2" onClick={() => setOpenMod(true)}>
               Modificar post <EditIcon />
             </Button>
           <ModalDeleteBlog/>

@@ -55,6 +55,7 @@ export const ModPost = () => {
       image,
       params.idpost
     );
+    window.location.href = "/blog";
   };
 
   const { values, handleSubmit, handleChange, onChange } = useFormik({
@@ -181,9 +182,16 @@ export const ModPost = () => {
               <Button
                 type="submit"
                 variant="contained"
-                className="buttonsignup mb-5 text-black"
+                className="buttonsignup mb-5 mx-2 text-white"
               >
-                Modificar Post
+                <strong>Modificar Post</strong>
+              </Button>
+              <Button
+                onClick={() => (window.location.href = "/blog")}
+                variant="contained"
+                className="buttonsignup mb-5 mx-2 text-white"
+              >
+                <strong>Cancelar</strong>
               </Button>
             </Box>
             <Typography className="mt-5 p-3">

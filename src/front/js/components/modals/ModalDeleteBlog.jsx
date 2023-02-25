@@ -28,7 +28,7 @@ const params = useParams();
  const navigate = useNavigate()
   return (
     <div>
-      <Button sx={{color:"black"}} onClick={handleOpen}>Borrar Post</Button>
+      <Button className="buttonreview text-white mx-2 mt-2" onClick={handleOpen}>Borrar Post</Button>
       <Modal
         open={open}
         onClose={handleClose}
