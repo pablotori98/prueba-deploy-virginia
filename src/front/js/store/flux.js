@@ -24,6 +24,11 @@ const getState = ({ getStore, getActions, setStore }) => {
           language: language,
         });
       },
+      removeresults: ()=>{
+        setStore({
+          createpost: "",
+        });
+      },
 
       // SignUp Function
       signup: async (

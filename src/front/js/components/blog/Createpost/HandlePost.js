@@ -1,5 +1,5 @@
 //Import React
-import React, { useContext, useLayoutEffect, useState } from "react";
+import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 //Import materials
@@ -73,6 +73,7 @@ export const HandlePost = () => {
   console.log(values);
   console.log(image);
   console.log("create", store.createpost)
+  useEffect(()=>{actions.removeresults()},[])
 
   return (
     <Box className="signup">
