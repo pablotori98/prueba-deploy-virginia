@@ -94,11 +94,13 @@ export const ContactHomeEnglish = () => {
           <Button type="submit" variant="contained" className="btnjumbotron">
             Submit
           </Button>
-          {/* {store.signup !=""? store.signup !="Correcto"?
-        <Alert severity="error">{store.signup}</Alert>  : null
-        :
-        null
-        } */}
+          {store.createcontactmessage != "" ? (
+            store.createcontactmessage == "correcto" ? (
+              <>
+              <Alert severity="success" className="mt-3">Message sent successfuly</Alert>
+              </>
+            ) : null
+          ) : null}
         </form>
       </Box>
     </Box>
