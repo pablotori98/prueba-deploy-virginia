@@ -10,7 +10,8 @@ export const BlogBubbleEnglish = () => {
       <Box className="blogbubblesection">
         {store?.blogpost?.map((element, index) => {
           return (
-            
+            element.language!="Spanish"? 
+
             <Link
             key={index}
             to={`/blog/${element.id}/${element.title_post}`}
@@ -26,6 +27,8 @@ export const BlogBubbleEnglish = () => {
             <Button className="buttonbubblereadmore"><strong>Read article</strong></Button>
             </Box>
             </Link>
+            :
+            null
           );
         })}
       </Box>
