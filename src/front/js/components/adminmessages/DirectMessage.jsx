@@ -65,7 +65,10 @@ export const DirectMessage = () => {
           </Typography>
 
           {answer ? (
+            <>
             <AnswerMessage />
+            <Button variant="contained" className="answerquestion w-100 mt-2" onClick={()=> setAnswer(false)}>Cerrar</Button>
+            </>
           ) : (
             <Button variant="contained" className="answerquestion" onClick={() => setAnswer(true)}><strong>Responder</strong></Button>
           )}
