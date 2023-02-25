@@ -10,6 +10,7 @@ export const BlogTextEnglish = () => {
       <Box className="blogsection">
         {store?.blogpost?.map((element, index) => {
           return (
+            element.language!="Spanish"? 
             <Box key={index}>
               <Box className="blogpost mb-5">
                 <Link
@@ -39,6 +40,7 @@ export const BlogTextEnglish = () => {
                 </Typography>
               </Box>
             </Box>
+            :null
           );
         })}
       </Box>

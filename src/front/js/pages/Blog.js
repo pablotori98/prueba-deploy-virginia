@@ -5,6 +5,8 @@ import { BlogTextSpanish } from "../components/blog/spanish/BlogTextSpanish.jsx"
 import { Context } from "../store/appContext";
 import ChromeReaderModeIcon from "@mui/icons-material/ChromeReaderMode";
 import { BlogBubbleSpanish } from "../components/blog/spanish/BlogBubbleSpanish.jsx";
+import { BlogTextEnglish } from "../components/blog/english/BlogTextEnglish.jsx";
+import { BlogBubbleEnglish } from "../components/blog/english/BlogBubbleEnglish.jsx";
 
 export const Blog = () => {
   const { actions, store } = useContext(Context);
@@ -32,7 +34,12 @@ export const Blog = () => {
       </Button>
       </Box>
       <Box className="d-flex justify-content-center text-center">
-      {read == true ? <BlogTextSpanish /> : <BlogBubbleSpanish />}
+        {store.language=="spanish"?
+      read == true ? <BlogTextSpanish /> : <BlogBubbleSpanish />
+:
+read == true ? <BlogTextEnglish /> : <BlogBubbleEnglish />
+
+    }
       </Box>
     </Box>
   );
