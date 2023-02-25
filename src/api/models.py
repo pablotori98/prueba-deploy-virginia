@@ -109,6 +109,7 @@ class Reviews(db.Model):
     person_review = db.Column(db.String(), nullable=False)
     first_name = db.Column(db.String(100), nullable=False)
     last_name = db.Column(db.String(), nullable=False)
+    language = db.Column(db.String(), nullable=False)
 
     def __repr__(self):
         return f'<Contact {self.first_name}>'
@@ -119,4 +120,5 @@ class Reviews(db.Model):
             "person_review": self.person_review,
             "first_name": self.first_name,
             "last_name": self.last_name,
+            "language": self.language
         }

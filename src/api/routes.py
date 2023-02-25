@@ -266,7 +266,7 @@ def get_review(review_id):
     review = db.session.query(Reviews).filter(Reviews.id == review_id).first()
     return jsonify(review.serialize()), 200
 
-# Create post
+# Create Review
 @api.route('/reviews', methods=['POST'])
 def create_review():
     request_data = request.get_json(force=True)
@@ -278,6 +278,7 @@ def create_review():
             person_review=request_data['person_review'],
             first_name=request_data['first_name'],
             last_name=request_data['last_name'],
+            language=request_data['language']
         )
         db.session.add(new_review)
         db.session.commit()
@@ -287,7 +288,7 @@ def create_review():
             'New_review': new_review.serialize()
         }), 201
 
-# Modify post 
+# Modify Review 
 @api.route('/reviews/<int:review_id>', methods=['PUT'])
 def modificate_review(review_id):
     review = db.session.query(Reviews).filter(Reviews.id == review_id).first()
@@ -297,6 +298,7 @@ def modificate_review(review_id):
     review.person_review = request_data.get('person_review', default_values.person_review)
     review.first_name = request_data.get('first_name', default_values.first_name)
     review.last_name = request_data.get('last_name', default_values.last_name)
+    review.language = request_data.get('language', default_values.language)
     db.session.commit()
 
     return jsonify({

@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, InputLabel, MenuItem, Select, TextField, Typography } from "@mui/material";
 import { useFormik } from "formik";
 import React, { useContext } from "react";
 import { Context } from "../../store/appContext";
@@ -9,7 +9,8 @@ export const CreateReview = () => {
     await actions.createreview(
       values.person_review,
       values.first_name,
-      values.last_name
+      values.last_name,
+      values.language
     );
     location.reload();
   };
@@ -18,6 +19,7 @@ export const CreateReview = () => {
       person_review: "",
       first_name: "",
       last_name: "",
+      language: "",
     },
     onSubmit,
   });
@@ -45,6 +47,22 @@ export const CreateReview = () => {
           values={values.last_name}
           onChange={handleChange}
         />
+        <Box className="d-flex align-items-center mt-2">
+          <Typography className="me-3">Seleccionar idioma</Typography>
+          <InputLabel id="demo-simple-select-label"></InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={values.language}
+            name="language"
+            label="Language"
+            onChange={handleChange}
+          >
+            <MenuItem value="Spanish">Spanish</MenuItem>
+            <MenuItem value="English">English</MenuItem>
+          </Select>
+        </Box>
+
         <Button
           className="buttonreview my-3"
           variant="contained"

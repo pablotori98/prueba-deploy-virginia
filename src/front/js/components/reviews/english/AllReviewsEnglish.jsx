@@ -14,6 +14,7 @@ export const AllReviewsEnglish = () => {
       <Box className="reviewsfatherbubbles">
         {store.reviews.map((element, index) => {
           return (
+            element.language!="Spanish"?
             <Box className="bubblereview" key={index}>
               <p className="p-3 text-center">{element.person_review}</p>
               <p className="p-1">
@@ -22,6 +23,8 @@ export const AllReviewsEnglish = () => {
                 </strong>
               </p>
             </Box>
+            :
+            null
           );
         })}
       </Box>

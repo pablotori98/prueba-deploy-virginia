@@ -14,15 +14,14 @@ export const AllReviewsSpanish = () => {
   return (
     <Box className="reviewsfather">
       <h1 className="fontabhaya text-center mt-2">Reseñas</h1>
-      <Box>
-        {store.user.is_admin? <ModalCreateReview />:null}
-      </Box>
+      <Box>{store.user.is_admin ? <ModalCreateReview /> : null}</Box>
       <Box className="reviewsfatherbubbles">
         {store.reviews.map((element, index) => {
-          return (
+          return  (
+            element.language == "Spanish" ?
             <Box className="bubblereview" key={index}>
               {store.user.is_admin ? (
-                <ModalDeleteReview id={`${element.id}`}/>
+                <ModalDeleteReview id={`${element.id}`} />
               ) : null}
               <p className="p-3 text-center">{element.person_review}</p>
               <p className="p-1">
@@ -31,7 +30,8 @@ export const AllReviewsSpanish = () => {
                 </strong>
               </p>
             </Box>
-          );
+            : null
+          ) 
         })}
       </Box>
     </Box>

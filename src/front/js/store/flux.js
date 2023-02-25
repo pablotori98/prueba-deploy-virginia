@@ -356,6 +356,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         person_review,
         first_name,
         last_name,
+        language
       ) => {
         const options = {
           method: "POST",
@@ -366,6 +367,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             person_review: person_review,
             first_name: first_name,
             last_name: last_name,
+            language: language
           }),
         };
         await fetch(`${process.env.BACKEND_URL}/api/reviews`, options).then(
