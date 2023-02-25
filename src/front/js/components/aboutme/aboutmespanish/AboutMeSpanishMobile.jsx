@@ -14,7 +14,7 @@ import imagenpsicologa from "../../../assets/psicologa/psicologaimagen.jpg";
 
 export const AboutMeSpanishMobile = () => {
   return (
-    <Box className="d-flex bgcoloraboutme flex-wrap">
+    <Box sx={{backgroundColor:"#E1BAAC"}} className="d-flex bgcoloraboutme flex-wrap">
       <Box className="leftaboutme text-white">
         <Box className="leftheaderabout">
         <img className="imgaboutme" src={imagenpsicologa} />
@@ -34,7 +34,7 @@ export const AboutMeSpanishMobile = () => {
         </Box>
       </Box>
 
-      <Box className="contentaboutmemobile">
+      <Box className="contentaboutmemobile pb-5">
       <h1 className="fontabhaya aboutmetitle">Sobre Mi</h1>
       <Box className="m-2">
       <Accordion sx={{backgroundColor:"#F5ECE8"}}>
