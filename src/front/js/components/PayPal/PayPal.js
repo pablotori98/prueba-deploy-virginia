@@ -21,7 +21,7 @@ export const PayPal = ({ price }) => {
               purchase_units: [
                 {
                   amount: {
-                    value: precio,
+                    value: price,
                   },
                 },
               ],
