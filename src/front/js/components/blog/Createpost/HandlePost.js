@@ -51,7 +51,8 @@ export const HandlePost = () => {
       values.paragraph4,
       values.paragraph5,
       values.language,
-      image
+      image,
+      sessionStorage.getItem("current_user")
     );
     // if(store.signup=="Correcto"){
     //   navigate("/")

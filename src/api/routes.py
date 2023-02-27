@@ -134,12 +134,17 @@ def get_post(post_id):
     return jsonify(blogpost.serialize()), 200
 
 # Create post
-@api.route('/blogpost', methods=['POST'])
-def create_post():
+@api.route('/blogpost/<string:username_var>', methods=['POST'])
+@jwt_required()
+def create_post(username_var):
+    user = get_jwt_identity()
+    user_data = User.query.filter_by(username=user).first()
+    if user != username_var:
+        return jsonify({"message":"No tienes autorizacion para crear post"})
+
     request_data = request.get_json(force=True)
     if request_data['title_post']=="":
         return jsonify({'message': 'Creacion incorrecta'}), 401
-
     else:
         new_post= BlogPost(
             title_post=request_data['title_post'],

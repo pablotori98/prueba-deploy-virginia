@@ -15,7 +15,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       is_admin: "",
       user:[],
       createpost:"",
-      user_id: sessionStorage.getItem("user_id")
+      user_id: sessionStorage.getItem("user_id"),
     },
     actions: {
       // Change language function
@@ -168,10 +168,13 @@ const getState = ({ getStore, getActions, setStore }) => {
         paragraph5,
         language,
         image_post,
+        current_user
+        
       ) => {
         const options = {
           method: "POST",
           headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
@@ -185,7 +188,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             image_post: image_post
           }),
         };
-        await fetch(`${process.env.BACKEND_URL}/api/blogpost`, options).then(
+        await fetch(`${process.env.BACKEND_URL}/api/blogpost/${current_user}`, options).then(
           (response) => {
             if (response.status == 201) {
               return (
