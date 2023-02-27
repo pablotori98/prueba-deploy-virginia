@@ -167,8 +167,15 @@ def create_post(username_var):
         }), 201
 
 # Modify post 
-@api.route('/blogpost/<int:post_id>', methods=['PUT'])
-def modificate_post(post_id):
+@api.route('/blogpost/<int:post_id>/<string:username_var>', methods=['PUT'])
+@jwt_required()
+def modificate_post(post_id, username_var):
+    user = get_jwt_identity()
+    user_data = User.query.filter_by(username=user).first()
+    if user != username_var:
+        return jsonify({"message":"No tienes autorizacion para crear post"})
+
+
     blogpost = db.session.query(BlogPost).filter(BlogPost.id == post_id).first()
     default_values = blogpost
     request_data = request.get_json(force=True)

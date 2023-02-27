@@ -52,8 +52,9 @@ export const ModPost = () => {
       values.paragraph4,
       values.paragraph5,
       values.language,
-      image,
-      params.idpost
+      image ==""? store.singlepost.image_post : image,
+      params.idpost,
+      sessionStorage.getItem("current_user")
     );
     window.location.href = "/blog";
   };
@@ -65,8 +66,9 @@ export const ModPost = () => {
       paragraph2: store.singlepost.paragraph2,
       paragraph3: store.singlepost.paragraph3,
       paragraph4: store.singlepost.paragraph4,
-      paragraph5: "",
-      language: "",
+      paragraph5: store.singlepost.paragraph5,
+      language: store.singlepost.language,
+      image_post: store.singlepost.image_post
     },
     onSubmit,
   });

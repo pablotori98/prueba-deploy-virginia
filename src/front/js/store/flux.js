@@ -219,11 +219,13 @@ const getState = ({ getStore, getActions, setStore }) => {
         paragraph5,
         language,
         image_post,
-        id
+        id,
+        username
       ) => {
         const options = {
           method: "PUT",
           headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
@@ -237,7 +239,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             image_post: image_post
           }),
         };
-        await fetch(`${process.env.BACKEND_URL}/api/blogpost/${id}`, options).then(
+        await fetch(`${process.env.BACKEND_URL}/api/blogpost/${id}/${username}`, options).then(
           (response) => {
             if (response.status == 201) {
               return (
