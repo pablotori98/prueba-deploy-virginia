@@ -10,7 +10,8 @@ export const CreateReview = () => {
       values.person_review,
       values.first_name,
       values.last_name,
-      values.language
+      values.language,
+      sessionStorage.getItem("current_user")
     );
     location.reload();
   };
@@ -19,7 +20,7 @@ export const CreateReview = () => {
       person_review: "",
       first_name: "",
       last_name: "",
-      language: "",
+      language: "Spanish",
     },
     onSubmit,
   });

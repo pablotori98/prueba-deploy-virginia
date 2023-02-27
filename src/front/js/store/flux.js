@@ -361,11 +361,13 @@ const getState = ({ getStore, getActions, setStore }) => {
         person_review,
         first_name,
         last_name,
-        language
+        language,
+        username
       ) => {
         const options = {
           method: "POST",
           headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
@@ -375,7 +377,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             language: language
           }),
         };
-        await fetch(`${process.env.BACKEND_URL}/api/reviews`, options).then(
+        await fetch(`${process.env.BACKEND_URL}/api/reviews/${username}`, options).then(
           (response) => {
             if (response.status == 201) {
               return (

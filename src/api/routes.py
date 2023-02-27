@@ -279,8 +279,14 @@ def get_review(review_id):
     return jsonify(review.serialize()), 200
 
 # Create Review
-@api.route('/reviews', methods=['POST'])
-def create_review():
+@api.route('/reviews/<string:username_var>', methods=['POST'])
+@jwt_required()
+def create_review(username_var):
+    user = get_jwt_identity()
+    user_data = User.query.filter_by(username=user).first()
+    if user != username_var:
+        return jsonify({"message":"no tienes acceso"})
+
     request_data = request.get_json(force=True)
     if request_data['person_review']=="":
         return jsonify({'message': 'Creacion incorrecta'}), 401
