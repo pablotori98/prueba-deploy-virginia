@@ -19,9 +19,11 @@ export const UserProfile = () => {
 
   return (
     <Box className="d-flex flex-column align-items-center ">
-      <h1 className="fontabhaya text-center my-5 py-3">
+      <p className="fontabhaya text-center mt-5 pt-3 fontsize3rem">
         Hola {store.user.first_name} {store.user.last_name}
-      </h1>
+      </p>
+      <p className="mb-5 fontabhaya fontsize1-5rem">Tienes x sesiones disponibles</p>
+      
       <Box className="d-flex justify-content-evenly w-100">
         <Box className="leftprofile">
           <Calendar />
