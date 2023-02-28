@@ -17,7 +17,7 @@ class User(db.Model, UserMixin):
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
     is_admin = db.Column(db.Boolean(), unique=False, nullable=False)
     is_patient = db.Column(db.Boolean(), unique=False, nullable=True)
-    paid_sessions= db.relationship("PaidSessions")
+    paid_sessions= db.Column(db.Integer)
     def __repr__(self):
         return f'<User {self.email}>'
 
@@ -32,7 +32,7 @@ class User(db.Model, UserMixin):
             "is_admin": self.is_admin,
             "is_active": self.is_active,
             "is_patient": self.is_patient,
-            "Paid_sessions": self.paid_sessions
+            "paid_sessions": self.paid_sessions
         }
 
 class Appointment(db.Model):
@@ -134,17 +134,17 @@ class Reviews(db.Model):
             "language": self.language
         }
 
-class PaidSessions(db.Model):
-    id= db.Column(db.Integer, primary_key=True)
-    sessions = db.Column(db.Integer)
-    user_id = db.Column(db.Integer, ForeignKey("user.id"))
-    user=db.relationship("User", back_populates="paid_sessions")
+# class PaidSessions(db.Model):
+#     id= db.Column(db.Integer, primary_key=True)
+#     sessions = db.Column(db.Integer)
+#     user_id = db.Column(db.Integer, ForeignKey("user.id"))
+#     user=db.relationship("User", back_populates="paid_sessions")
 
-    def __repr__(self):
-        return f'<PaidSessions {self.sessions}>'
+#     def __repr__(self):
+#         return f'<PaidSessions {self.sessions}>'
 
-    def serialize(self):
-        return {
-            "id": self.id,
+#     def serialize(self):
+#         return {
+#             "id": self.id,
 
-        }
+#         }

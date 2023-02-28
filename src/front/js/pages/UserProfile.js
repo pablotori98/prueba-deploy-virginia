@@ -17,13 +17,17 @@ export const UserProfile = () => {
     document.title = newTitle;
   }, []);
 
+  console.log(store.user.paid_sessions)
   return (
     <Box className="d-flex flex-column align-items-center ">
       <p className="fontabhaya text-center mt-5 pt-3 fontsize3rem">
         Hola {store.user.first_name} {store.user.last_name}
       </p>
-      <p className="mb-5 fontabhaya fontsize1-5rem">Tienes x sesiones disponibles</p>
-      
+      {store.user.paid_sessions != (null || 0) ?
+      <p className="mb-5 fontabhaya fontsize1-5rem">Tienes {store.user.paid_sessions} sesiones disponibles</p>
+     :
+     null 
+    }
       <Box className="d-flex justify-content-evenly w-100">
         <Box className="leftprofile">
           <Calendar />
