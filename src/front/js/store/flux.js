@@ -358,7 +358,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             last_name: last_name,
             phone_number: phone_number,
             email: email,
-            problem_description: problem_description,
+            problem_description: problem_description
           }),
         };
         await fetch(`${process.env.BACKEND_URL}/api/contactmessage`, options).then(
@@ -371,18 +371,12 @@ const getState = ({ getStore, getActions, setStore }) => {
                 })
               );
             } else if (response.status == 400) {
-
               setStore({
-                createcontactmessage: "Correcto",
-              })
-            );
-          } else if (response.status == 400) {
-            setStore({
-              createcontactmessage:
-                "Error en la creación de mensaje, pruebe de nuevo",
-            });
+                createcontactmessage: "Error en la creación de mensaje, pruebe de nuevo",
+              });
+            }
           }
-        });
+        );
       },
 
       fetchallcontactmessages: async() =>{
