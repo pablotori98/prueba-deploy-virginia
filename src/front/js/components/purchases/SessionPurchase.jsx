@@ -27,6 +27,9 @@ export const SessionPurchase = () => {
     actions.setPrice((sessions * 50).toFixed(1));
   }, [sessions]);
 
+  useEffect(()=>{
+    actions.setSessions(sessions)
+  },[sessions])
   return (
     <Box className="fatherpurchase">
       <Box className="leftpurchase">
@@ -55,6 +58,8 @@ export const SessionPurchase = () => {
         <Box className="w-50">
           <p className="fontabhaya text-center fontsize2rem">
             Precio {store.price}€
+            sesiones {store.sessions}
+            creado {store.user.paid_sessions}
           </p>
 
 

@@ -28,6 +28,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       ],
       createpost:"",
       price: "",
+      sessions: "",
+      creado:""
 
 
     },
@@ -53,6 +55,16 @@ const getState = ({ getStore, getActions, setStore }) => {
       setPrice: (price)=>{
         setStore({
           price: price
+        })
+      },
+      setCreado: (creado)=>{
+        setStore({
+          creado: creado
+        })
+      },
+      setSessions: (sessions)=>{
+        setStore({
+          sessions: sessions
         })
       },
       removeresults: ()=>{
@@ -188,6 +200,41 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((response) => response.json())
           .then((result) => setStore({ singlepost: result }));
       },
+
+      // Modificar sesiones
+      paidSessions: async (
+        sessions,
+        id,
+        username
+      ) => {
+        const options = {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            paid_sessions: sessions,
+
+          }),
+        };
+
+        await fetch(`${process.env.BACKEND_URL}/api/users/${id}/${username}`, options).then(
+          (response) => {
+            if (response.status == 201) {
+              return (
+                response.json()
+              );
+            } else if(response.status == 401){
+              return(
+
+                sessionStorage.setItem("Creación post incorrecto, pruebe de nuevo") 
+              )
+            }
+          }
+        );
+      },
+
 
       // Creacion de post
       handlepost: async (

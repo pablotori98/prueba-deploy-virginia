@@ -97,6 +97,28 @@ def get_user(user_id):
     user = db.session.query(User).filter(User.id == user_id).first()
     return jsonify(user.serialize()), 200
 
+#Modify Paid sessions
+@api.route('/users/<int:user_id>/<string:username_var>', methods=['PUT'])
+@jwt_required()
+def mod_sessions(user_id, username_var):
+    user = get_jwt_identity()
+    user_data = User.query.filter_by(username=user).first()
+    if user != username_var:
+        return jsonify({"message":"No tienes autorizacion para crear post"})
+
+    user = db.session.query(User).filter(User.id == user_id).first()
+    default_values = user
+    request_data = request.get_json(force=True)
+
+    user.paid_sessions = request_data.get('paid_sessions', default_values.paid_sessions)
+
+    db.session.commit()
+
+    return jsonify({
+        'message': 'Paid sessions mod',
+    }), 201
+
+
 @api.route('/<string:username_var>/appointments', methods=['GET'])
 @jwt_required()
 def get_appointments(username_var):
