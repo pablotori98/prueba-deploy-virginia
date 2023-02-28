@@ -1,6 +1,5 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;500;600;700&display=swap");
 @import url(navbar.css);
 @import url(contact.css);
 @import url(footer.css);
@@ -15,6 +14,7 @@
 @import url(admin.css);
 @import url(profile.css);
 @import url(aboutme.css);
+@import url(calendar.css);
 html,
 body,
 #root,
@@ -22,8 +22,7 @@ body,
   height: 100%;
   width: 100%;
   font-family: "Inter", sans-serif;
-  background-color: #F5F1EE;
-  
+  background-color: #f5f1ee;
 }
 
 ::-webkit-scrollbar {
@@ -32,22 +31,25 @@ body,
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #F9EDE9;
+  background: #f9ede9;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #E1BAAC;
+  background: #e1baac;
 }
 
 /* Handle on Hover */
 ::-webkit-scrollbar-track:hover {
-  background: #F9EDE9;}
+  background: #f9ede9;
+}
 
-.contentfullheight{
+.contentfullheight {
   min-height: 94vh;
 }
 
-body{
-  padding-top: 90px ;
+body {
+  padding-top: 90px;
 }
+
+

@@ -33,23 +33,31 @@ class User(db.Model, UserMixin):
         }
 
 class Appointment(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.DateTime, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    # Meet Link
-    # Remarks
-    # subject
-    user = db.relationship('User', backref=db.backref('appointments', lazy=True))
+    id = db.Column(db.String(80), primary_key=True)
+    title = db.Column(db.String(80), unique=False, nullable=False)
+    start = db.Column(db.DateTime, nullable=False)
+    start_hour = db.Column(db.DateTime, unique=False, nullable=True)
+    end = db.Column(db.DateTime, nullable=False)
+    end_hour = db.Column(db.DateTime, unique=False, nullable=True)
+    remarks = db.Column(db.String(80), nullable=True)
+    allDay = db.Column(db.Boolean(), nullable=True)
 
     def __repr__(self):
-        return f'<Appointment {self.date}>'
+        return f'<Appointment {self.title}>'
 
     def serialize(self):
         return {
             "id": self.id,
-            "date": self.date,
-            "user_id": self.user_id
+            "title": self.title,
+            # format date
+            "start": self.start.strftime("%Y-%m-%d"),
+            "start_hour": self.start.strftime("%H:%M"),
+            "end": self.end.strftime("%Y-%m-%d"),
+            "end_hour": self.end.strftime("%H:%M"),
+            "remarks": self.remarks,
+            "allday": self.allDay
         }
+
 
 
 class BlogPost(db.Model):

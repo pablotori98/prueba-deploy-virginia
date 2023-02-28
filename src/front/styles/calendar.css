@@ -1,0 +1,65 @@
+/* Calendar Toolbar start */
+
+.fc-button {
+    background-color: #4b1b19a8 !important;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+    border: none !important;
+    margin-left: 0.2rem !important;
+  }
+  
+  .fc-button:hover {
+    scale: 1.04;
+  }
+  
+  .fc-toolbar-title::first-letter {
+    text-transform: capitalize;
+  }
+  /* Calendar Toolbar end */
+  
+  /* Calendar Header start*/
+  .fc-col-header-cell {
+    background-color: #4b1b19a8;
+  }
+  .fc-col-header-cell-cushion {
+    text-decoration: none !important;
+    color: #f5f1ee;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  }
+
+  .fc-col-header-cell-cushion:hover{
+    color: #f4e4df;
+  }
+  
+  .fc-col-header-cell-cushion::first-letter {
+    text-transform: capitalize !important;
+  
+  }
+  
+  /* Calendar Header End */
+  
+  /* Calendar Cell Start */
+  .fc-daygrid-day {
+    cursor: pointer !important;
+    border-radius: 2px !important;
+    background-color: #f4e4df;
+    border: 1px solid #64534d !important;
+  }
+  
+  .fc-daygrid-day-number {
+    text-decoration: none !important;
+    font-family: "Inter", sans-serif;
+    font-size: large;
+    color: #a56462;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  }
+  
+  .fc-daygrid-day-number:hover {
+    color: rgba(255, 0, 0, 0.205) !important;
+  }
+  
+  /* Calendar Cell End */
+  
+  .fc-scrollgrid{
+    border: none !important;
+    background-color: #cabfbc;
+  }
