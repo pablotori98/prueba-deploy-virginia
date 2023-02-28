@@ -2,12 +2,12 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { Box } from "@mui/material";
+import { Context } from "../../store/appContext";
 
-export const PayPal = ({ price }) => {
-
+export const PayPal = () => {
+  const {actions, store} = useContext(Context)
     return (
     <div className="container">
-        <Box>soy el price que viene del otro {price}</Box>
       <PayPalScriptProvider
         options={{
           "client-id":
@@ -21,7 +21,7 @@ export const PayPal = ({ price }) => {
               purchase_units: [
                 {
                   amount: {
-                    value: price,
+                    value: store.price,
                   },
                 },
               ],

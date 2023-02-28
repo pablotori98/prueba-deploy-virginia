@@ -1,21 +1,24 @@
 //Import React
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 //Import materials
 import { Box, MenuItem, Select, Typography, FormControl, InputLabel } from "@mui/material";
 import { PayPal } from "../PayPal/PayPal";
-
+import { Context } from "../../store/appContext"
 export const SessionPurchase = () => {
+  const {actions, store} = useContext(Context)
     const [sessions, setSessions] = useState(1)
     const [price, setPrice] = useState()
 
     const handleChange = (event) => {
         setSessions(event.target.value);
       };
-      useEffect(()=>{    setPrice((sessions * 50).toFixed(1))
+      useEffect(()=>{actions.setPrice((sessions * 50).toFixed(1))
       },[sessions])
-      console.log(typeof price)
+
+      
   return (
     <Box className="fatherpurchase">
       <Box className="leftpurchase">
@@ -41,11 +44,9 @@ export const SessionPurchase = () => {
 
       <Box className="rightpurchase">
         <Box>
-            <Typography>Precio {price}€</Typography>
+            <Typography>Precio {store.price}€</Typography>
         </Box>
-        <Box className="w-50">
-        <PayPal price={price} />
-        </Box>
+        <PayPal />
       </Box>
     </Box>
   );

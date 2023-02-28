@@ -15,6 +15,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       is_admin: "",
       user:[],
       createpost:"",
+      price: "",
       user_id: sessionStorage.getItem("user_id"),
     },
     actions: {
@@ -23,6 +24,11 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({
           language: language,
         });
+      },
+      setPrice: (price)=>{
+        setStore({
+          price: price
+        })
       },
       removeresults: ()=>{
         setStore({
