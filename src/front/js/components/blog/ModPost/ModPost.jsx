@@ -1,5 +1,5 @@
 //Import React
-import React, { useContext, useEffect, useLayoutEffect } from "react";
+import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 //Import materials
@@ -30,6 +30,19 @@ export const ModPost = () => {
     actions.singleblogpost(params.idpost);
   }, []);
 
+  const [image, setImage] = useState("");
+  const convertiraBase64 = (archivos) => {
+    Array.from(archivos).forEach((archivo) => {
+      var reader = new FileReader();
+      reader.readAsDataURL(archivo);
+      reader.onload = function () {
+        var base64 = reader.result;
+        console.log(base64);
+        setImage(base64);
+      };
+    });
+  };
+
   const onSubmit = async (values, ax) => {
     await actions.modpost(
       values.title_post,
@@ -39,8 +52,11 @@ export const ModPost = () => {
       values.paragraph4,
       values.paragraph5,
       values.language,
-      params.idpost
+      image ==""? store.singlepost.image_post : image,
+      params.idpost,
+      sessionStorage.getItem("current_user")
     );
+    window.location.href = "/blog";
   };
 
   const { values, handleSubmit, handleChange, onChange } = useFormik({
@@ -50,8 +66,9 @@ export const ModPost = () => {
       paragraph2: store.singlepost.paragraph2,
       paragraph3: store.singlepost.paragraph3,
       paragraph4: store.singlepost.paragraph4,
-      paragraph5: "",
-      language: "",
+      paragraph5: store.singlepost.paragraph5,
+      language: store.singlepost.language,
+      image_post: store.singlepost.image_post
     },
     onSubmit,
   });
@@ -62,10 +79,7 @@ export const ModPost = () => {
       <Box>
         <form onSubmit={handleSubmit}>
           <Box className="blogpost mb-5">
-            <img
-              className="imgpost"
-              src="https://img.freepik.com/foto-gratis/mujer-manos-juntas-hablando-consejero_23-2148759093.jpg?w=1380&t=st=1676660251~exp=1676660851~hmac=e5dc87333d7281a3a1b947ecde6ad9fdba67a84d9b7a12dc487749fb76e12abe"
-            />
+            <img className="imgpost" src={store.singlepost.image_post} />
             <Box className="px-5">
               <TextField
                 values={values.title_post}
@@ -142,7 +156,15 @@ export const ModPost = () => {
                 component="label"
               >
                 Subir imagen post
-                <input hidden accept="image/*" type="file" />
+                <input
+                  values={values.image_post}
+                  name="image"
+                  onChange={(e) => {
+                    convertiraBase64(e.target.files);
+                  }}
+                  hidden
+                  type="file"
+                />{" "}
               </Button>
               <Box className="d-flex align-items-center mt-2">
                 <Typography className="me-3">Seleccionar idioma</Typography>
@@ -162,9 +184,16 @@ export const ModPost = () => {
               <Button
                 type="submit"
                 variant="contained"
-                className="buttonsignup mb-5"
+                className="buttonsignup mb-5 mx-2 text-white"
               >
-                Modificar Post
+                <strong>Modificar Post</strong>
+              </Button>
+              <Button
+                onClick={() => (window.location.href = "/blog")}
+                variant="contained"
+                className="buttonsignup mb-5 mx-2 text-white"
+              >
+                <strong>Cancelar</strong>
               </Button>
             </Box>
             <Typography className="mt-5 p-3">

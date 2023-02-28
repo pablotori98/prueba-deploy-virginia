@@ -9,6 +9,7 @@
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
+
   animation: 1s ease-out 0s 1 slideInFromLeft;
   border-radius: 0 15px 0 0;
 }
@@ -22,6 +23,8 @@
 .bgcoloraboutme {
   background-color: #f5ece8;
   overflow-x: hidden;
+  height: 100vh;
+
 
 }
 
@@ -41,6 +44,10 @@
   width: 70vw;
 }
 .aboutmeinfocard {
+  display: flex!important;
+  flex-direction: column!important;
+  align-items: center!important;
+  justify-content: center!important;
   width: 25vw;
   height: 20vh;
   margin: 0 3rem 4.5rem 0;
@@ -65,7 +72,7 @@
     align-items: center !important;
     justify-content: center;
     min-width: 100vw !important;
-    min-height: 0 !important;
+    min-height: 270px !important;
     height: 34vh;
     background: linear-gradient(
       180deg,
@@ -107,6 +114,10 @@
 }
 
 @media (max-width: 620px) {
+  .bgcoloraboutme {
+    background-color: #f5ece8!important;
+    overflow-x: hidden;
+  }
   .leftaboutme {
     display: flex;
     flex-direction: row;
@@ -114,8 +125,10 @@
     justify-content: center!important;
     flex-wrap: wrap;
     min-width: 100vw !important;
-    min-height: 250px !important;
-    height: 250px!important;
+    min-height: 36vh !important;
+    height: 36vh!important;
+    max-height: 300px!important;
+    /* height: 250px!important; */
     background: linear-gradient(
       180deg,
       rgba(223, 165, 144, 1) 0%,
@@ -171,6 +184,7 @@
     margin-top: 1rem;
 
   }
+
 
 }
 

@@ -36,21 +36,21 @@ export const NavbarLinksEnglish = () => {
         </Box>
       </Link>
       <Box className="linksnavbar">
-        <Link to="/home" className="linkremovestyle">
+        <Link to="/" className="linkremovestyle">
           <Button>
-            <Typography className="buttonnavbar linksnavbar">Home</Typography>
+          <Typography className="buttonnavbar">Home</Typography>
           </Button>
         </Link>
         <Link to="/services" className="linkremovestyle">
           <Button>
-            <Typography className="buttonnavbar linksnavbar">
+          <Typography className="buttonnavbar">
               Services
             </Typography>
           </Button>
         </Link>
         <Link to="/aboutme" className="linkremovestyle">
           <Button>
-            <Typography className="buttonnavbar linksnavbar">
+          <Typography className="buttonnavbar">
               About Me
             </Typography>
           </Button>
@@ -60,9 +60,14 @@ export const NavbarLinksEnglish = () => {
             <Typography className="buttonnavbar">Blog</Typography>
           </Button>
         </Link>
+        <Link to="/reviews" className="linkremovestyle">
+          <Button>
+            <Typography className="buttonnavbar">Reviews</Typography>
+          </Button>
+        </Link>
         <Link to="/contact" className="linkremovestyle">
           <Button>
-            <Typography className="buttonnavbar linksnavbar">
+          <Typography className="buttonnavbar">
               Contact
             </Typography>
           </Button>

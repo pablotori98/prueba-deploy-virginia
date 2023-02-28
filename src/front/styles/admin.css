@@ -1,3 +1,13 @@
+.imagesmessages{
+    width: 15vw;
+}
+
+.chatandmessages{
+    /* background-color: red; */
+    width: 80vw;
+    min-height: 92vh;
+}
+
 .fatheradmin{
     display: flex;
     justify-content: center;

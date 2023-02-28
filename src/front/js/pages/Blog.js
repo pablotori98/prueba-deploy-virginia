@@ -1,13 +1,25 @@
 import { Box, Button, Typography } from "@mui/material";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { BlogTextSpanish } from "../components/blog/spanish/BlogTextSpanish.jsx";
 import { Context } from "../store/appContext";
 import ChromeReaderModeIcon from "@mui/icons-material/ChromeReaderMode";
 import { BlogBubbleSpanish } from "../components/blog/spanish/BlogBubbleSpanish.jsx";
+import { BlogTextEnglish } from "../components/blog/english/BlogTextEnglish.jsx";
+import { BlogBubbleEnglish } from "../components/blog/english/BlogBubbleEnglish.jsx";
 
 export const Blog = () => {
   const { actions, store } = useContext(Context);
+  if(store.language=="spanish"){
+    const newTitle = "Blog";
+    useLayoutEffect(() => {
+      document.title = newTitle;
+    }, []);}else{
+      const newTitle = "Blog";
+      useLayoutEffect(() => {
+        document.title = newTitle;
+      }, []);
+    }
   useEffect(() => {
     actions.getallpost();
   }, []);
@@ -22,7 +34,12 @@ export const Blog = () => {
       </Button>
       </Box>
       <Box className="d-flex justify-content-center text-center">
-      {read == true ? <BlogTextSpanish /> : <BlogBubbleSpanish />}
+        {store.language=="spanish"?
+      read == true ? <BlogTextSpanish /> : <BlogBubbleSpanish />
+:
+read == true ? <BlogTextEnglish /> : <BlogBubbleEnglish />
+
+    }
       </Box>
     </Box>
   );

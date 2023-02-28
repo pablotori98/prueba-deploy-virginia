@@ -1,5 +1,5 @@
 //Import React
-import React, { useContext } from "react";
+import React, { useContext, useLayoutEffect } from "react";
 import { Link } from "react-router-dom";
 
 //Import materials
@@ -16,7 +16,18 @@ import { AboutMeEnglishDesktop } from "./aboutmeenglish/AboutMeEnglishDesktop.js
 export const AboutMeComponent = () => {
   const mediadesktop = useMediaQuery("(min-width: 1000px)");
   const mediamobile = useMediaQuery("(min-width: 620px)");
-    const {actions, store} = useContext(Context)
+  const {actions, store} = useContext(Context)
+
+  if(store.language=="spanish"){
+  const newTitle = "Sobre mi";
+  useLayoutEffect(() => {
+    document.title = newTitle;
+  }, []);}else{
+    const newTitle = "About Me";
+    useLayoutEffect(() => {
+      document.title = newTitle;
+    }, []);
+  }
   return mediadesktop ? (
     store.language=="spanish"?
     <AboutMeSpanishDesktop />

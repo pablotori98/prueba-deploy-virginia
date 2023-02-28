@@ -1,7 +1,7 @@
 from datetime import datetime
 from sqlalchemy import and_, or_, not_
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Appointment, BlogPost, Contact
+from api.models import db, User, Appointment, BlogPost, Contact, Reviews
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -155,31 +155,48 @@ def get_post(post_id):
     return jsonify(blogpost.serialize()), 200
 
 # Create post
-@api.route('/blogpost', methods=['POST'])
-def create_post():
+@api.route('/blogpost/<string:username_var>', methods=['POST'])
+@jwt_required()
+def create_post(username_var):
+    user = get_jwt_identity()
+    user_data = User.query.filter_by(username=user).first()
+    if user != username_var:
+        return jsonify({"message":"No tienes autorizacion para crear post"})
+
     request_data = request.get_json(force=True)
-    new_post= BlogPost(
-        title_post=request_data['title_post'],
-        paragraph1=request_data['paragraph1'],
-        paragraph2=request_data['paragraph2'],
-        paragraph3=request_data['paragraph3'],
-        paragraph4=request_data['paragraph4'],
-        paragraph5=request_data['paragraph5'],
-        language=request_data['language']
+    if request_data['title_post']=="":
+        return jsonify({'message': 'Creacion incorrecta'}), 401
+    else:
+        new_post= BlogPost(
+            title_post=request_data['title_post'],
+            paragraph1=request_data['paragraph1'],
+            paragraph2=request_data['paragraph2'],
+            paragraph3=request_data['paragraph3'],
+            paragraph4=request_data['paragraph4'],
+            paragraph5=request_data['paragraph5'],
+            language=request_data['language'],
+            image_post = request_data['image_post']
 
-    )
+        )
 
-    db.session.add(new_post)
-    db.session.commit()
+        db.session.add(new_post)
+        db.session.commit()
 
-    return jsonify({
-        'message': 'Post Creado',
-        'New_user': new_post.serialize()
-    }), 201
+        return jsonify({
+            'message': 'Post Creado',
+            'New_user': new_post.serialize()
+        }), 201
 
 # Modify post 
-@api.route('/blogpost/<int:post_id>', methods=['PUT'])
-def modificate_post(post_id):
+@api.route('/blogpost/<int:post_id>/<string:username_var>', methods=['PUT'])
+@jwt_required()
+def modificate_post(post_id, username_var):
+    user = get_jwt_identity()
+    user_data = User.query.filter_by(username=user).first()
+    if user != username_var:
+        return jsonify({"message":"No tienes autorizacion para crear post"})
+
+
     blogpost = db.session.query(BlogPost).filter(BlogPost.id == post_id).first()
     default_values = blogpost
     request_data = request.get_json(force=True)
@@ -191,6 +208,7 @@ def modificate_post(post_id):
     blogpost.paragraph4 = request_data.get('paragraph4', default_values.paragraph4)
     blogpost.paragraph5 = request_data.get('paragraph5', default_values.paragraph5)
     blogpost.language = request_data.get('language', default_values.language)
+    blogpost.image_post=request_data.get('image_post', default_values.image_post)
 
 
     db.session.commit()
@@ -259,3 +277,82 @@ def delete_contact_message(contactmessage_id):
 
     return jsonify({
         'message': 'Post borrado' })
+
+
+
+# Review
+
+# Display all reviews
+
+@api.route('/reviews', methods=['GET'])
+def get_reviews():
+    getAllReviews = Reviews.query.all()
+    listreviews= []
+    for review in getAllReviews:
+        listreviews.append(review.serialize())
+    return jsonify(listreviews), 200
+
+# Display one review
+
+@api.route('/reviews/<int:review_id>', methods=['GET'])
+def get_review(review_id):
+    review = db.session.query(Reviews).filter(Reviews.id == review_id).first()
+    return jsonify(review.serialize()), 200
+
+# Create Review
+@api.route('/reviews/<string:username_var>', methods=['POST'])
+@jwt_required()
+def create_review(username_var):
+    user = get_jwt_identity()
+    user_data = User.query.filter_by(username=user).first()
+    if user != username_var:
+        return jsonify({"message":"no tienes acceso"})
+
+    request_data = request.get_json(force=True)
+    if request_data['person_review']=="":
+        return jsonify({'message': 'Creacion incorrecta'}), 401
+
+    else:
+        new_review= Reviews(
+            person_review=request_data['person_review'],
+            first_name=request_data['first_name'],
+            last_name=request_data['last_name'],
+            language=request_data['language']
+        )
+        db.session.add(new_review)
+        db.session.commit()
+
+        return jsonify({
+            'message': 'Review Creado',
+            'New_review': new_review.serialize()
+        }), 201
+
+# Modify Review 
+@api.route('/reviews/<int:review_id>', methods=['PUT'])
+def modificate_review(review_id):
+    review = db.session.query(Reviews).filter(Reviews.id == review_id).first()
+    default_values = review
+    request_data = request.get_json(force=True)
+
+    review.person_review = request_data.get('person_review', default_values.person_review)
+    review.first_name = request_data.get('first_name', default_values.first_name)
+    review.last_name = request_data.get('last_name', default_values.last_name)
+    review.language = request_data.get('language', default_values.language)
+    db.session.commit()
+
+    return jsonify({
+        'message': 'Review Modificada',
+        'New_review': review.serialize()
+    }), 201
+
+# Delete Post
+
+@api.route('/reviews/<int:review_id>', methods=['DELETE'])
+def delete_review(review_id):
+    review = db.session.query(Reviews).filter(Reviews.id == review_id).first()
+    db.session.delete(review)
+    db.session.commit()
+
+    return jsonify({
+        'message': 'Post borrado' })
+

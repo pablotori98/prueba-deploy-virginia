@@ -35,7 +35,10 @@
 }
 /* Bubblepost */
 
-
+.buttonbubblereadmore{
+  background-color: #E1BAAC!important;
+  color: white!important;
+}
 
 .imgpostbubble {
   width: 100% !important;

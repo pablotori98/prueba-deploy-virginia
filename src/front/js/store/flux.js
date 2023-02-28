@@ -8,6 +8,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       singlepost: [],
       access_token: sessionStorage.getItem("access_token"),
       createcontactmessage: "",
+      contactmessage:[],
+      createreview:"",
+      reviews:[],
+      contactonlyonemessage:[],
       is_admin: "",
       user: [],
       user_id: sessionStorage.getItem("user_id"),
@@ -22,6 +26,10 @@ const getState = ({ getStore, getActions, setStore }) => {
           start: "2023-02-28",
         },
       ],
+      createpost:"",
+      price: "",
+
+
     },
     actions: {
       //testing events
@@ -40,6 +48,16 @@ const getState = ({ getStore, getActions, setStore }) => {
       changeLanguage: (language) => {
         setStore({
           language: language,
+        });
+      },
+      setPrice: (price)=>{
+        setStore({
+          price: price
+        })
+      },
+      removeresults: ()=>{
+        setStore({
+          createpost: "",
         });
       },
 
@@ -179,11 +197,15 @@ const getState = ({ getStore, getActions, setStore }) => {
         paragraph3,
         paragraph4,
         paragraph5,
-        language
+        language,
+        image_post,
+        current_user
+        
       ) => {
         const options = {
           method: "POST",
           headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
@@ -194,21 +216,24 @@ const getState = ({ getStore, getActions, setStore }) => {
             paragraph4: paragraph4,
             paragraph5: paragraph5,
             language: language,
+            image_post: image_post
           }),
         };
-        await fetch(`${process.env.BACKEND_URL}/api/blogpost`, options).then(
+        await fetch(`${process.env.BACKEND_URL}/api/blogpost/${current_user}`, options).then(
           (response) => {
             if (response.status == 201) {
               return (
                 response.json(),
                 setStore({
-                  createpost: "Correcto",
+                  createpost: "Post creado correctamente",
                 })
               );
-            } else if (response.status == 400) {
+            } else if (response.status == 401) {
+              return(
               setStore({
                 createpost: "Creación post incorrecto, pruebe de nuevo",
-              });
+              })
+              )
             }
           }
         );
@@ -224,11 +249,14 @@ const getState = ({ getStore, getActions, setStore }) => {
         paragraph4,
         paragraph5,
         language,
-        id
+        image_post,
+        id,
+        username
       ) => {
         const options = {
           method: "PUT",
           headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
@@ -239,25 +267,59 @@ const getState = ({ getStore, getActions, setStore }) => {
             paragraph4: paragraph4,
             paragraph5: paragraph5,
             language: language,
+            image_post: image_post
           }),
         };
-        await fetch(
-          `${process.env.BACKEND_URL}/api/blogpost/${id}`,
-          options
-        ).then((response) => {
-          if (response.status == 201) {
-            return (
-              response.json(),
+
+        await fetch(`${process.env.BACKEND_URL}/api/blogpost/${id}/${username}`, options).then(
+          (response) => {
+            if (response.status == 201) {
+              return (
+                response.json(),
+                setStore({
+                  createpost: "Correcto",
+                })
+              );
+            } else if(response.status == 401){
+              return(
               setStore({
-                createpost: "Correcto",
+                createpost: "Creación post incorrecto, pruebe de nuevo",
               })
-            );
-          } else if (response.status == 400) {
-            setStore({
-              createpost: "Creación post incorrecto, pruebe de nuevo",
-            });
+              )
+            }
           }
-        });
+        );
+      },
+
+      //Delete post
+      deletepost: async(
+        id
+      )=>{
+        const options = {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          }
+        }
+        await fetch(`${process.env.BACKEND_URL}/api/blogpost/${id}`, options).then(
+          (response) => {
+            if (response.status == 201) {
+              return (
+                response.json(),
+                setStore({
+                  deletepost: "Post borrado",
+                })
+              );
+            } else if(response.status == 401){
+              return(
+              setStore({
+                deletepost: "No se pudo borrar el post",
+              })
+              )
+            }
+          }
+        );
+
       },
 
       createAppointment: async (id, title, start, end, allday, patient) => {
@@ -299,13 +361,17 @@ const getState = ({ getStore, getActions, setStore }) => {
             problem_description: problem_description,
           }),
         };
-        await fetch(
-          `${process.env.BACKEND_URL}/api/contactmessage`,
-          options
-        ).then((response) => {
-          if (response.status == 201) {
-            return (
-              response.json(),
+        await fetch(`${process.env.BACKEND_URL}/api/contactmessage`, options).then(
+          (response) => {
+            if (response.status == 201) {
+              return (
+                response.json(),
+                setStore({
+                  createcontactmessage: "correcto",
+                })
+              );
+            } else if (response.status == 400) {
+
               setStore({
                 createcontactmessage: "Correcto",
               })
@@ -318,6 +384,115 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
         });
       },
+
+      fetchallcontactmessages: async() =>{
+        const options = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        await fetch(`${process.env.BACKEND_URL}/api/contactmessage`, options)
+        .then(response => response.json())
+        .then(result=>setStore({contactmessage : result}))
+      },
+
+      fetchonlyonemessage: async(id) =>{
+        if(id==null){}else{
+        const options = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        await fetch(`${process.env.BACKEND_URL}/api/contactmessage/${id}`, options)
+        .then(response => response.json())
+        .then(result=>setStore({contactonlyonemessage : result}))
+      }},
+      
+
+      // Crear review
+      createreview: async (
+        person_review,
+        first_name,
+        last_name,
+        language,
+        username
+      ) => {
+        const options = {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            person_review: person_review,
+            first_name: first_name,
+            last_name: last_name,
+            language: language
+          }),
+        };
+        await fetch(`${process.env.BACKEND_URL}/api/reviews/${username}`, options).then(
+          (response) => {
+            if (response.status == 201) {
+              return (
+                response.json(),
+                setStore({
+                  createreview: "correcto",
+                })
+              );
+            } else if (response.status == 400) {
+              setStore({
+                createreview: "Error en la creación de mensaje, pruebe de nuevo",
+              });
+            }
+          }
+        );
+      },
+
+      displayreviews: async() =>{
+        const options = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        await fetch(`${process.env.BACKEND_URL}/api/reviews`, options)
+        .then(response => response.json())
+        .then(result=>setStore({reviews : result}))
+      },
+
+      // Delete review
+      deletereview: async(
+        id
+      )=>{
+        const options = {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          }
+        }
+        await fetch(`${process.env.BACKEND_URL}/api/reviews/${id}`, options).then(
+          (response) => {
+            if (response.status == 200) {
+              return (
+                response.json(),
+                setStore({
+                  deletereview: "Post borrado",
+                })
+              );
+            } else if(response.status == 401){
+              return(
+              setStore({
+                deletereview: "No se pudo borrar el post",
+              })
+              )
+            }
+          }
+        );
+
+      },
+
     },
   };
 };

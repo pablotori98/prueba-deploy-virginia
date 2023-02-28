@@ -1,5 +1,5 @@
 //Import React
-import React, { useContext, useLayoutEffect } from "react";
+import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 //Import materials
@@ -22,7 +22,24 @@ import { Context } from "../../../store/appContext";
 import Alert from "@mui/material/Alert";
 
 export const HandlePost = () => {
+  const newTitle = "Crear Post";
+  useLayoutEffect(() => {
+    document.title = newTitle;
+  }, []);
   const navigate = useNavigate();
+  //Convertir imagen a b64
+  const [image, setImage] = useState("");
+  const convertiraBase64 = (archivos) => {
+    Array.from(archivos).forEach((archivo) => {
+      var reader = new FileReader();
+      reader.readAsDataURL(archivo);
+      reader.onload = function () {
+        var base64 = reader.result;
+        console.log(base64);
+        setImage(base64);
+      };
+    });
+  };
 
   const { actions, store } = useContext(Context);
   const onSubmit = async (values, ax) => {
@@ -33,25 +50,31 @@ export const HandlePost = () => {
       values.paragraph3,
       values.paragraph4,
       values.paragraph5,
-      values.language
+      values.language,
+      image,
+      sessionStorage.getItem("current_user")
     );
     // if(store.signup=="Correcto"){
     //   navigate("/")
     // }
   };
-
   const { values, handleSubmit, handleChange, onChange } = useFormik({
     initialValues: {
       title_post: "",
       paragraph1: "",
-      paragraph2: "", 
+      paragraph2: "",
       paragraph3: "",
       paragraph4: "",
-      paragraph5: "", 
+      paragraph5: "",
       language: "",
+      image_post: "",
     },
     onSubmit,
   });
+  console.log(values);
+  console.log(image);
+  console.log("create", store.createpost)
+  useEffect(()=>{actions.removeresults()},[])
 
   return (
     <Box className="signup">
@@ -65,6 +88,7 @@ export const HandlePost = () => {
             label="Titulo post"
             className="w-100 my-2"
             variant="standard"
+            multiline
           />
           <TextField
             values={values.paragraph1}
@@ -73,6 +97,7 @@ export const HandlePost = () => {
             label="Primer párrafo"
             className="w-100 my-2"
             variant="standard"
+            multiline
           />
           <TextField
             values={values.paragraph2}
@@ -81,6 +106,7 @@ export const HandlePost = () => {
             label="Segundo párrafo"
             className="w-100 my-2"
             variant="standard"
+            multiline
           />
           <TextField
             values={values.paragraph3}
@@ -89,6 +115,7 @@ export const HandlePost = () => {
             label="Tercer párrafo"
             className="w-100 my-2"
             variant="standard"
+            multiline
           />
           <TextField
             values={values.paragraph4}
@@ -97,6 +124,7 @@ export const HandlePost = () => {
             label="Cuarto Párrafo"
             className="w-100 my-2"
             variant="standard"
+            multiline
           />
           <TextField
             values={values.paragraph5}
@@ -105,6 +133,7 @@ export const HandlePost = () => {
             label="Quinto párrafo"
             className="w-100 my-2"
             variant="standard"
+            multiline
           />
           <Button
             className="my-3 uploadblogimage w-100"
@@ -113,8 +142,18 @@ export const HandlePost = () => {
             component="label"
           >
             Subir imagen post
-            <input hidden accept="image/*" type="file" />
+            <input
+              values={values.image_post}
+              name="image"
+              onChange={(e) => {
+                convertiraBase64(e.target.files);
+                React.ChangeEvent(values.image_post);
+              }}
+              hidden
+              type="file"
+            />
           </Button>
+
           <Box className="d-flex align-items-center mt-2">
             <Typography className="me-3">Seleccionar idioma</Typography>
             <InputLabel id="demo-simple-select-label"></InputLabel>
@@ -131,14 +170,21 @@ export const HandlePost = () => {
             </Select>
           </Box>
 
-          <Button type="submit" variant="contained" className="buttonsignup mb-5">
-            Registro
+          <Button
+            type="submit"
+            variant="contained"
+            className="buttonsignup mb-5"
+          >
+            Crear Post
           </Button>
-          {store.signup != "" ? (
-            store.signup != "Correcto" ? (
-              <Alert severity="error">{store.signup}</Alert>
-            ) : null
-          ) : null}
+          {store.createpost != ""
+            ? (store.createpost == "Post creado correctamente" ? (
+              <>
+                <Alert severity="success">Post creado correctamente</Alert>
+                <Button variant="contained" className="mt-3 buttonbubblereadmore"><Link className="linkremovestyle text-white" to="/blog"><strong>Ver post</strong></Link></Button>
+                </>
+              ) : <Alert severity="error" className="d-flex align-items-center text-center">El post no fue creado correctamente, revise los campos y recuerde siempre rellenar como mínimo el título del post y el primer párrafo</Alert>)
+            : null}
         </form>
       </Box>
     </Box>

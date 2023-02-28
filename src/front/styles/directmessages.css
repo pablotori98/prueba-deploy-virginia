@@ -1,0 +1,29 @@
+.messagearea{
+    display: flex;
+    max-width: 73vw;
+    border: 5px solid #E1BAAC;
+    border-radius: 15px;
+
+}
+
+.messagearealeft{
+    width: 27vw;
+    background-color: #F9EDE9;
+    border-right: 5px solid #E1BAAC;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.answerquestion{
+    background-color: #E1BAAC!important;
+
+}
+
+.answerquestion:hover{
+    background-color: #ddaa97!important;
+}
+
+.messagearearight{
+    width: 73vw;
+    padding: 3rem;
+}

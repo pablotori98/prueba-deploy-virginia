@@ -17,35 +17,6 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 
-//paginas y links
-const paginas = [
-  "Inicio",
-  "Terapia",
-  "Sobre Mi",
-  "Blog",
-  "Contacto",
-  "Iniciar sesión",
-  "Registro",
-];
-const linkpaginas = [
-  "/",
-  "/terapia",
-  "/aboutme",
-  "/blog",
-  "/contact",
-  "/login",
-  "/signup",
-];
-const pages = [
-  "Home",
-  "Therapy",
-  "About Me",
-  "Blog",
-  "Contact",
-  "Login",
-  "Sign Up",
-];
-
 //Context
 import { Context } from "../../store/appContext";
 import { Box } from "@mui/system";
@@ -53,6 +24,75 @@ import { Box } from "@mui/system";
 const DrawerComp = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
   const { actions, store } = useContext(Context);
+
+  //paginas y links
+
+  const paginas = [
+    "Inicio",
+    "Terapia",
+    "Sobre Mi",
+    "Blog",
+    "Reseñas",
+    "Contacto",
+    "Iniciar sesión",
+    "Registro",
+  ];
+  const paginaslogged = [
+    "Inicio",
+    "Terapia",
+    "Sobre Mi",
+    "Blog",
+    "Reseñas",
+    "Contacto",
+    "Perfil",
+    "Citas",
+  ];
+
+  const linkpaginaslogged = [
+    "/",
+    "/services",
+    "/aboutme",
+    "/blog",
+    "/reviews",
+    "/contact",
+    "/profile",
+    "/citas",
+    "/admin",
+  ];
+
+  const linkpaginas = [
+    "/",
+    "/services",
+    "/aboutme",
+    "/blog",
+    "/reviews",
+    "/contact",
+    "/login",
+    "/signup",
+  ];
+  const pages = [
+    "Home",
+    "Therapy",
+    "About Me",
+    "Blog",
+    "Reviews",
+    "Contact",
+    "Login",
+    "Sign Up",
+  ];
+
+  const pageslogged = [
+    "Home",
+    "Therapy",
+    "About Me",
+    "Blog",
+    "Reviews",
+    "Contact",
+    "Profile",
+    "Appointments",
+  ];
+
+
   return (
     <React.Fragment>
       <Drawer
@@ -78,37 +118,119 @@ const DrawerComp = () => {
             onClick={() => setOpenDrawer(false)}
             className="closebutton p-0 m-0"
           >
-            <CloseIcon />
+            <CloseIcon className="text-black"/>
           </Button>
           {store.language == "spanish" ? (
             <>
-              {paginas.map((page, index) => (
-                <Box key={index} width="100%" className="d-flex flex-column align-items-center">
+              {store.access_token ? (
+                <>
+                  {paginaslogged.map((page, index) => (
+                    <Box
+                      key={index}
+                      width="100%"
+                      className="d-flex flex-column align-items-center"
+                    >
+                      <Link
+                        to={linkpaginaslogged[index]}
+                        className="linkremovestyle text-black linkheight my-4"
+                      >
+                        <ListItemText onClick={() => setOpenDrawer(false)}>
+                          <strong>{page}</strong>
+                        </ListItemText>
+                      </Link>
+                    </Box>
+                  ))}
+
+                  {store.user.is_admin ? (
+                    <Link
+                      className="linkremovestyle text-black linkheight my-4"
+                      to="/admin"
+                      onClick={() => setOpenDrawer(false)}
+                    >
+                      <strong>Admin</strong>
+                    </Link>
+                  ) : null}
+                  <Button
+                    className="linkremovestyle text-black linkheight my-4"
+                    onClick={() => actions.logout()}
+                  >
+                    <strong>Cerrar sesión</strong>
+                  </Button>
+                </>
+              ) : (
+                paginas.map((page, index) => (
+                  <Box
+                    key={index}
+                    width="100%"
+                    className="d-flex flex-column align-items-center"
+                  >
+                    <Link
+                      to={linkpaginas[index]}
+                      className="linkremovestyle text-black linkheight my-4"
+                    >
+                      <ListItemText onClick={() => setOpenDrawer(false)}>
+                        <strong>{page}</strong>
+                      </ListItemText>
+                    </Link>
+                  </Box>
+                ))
+              )}
+            </>
+          ) : (
+            store.access_token?
+            <>
+                          {pageslogged.map((page, index) => (
+                <Box
+                  key={index}
+                  width="100%"
+                  className="d-flex flex-column align-items-center"
+                >
+                  <Link
+                    to={linkpaginaslogged[index]}
+                    className="linkremovestyle text-black linkheight my-4"
+                  >
+                    <ListItemText onClick={() => setOpenDrawer(false)}>
+                      <strong>{page}</strong>
+                    </ListItemText>
+                  </Link>
+                </Box>
+              ))}
+                                {store.user.is_admin ? (
+                    <Link
+                      className="linkremovestyle text-black linkheight my-4"
+                      to="/admin"
+                      onClick={() => setOpenDrawer(false)}
+                    >
+                      <strong>Admin</strong>
+                    </Link>
+                  ) : null}
+                  <Button
+                    className="linkremovestyle text-black linkheight my-4"
+                    onClick={() => actions.logout()}
+                  >
+                    <strong>LogOut</strong>
+                  </Button>
+
+            </>
+            :
+            <>
+              {pages.map((page, index) => (
+                <Box
+                  key={index}
+                  width="100%"
+                  className="d-flex flex-column align-items-center"
+                >
                   <Link
                     to={linkpaginas[index]}
                     className="linkremovestyle text-black linkheight my-4"
                   >
-                    <ListItemText  onClick={() => setOpenDrawer(false)}>
-                      {page}
+                    <ListItemText onClick={() => setOpenDrawer(false)}>
+                      <strong>{page}</strong>
                     </ListItemText>
                   </Link>
                 </Box>
               ))}
             </>
-          ) : (
-            <>
-              {pages.map((page, index) => (
-                <Box key={index} width="100%" className="d-flex flex-column align-items-center">
-                <Link
-                    to={linkpaginas[index]}
-                    className="linkremovestyle text-black linkheight my-4"
-                  >
-                    <ListItemText onClick={() => setOpenDrawer(false)}>
-                      {page}
-                    </ListItemText>
-                  </Link>
-                </Box>
-              ))}            </>
           )}
         </List>
       </Drawer>

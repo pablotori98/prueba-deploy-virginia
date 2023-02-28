@@ -1,0 +1,55 @@
+.reviewsfather{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    max-width: 100vw;
+}
+
+.reviewsfatherbubbles{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+.bubblereview{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid #E1BAAC;
+    border-radius: 15px;
+    margin: 2rem;
+    min-width: 40%;
+    width: 40%;
+    min-width: 40vw;
+
+}
+
+.buttonreview{
+    background-color: #E1BAAC!important;
+}
+
+.buttonreview:hover{
+    background-color: #d6a18e!important;
+
+}
+
+@media (max-width: 750px){
+    .bubblereview{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 5px solid #E1BAAC;
+        border-radius: 15px;
+        margin: 2rem;
+        min-width: 80vw!important;
+    
+    }
+
+}

@@ -11,12 +11,18 @@ import { CallToActionSharp } from "@mui/icons-material";
 import { Context } from "../store/appContext";
 
 export const Login = () => {
-  const navigate = useNavigate();
-  const newTitle = "Login";
-  useLayoutEffect(() => {
-    document.title = newTitle;
-  }, []);
   const { actions, store } = useContext(Context);
+  const navigate = useNavigate();
+  if(store.language=="spanish"){
+    const newTitle = "Inicio sesión";
+    useLayoutEffect(() => {
+      document.title = newTitle;
+    }, []);}else{
+      const newTitle = "Login";
+      useLayoutEffect(() => {
+        document.title = newTitle;
+      }, []);
+    }
   const onSubmit = async (values, ax) => {
     await actions.login(values.email, values.password);
     navigate("/");

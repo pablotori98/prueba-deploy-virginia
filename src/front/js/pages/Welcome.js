@@ -15,10 +15,16 @@ const Welcome = () => {
   const { store, actions } = useContext(Context);
   const isTablet = useMediaQuery("(max-width: 1224px)");
   const isMobile = useMediaQuery("(max-width: 812px)");
-  const newTitle = "Home";
-  useLayoutEffect(() => {
-    document.title = newTitle;
-  }, []);
+  if(store.language=="spanish"){
+    const newTitle = "Inicio";
+    useLayoutEffect(() => {
+      document.title = newTitle;
+    }, []);}else{
+      const newTitle = "Home";
+      useLayoutEffect(() => {
+        document.title = newTitle;
+      }, []);
+    }
   return (
     <Box sx={{}}>
       <Box className="d-flex flex-column align-items-center">

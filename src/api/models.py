@@ -70,6 +70,7 @@ class BlogPost(db.Model):
     paragraph5 = db.Column(db.String(), nullable=True)
     language = db.Column(db.String(),nullable=False)
     tags_post = db.Column(db.String())
+    image_post = db.Column(db.Unicode)
 
     def __repr__(self):
         return f'<Blogpost {self.title_post}>'
@@ -83,7 +84,8 @@ class BlogPost(db.Model):
             "paragraph3": self.paragraph3,
             "paragraph4": self.paragraph4,
             "paragraph5": self.paragraph5,
-            "language": self.language
+            "language": self.language,
+            "image_post": self.image_post
 
         }
 
@@ -106,7 +108,25 @@ class Contact(db.Model):
             "first_name": self.first_name,
             "last_name": self.last_name,
             "phone_number": self.phone_number,
-            "email": self.phone_number,
+            "email": self.email,
             "problem_description": self.problem_description
         }
 
+class Reviews(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    person_review = db.Column(db.String(), nullable=False)
+    first_name = db.Column(db.String(100), nullable=False)
+    last_name = db.Column(db.String(), nullable=False)
+    language = db.Column(db.String(), nullable=False)
+
+    def __repr__(self):
+        return f'<Contact {self.first_name}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "person_review": self.person_review,
+            "first_name": self.first_name,
+            "last_name": self.last_name,
+            "language": self.language
+        }
