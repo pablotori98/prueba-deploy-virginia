@@ -1,0 +1,121 @@
+:root {
+  --darkBrown: #9c8b7a;
+  --lightBrown: #fce2c8;
+  --lighterBrown: #f5f1ee;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--darkBrown);
+}
+::-webkit-scrollbar {
+  display: none;
+}
+.AMwrapper {
+  width: 50vw;
+  height: 75vh;
+  background-color: var(--lighterBrown);
+  margin-left: 50%;
+  margin-top: 30%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  box-sizing: border-box;
+  box-shadow: 9px 10px 29px -3px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 9px 10px 29px -3px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 9px 10px 29px -3px rgba(0, 0, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 2rem;
+}
+
+.AMheader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 10%;
+}
+
+.AMheaderTitle {
+  font-family: "Inter", sans-serif;
+  text-shadow: 1px 3px 6px rgba(0, 0, 0, 0.6);
+  padding: 1rem;
+}
+
+.Divider {
+  width: 100%;
+}
+
+.AMbody {
+  margin-top: 2rem;
+  height: 85%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: inherit;
+}
+
+.AMpatientList {
+  height: 100%;
+  width: 30%;
+  border-radius: 0 15px 15px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.patientList {
+  padding: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-items: center;
+  height: 80%;
+  width: 100%;
+  overflow-y: scroll;
+  border-bottom: #9c8b7a 1px solid;
+}
+
+.patientItem {
+  padding: .3rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 4rem;
+  border-radius: 8px;
+  background-color: blue;
+  box-shadow: 0px 6px 6px -1px rgba(0, 0, 0, 0.42);
+  -webkit-box-shadow: 0px 6px 6px -1px rgba(0, 0, 0, 0.42);
+  -moz-box-shadow: 0px 6px 6px -1px rgba(0, 0, 0, 0.42);
+  cursor: pointer;
+  transition: all 200ms;
+}
+
+.patientItem:hover{
+  background-color: #877067 !important;
+}
+.patientItem:nth-child(4n + 1) {
+  background-color: #e1baac;
+}
+
+.patientItem:nth-child(4n + 2) {
+  background-color: #f9f1ee;
+}
+
+.patientItem:nth-child(4n + 3) {
+  background-color: #eacfc5;
+}
+
+.patientItem:nth-child(4n + 4) {
+  background-color: #f3e3de;
+}
+
+.AMform {
+  height: 100%;
+  width: 65%;
+}

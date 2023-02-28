@@ -7,3 +7,7 @@ background-color: rgb(116, 41, 41);
 .eventsList{
     overflow-y: scroll;
 }
+.fc-daygrid-day-frame{
+    border-radius: 50% !important;
+}
+

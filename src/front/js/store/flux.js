@@ -13,12 +13,37 @@ const getState = ({ getStore, getActions, setStore }) => {
       reviews:[],
       contactonlyonemessage:[],
       is_admin: "",
-      user:[],
+      user: [],
+      user_id: sessionStorage.getItem("user_id"),
+      appointments: [],
+      initialSample: [
+        {
+          title: "All-day event",
+          start: "2023-02-14",
+        },
+        {
+          title: "Timed event",
+          start: "2023-02-28",
+        },
+      ],
       createpost:"",
       price: "",
-      user_id: sessionStorage.getItem("user_id"),
+
+
     },
     actions: {
+      //testing events
+      newCita: (start, title) => {
+        const store = getStore();
+
+        const newCita = {
+          title: title,
+          start: start,
+        };
+        setStore({
+          initialSample: [...store.initialSample, newCita],
+        });
+      },
       // Change language function
       changeLanguage: (language) => {
         setStore({
@@ -104,7 +129,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                   login: "Correcto",
                   access_token: result.access_token,
                   is_admin: result.is_admin,
-                  user_id: result.user_id
+                  user_id: result.user_id,
                 });
               });
             } else if (response.status == 400) {
@@ -127,7 +152,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       //Conseguir todos los post
-      getallpost: async() =>{
+      getallpost: async () => {
         const options = {
           method: "GET",
           headers: {
@@ -135,12 +160,12 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
         };
         await fetch(`${process.env.BACKEND_URL}/api/blogpost`, options)
-        .then(response => response.json())
-        .then(result=>setStore({blogpost : result}))
+          .then((response) => response.json())
+          .then((result) => setStore({ blogpost: result }));
       },
 
       //Fetch all users
-      fetchallusers: async(id) =>{
+      fetchallusers: async (id) => {
         const options = {
           method: "GET",
           headers: {
@@ -148,11 +173,11 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
         };
         await fetch(`${process.env.BACKEND_URL}/api/users/${id}`, options)
-        .then(response => response.json())
-        .then(result=>setStore({user : result}))
+          .then((response) => response.json())
+          .then((result) => setStore({ user: result }));
       },
-      
-      singleblogpost: async(id) =>{
+
+      singleblogpost: async (id) => {
         const options = {
           method: "GET",
           headers: {
@@ -160,8 +185,8 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
         };
         await fetch(`${process.env.BACKEND_URL}/api/blogpost/${id}`, options)
-        .then(response => response.json())
-        .then(result=>setStore({singlepost : result}))
+          .then((response) => response.json())
+          .then((result) => setStore({ singlepost: result }));
       },
 
       // Creacion de post
@@ -245,6 +270,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             image_post: image_post
           }),
         };
+
         await fetch(`${process.env.BACKEND_URL}/api/blogpost/${id}/${username}`, options).then(
           (response) => {
             if (response.status == 201) {
@@ -296,6 +322,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       },
 
+      createAppointment: async (id, title, start, end, allday, patient) => {
+        console.log("fluc function", id, title, start, end, allday);
+        const store = getStore();
+        setStore({
+          appointments: [
+            ...store.appointments,
+            {
+              id: id,
+              title: title,
+              start: start,
+              end: end,
+              allDay: allday,
+              patient: patient,
+            },
+          ],
+        });
+      },
 
       //Contact message
       contacthome: async (
@@ -315,7 +358,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             last_name: last_name,
             phone_number: phone_number,
             email: email,
-            problem_description: problem_description
+            problem_description: problem_description,
           }),
         };
         await fetch(`${process.env.BACKEND_URL}/api/contactmessage`, options).then(
@@ -328,12 +371,18 @@ const getState = ({ getStore, getActions, setStore }) => {
                 })
               );
             } else if (response.status == 400) {
+
               setStore({
-                createcontactmessage: "Error en la creación de mensaje, pruebe de nuevo",
-              });
-            }
+                createcontactmessage: "Correcto",
+              })
+            );
+          } else if (response.status == 400) {
+            setStore({
+              createcontactmessage:
+                "Error en la creación de mensaje, pruebe de nuevo",
+            });
           }
-        );
+        });
       },
 
       fetchallcontactmessages: async() =>{
@@ -444,11 +493,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       },
 
-
     },
   };
 };
-
-
 
 export default getState;

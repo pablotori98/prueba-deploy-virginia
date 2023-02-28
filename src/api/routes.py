@@ -114,6 +114,27 @@ def get_appointments(username_var):
     return jsonify(appointmentlist), 200
 
 
+@api.route('/createappointment' , methods=['POST', 'GET'])
+def testapp():
+    if request.method == 'GET':
+       all_appointments = Appointment.query.all()
+       appointment_list = []
+       for appointment in all_appointments:
+           appointment_list.append(appointment.serialize())
+       return jsonify(appointment_list), 200
+    else:
+        request_data = request.get_json(force=True)
+        new_appointment = Appointment(
+            id = request_data['id'],
+            title = request_data['title'],
+            start = request_data['start'],
+            end = request_data['end'],
+            remarks = request_data['remarks'],
+            allDay = request_data['allDay'],
+        )
+        db.session.add(new_appointment)
+        db.session.commit()
+        return jsonify({'message': 'Cita creada con exito'}), 200
 # Blog
 
 # Display all posts
