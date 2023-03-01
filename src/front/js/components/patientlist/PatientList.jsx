@@ -19,19 +19,19 @@ export const PatientList = () => {
   }, [id]);
 
   return (
-    <Box className="d-flex">
-      <Box>
+    <Box className="patientlist">
+      <Box className="leftpatientlist">
       {store.users.map((element, index) => {
         return (
             <Box key={index} className="d-flex flex-column">
-          <Button  onClick={() => setId(element.id)}>
-            {element.first_name} {element.last_name}
+          <Button  className="text-black" onClick={() => setId(element.id)}>
+            <strong>{element.first_name} {element.last_name}</strong>
           </Button>
           </Box>
         );
       })}
       </Box>
-      <Box>
+      <Box className="rightpatientlist">
       {id !=null? 
       <>
       <p>Nombre:</p>
