@@ -19,7 +19,7 @@ import Testing from "./pages/testting.js";
 import { BlogPost } from "./pages/BlogPost";
 import { Citas } from "./pages/adminpanel/Citas";
 import { CitasPaciente } from "./pages/CitasPaciente";
-
+import { PatientList } from "./components/patientlist/PatientList.jsx";
 //Pages and views
 
 //Components and features
@@ -180,6 +180,13 @@ const Layout = () => {
                 path="/admin/messages"
                 element={
                   <AdminRoute isEnabled={true} component={<AdminMessages />} />
+                }
+              />
+
+              <Route
+                path="/admin/patientlist"
+                element={
+                  <AdminRoute isEnabled={true} component={<PatientList />} />
                 }
               />
 
