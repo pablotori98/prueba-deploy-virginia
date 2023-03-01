@@ -30,6 +30,8 @@ export const SessionPurchase = () => {
   useEffect(()=>{
     actions.setSessions(sessions)
   },[sessions])
+  useEffect(()=>{
+<PayPal/>  },[])
   return (
     <Box className="fatherpurchase">
       <Box className="leftpurchase">
