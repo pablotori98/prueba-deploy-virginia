@@ -34,11 +34,18 @@ export const PatientList = () => {
       <Box>
       {id !=null? 
       <>
+      <p>Nombre:</p>
       <p>{store.userinfo.first_name} {store.userinfo.last_name}</p>
+      <p>Número de teléfono:</p>
       <p>{store.userinfo.phone_number}</p>
+      <p>Email:</p>
       <p>{store.userinfo.email}</p>
+      <p>Número de sesiones pagadas:</p>
+      <Box className="d-flex">
+      <Button>+1</Button>
       <p>{store.userinfo.paid_sessions == null ? 0 : store.user.paid_sessions}</p>
-      
+      <Button>-1</Button>
+      </Box>
       </>
       :null}</Box>
       </Box>
