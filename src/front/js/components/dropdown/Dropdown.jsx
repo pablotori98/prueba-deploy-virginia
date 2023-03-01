@@ -33,6 +33,11 @@ export const Dropdown = () => {
               </Link>
             </li>
             <li className="text-center">
+              <Link className="dropdown-item" to="/sessions">
+                Bonos sesiones
+              </Link>
+            </li>
+            <li className="text-center">
               <Link className="dropdown-item" to="/admin">
                 Admin
               </Link>
@@ -57,6 +62,11 @@ export const Dropdown = () => {
               </Link>
             </li>
             <li className="text-center">
+              <Link className="dropdown-item" to="/sessions">
+                Bonos sesiones
+              </Link>
+            </li>
+            <li className="text-center">
               <Button className="text-black" sx={{textTransform: 'none'}} onClick={()=> actions.logout()}>
                 Cerrar sesión
               </Button>
@@ -75,6 +85,11 @@ export const Dropdown = () => {
               </Link>
             </li>
             <li className="text-center">
+              <Link className="dropdown-item" to="/sessions">
+                Buy Sessions
+              </Link>
+            </li>
+            <li className="text-center">
               <Button className="text-black" sx={{textTransform: 'none'}} onClick={()=> actions.logout()}>
                 <strong>Logout</strong>
               </Button>
@@ -82,6 +97,7 @@ export const Dropdown = () => {
           </ul>
         )
       ) : (
+        store.language=="spanish"?
         <ul className="dropdown-menu dropdown-menu-center borderdropdown">
           <li className="text-center">
             <Link className="dropdown-item" to="/login">
@@ -93,7 +109,30 @@ export const Dropdown = () => {
               Signup
             </Link>
           </li>
-        </ul>
+          <li className="text-center">
+              <Link className="dropdown-item" to="/sessions">
+                Bonos sesiones
+              </Link>
+            </li>
+        </ul>:
+                <ul className="dropdown-menu dropdown-menu-center borderdropdown">
+                <li className="text-center">
+                  <Link className="dropdown-item" to="/login">
+                    Login
+                  </Link>
+                </li>
+                <li className="text-center">
+                  <Link className="dropdown-item" to="/signup">
+                    Signup
+                  </Link>
+                </li>
+                <li className="text-center">
+                    <Link className="dropdown-item" to="/sessions">
+                      Buy Sessions
+                    </Link>
+                  </li>
+              </ul>
+      
       )}
     </div>
   );

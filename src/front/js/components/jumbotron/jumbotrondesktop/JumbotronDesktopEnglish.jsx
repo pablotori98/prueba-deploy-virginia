@@ -21,6 +21,7 @@ export const JumbotronDesktopEnglish = () => {
         width: "100vw",
         backgroundSize: "cover",
         height: "90vh",
+        minHeight:"671px",
         backgroundPosition: "center bottom",
       }}
       className="d-flex flex-column align-items-center justify-content-start w-100 "

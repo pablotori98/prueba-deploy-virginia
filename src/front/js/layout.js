@@ -28,6 +28,7 @@ import { Footer } from "./components/footer/Footer.jsx";
 import { Contact } from "./components/contact/Contact.jsx";
 import ProtectedRoute from "./app/ProtectedRoute.js";
 import AdminRoute from "./app/AdminRoute";
+import { SessionPurchase } from "./components/purchases/SessionPurchase.jsx";
 //Components and features
 import injectContext from "./store/appContext";
 import { HandlePost } from "./components/blog/Createpost/HandlePost.js";
@@ -82,6 +83,15 @@ const Layout = () => {
                   <ProtectedRoute
                     enabledProtection={false}
                     component={<AboutMe />}
+                  />
+                }
+              />
+              <Route
+                path="/sessions"
+                element={
+                  <ProtectedRoute
+                    enabledProtection={false}
+                    component={<SessionPurchase />}
                   />
                 }
               />
