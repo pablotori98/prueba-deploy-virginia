@@ -27,11 +27,12 @@ export const SessionPurchase = () => {
     actions.setPrice((sessions * 50).toFixed(1));
   }, [sessions]);
 
-  useEffect(()=>{
-    actions.setSessions(sessions)
-  },[sessions])
-  useEffect(()=>{
-<PayPal/>  },[])
+  useEffect(() => {
+    actions.setSessions(sessions);
+  }, [sessions]);
+  useEffect(() => {
+    <PayPal />;
+  }, []);
   return (
     <Box className="fatherpurchase">
       <Box className="leftpurchase">
@@ -64,15 +65,32 @@ export const SessionPurchase = () => {
             creado {store.user.paid_sessions} */}
           </p>
 
-
-
-          {open == true ? <PayPal /> :           <Button
-            onClick={() => setOpen(true)}
-            variant="contained"
-            className="paybutton w-100"
-          >
-            Pagar
-          </Button>}
+          {store.user.username ? (
+            open == true ? (
+              <PayPal />
+            ) : (
+              <Button
+                onClick={() => setOpen(true)}
+                variant="contained"
+                className="paybutton w-100"
+              >
+                Pagar
+              </Button>
+            )
+          ) : (
+            <Box>
+              <Button variant="contained" className="paybutton w-100">
+                <Link to="/signup" className="linkremovestyle text-white">
+                  <strong>Registrate para comprar bonos</strong>
+                </Link>
+              </Button>
+              <Button variant="contained" className="paybutton w-100 my-2">
+                <Link to="/login" className="linkremovestyle text-white">
+                  <strong>Inicia sesión para comprar bonos</strong>
+                </Link>
+              </Button>
+            </Box>
+          )}
         </Box>
       </Box>
     </Box>

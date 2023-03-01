@@ -4,6 +4,7 @@
     align-items: center;
     max-width: 100vw;
     height: 90vh;
+    min-height: 500px;
 }
 
 .leftpurchase{
@@ -11,12 +12,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     width: 50vw;
 }
 
 .leftimagepurchase{
     max-width: 25vw;
+    max-height: 100%;
 }
 
 .rightpurchase{

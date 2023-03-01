@@ -23,7 +23,7 @@ export const UserProfile = () => {
       <p className="fontabhaya text-center mt-5 pt-3 fontsize3rem">
         Hola {store.user.first_name} {store.user.last_name}
       </p>
-      {store.user.paid_sessions != (null || 0) ?
+      {store.user.paid_sessions != null?
       <p className="mb-5 fontabhaya fontsize1-5rem">Tienes {store.user.paid_sessions} sesiones disponibles</p>
      :
      null 
