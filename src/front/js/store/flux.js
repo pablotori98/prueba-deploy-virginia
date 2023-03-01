@@ -14,6 +14,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       contactonlyonemessage:[],
       is_admin: "",
       user: [],
+      users:[],
+      userinfo:[],
       user_id: sessionStorage.getItem("user_id"),
       appointments: [],
       initialSample: [
@@ -177,7 +179,19 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       //Fetch all users
-      fetchallusers: async (id) => {
+      fetchallusers: async () => {
+        const options = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        await fetch(`${process.env.BACKEND_URL}/api/users`, options)
+          .then((response) => response.json())
+          .then((result) => setStore({ users: result }));
+      },
+
+      fetchuser: async (id) => {
         const options = {
           method: "GET",
           headers: {
@@ -188,6 +202,19 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((response) => response.json())
           .then((result) => setStore({ user: result }));
       },
+
+      fetchuserinfo: async (id) => {
+        if(id==null){}else{
+        const options = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        await fetch(`${process.env.BACKEND_URL}/api/users/${id}`, options)
+          .then((response) => response.json())
+          .then((result) => setStore({ userinfo: result }));
+      }},
 
       singleblogpost: async (id) => {
         const options = {

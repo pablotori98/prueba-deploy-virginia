@@ -10,7 +10,7 @@ import { Context } from "../store/appContext";
 export const UserProfile = () => {
   const { actions, store } = useContext(Context);
   useState(() => {
-    actions.fetchallusers(sessionStorage.getItem("user_id"));
+    actions.fetchuser(sessionStorage.getItem("user_id"));
   }, []);
   const newTitle = store.language == "spanish" ? "Perfil" : "Profile";
   useLayoutEffect(() => {

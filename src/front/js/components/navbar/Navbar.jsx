@@ -31,7 +31,7 @@ export const Navbar = () => {
   const { actions, store } = useContext(Context);
   useEffect(()=>{
     if(sessionStorage.getItem("user_id")){
-  actions.fetchallusers(sessionStorage.getItem("user_id"))}
+  actions.fetchuser(sessionStorage.getItem("user_id"))}
 }, []);
   return (
     <React.Fragment>
