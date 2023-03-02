@@ -1,47 +1,78 @@
-.fatherpurchase{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 100vw;
-    height: 90vh;
-    min-height: 500px;
+.fatherpurchase {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100vw;
+  height: 94vh;
+  min-height: 500px;
+  background-color: #F5ECE8;
+
 }
 
-.leftpurchase{
+.leftpurchase {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50vw;
+}
+
+.leftimagepurchase {
+  max-width: 25vw;
+  max-height: 100%;
+}
+
+.rightpurchase {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 50vw;
+}
+
+.fontsize3rem {
+  font-size: 3rem;
+}
+
+.fontsize2rem {
+  font-size: 2rem;
+}
+.fontsize1-5rem {
+  font-size: 1.5rem;
+}
+
+.paybutton {
+  background-color: #e1baac !important;
+  height: 3rem;
+}
+
+@media (max-width: 750px) {
+  .fatherpurchase {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 50vw;
-}
+    justify-content: start;
+    background-color: #F5ECE8;
+    margin-bottom: 0!important;
 
-.leftimagepurchase{
-    max-width: 25vw;
+  }
+  .leftimagepurchase {
+    max-width: 50vw;
     max-height: 100%;
-}
-
-.rightpurchase{
+    margin-top: 2rem;
+  }
+  .rightpurchase {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    
-    width: 50vw;
+    width: 100vw;
+  }
+  .formpurchasemobile {
+    margin-top: 0rem !important;
+  }
+.purchasebuttonselect{
+    width: 80vw!important;
 }
 
-.fontsize3rem{
-    font-size: 3rem;
-
-}
-
-.fontsize2rem{
-    font-size: 2rem;
-}
-.fontsize1-5rem{
-    font-size: 1.5rem;
-}
-
-.paybutton{
-   background-color: #E1BAAC!important;
-   height: 3rem;
 }

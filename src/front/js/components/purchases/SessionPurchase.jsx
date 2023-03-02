@@ -24,7 +24,7 @@ export const SessionPurchase = () => {
     setSessions(event.target.value);
   };
   useEffect(() => {
-    actions.setPrice((sessions * 50).toFixed(1));
+    actions.setPrice((sessions * 60).toFixed(1));
   }, [sessions]);
 
   useEffect(() => {
@@ -40,16 +40,26 @@ export const SessionPurchase = () => {
       </Box>
       {store.language == "spanish" ? (
         <Box className="rightpurchase">
-          <p className="fontabhaya my-3 fontsize3rem">Sesiones terapia</p>
+          <p className="fontabhaya my-3 formpurchasemobile fontsize3rem">Sesiones terapia</p>
 
-          <FormControl className="my-4 w-50">
-            <InputLabel id="demo-simple-select-label">Sesiones</InputLabel>
+          <FormControl  className="my-4 formpurchasemobile w-50 purchasebuttonselect">
+            <InputLabel  id="demo-simple-select-label">Sesiones</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={sessions}
               label="sessions"
               onChange={handleChange}
+              MenuProps={{
+                PaperProps: {
+                  sx: {
+                    bgcolor: '#F5ECE8',
+                    '& .MuiMenuItem-root': {
+                      padding: 2,
+                    },
+                  },
+                },
+              }}
             >
               <MenuItem value={1}>1 Sesión</MenuItem>
               <MenuItem value={2}>2 Sesiones</MenuItem>
@@ -58,7 +68,7 @@ export const SessionPurchase = () => {
               <MenuItem value={5}>5 Sesiones</MenuItem>
             </Select>
           </FormControl>
-          <Box className="w-50">
+          <Box className="w-50 purchasebuttonselect">
             <p className="fontabhaya text-center fontsize2rem">
               Precio {store.price}€
               {/* sesiones {store.sessions}
@@ -78,13 +88,13 @@ export const SessionPurchase = () => {
                 </Button>
               )
             ) : (
-              <Box>
+              <Box >
                 <Button variant="contained" className="paybutton w-100">
                   <Link to="/signup" className="linkremovestyle text-white">
                     <strong>Registrate para comprar bonos</strong>
                   </Link>
                 </Button>
-                <Button variant="contained" className="paybutton w-100 my-2">
+                <Button variant="contained" className="paybutton w-100 my-2 ">
                   <Link to="/login" className="linkremovestyle text-white">
                     <strong>Inicia sesión para comprar bonos</strong>
                   </Link>
@@ -95,9 +105,9 @@ export const SessionPurchase = () => {
         </Box>
       ) : (
         <Box className="rightpurchase">
-          <p className="fontabhaya my-3 fontsize3rem">Therapy Sessions</p>
+          <p className="fontabhaya my-3 formpurchasemobile fontsize3rem">Therapy Sessions</p>
 
-          <FormControl className="my-4 w-50">
+          <FormControl className="my-4 formpurchasemobile w-50 purchasebuttonselect">
             <InputLabel id="demo-simple-select-label">Sessions</InputLabel>
             <Select
               labelId="demo-simple-select-label"
@@ -105,6 +115,16 @@ export const SessionPurchase = () => {
               value={sessions}
               label="sessions"
               onChange={handleChange}
+              MenuProps={{
+                PaperProps: {
+                  sx: {
+                    bgcolor: '#F5ECE8',
+                    '& .MuiMenuItem-root': {
+                      padding: 2,
+                    },
+                  },
+                },
+              }}
             >
               <MenuItem value={1}>1 Session</MenuItem>
               <MenuItem value={2}>2 sessions</MenuItem>
@@ -113,7 +133,7 @@ export const SessionPurchase = () => {
               <MenuItem value={5}>5 sessions</MenuItem>
             </Select>
           </FormControl>
-          <Box className="w-50">
+          <Box className="w-50 purchasebuttonselect">
             <p className="fontabhaya text-center fontsize2rem">
               Price {store.price}€
               {/* sesiones {store.sessions}
