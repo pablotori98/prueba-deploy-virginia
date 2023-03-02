@@ -37,7 +37,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       selectedDate: {
         date:"",
         time:""
-      }
+      },
       sessions: "",
       creado:""
 
