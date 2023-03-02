@@ -34,6 +34,7 @@ const DrawerComp = () => {
     "Blog",
     "Reseñas",
     "Contacto",
+    "Bonos sesiones",
     "Iniciar sesión",
     "Registro",
   ];
@@ -44,6 +45,7 @@ const DrawerComp = () => {
     "Blog",
     "Reseñas",
     "Contacto",
+    "Bonos Sesiones",
     "Perfil",
     "Citas",
   ];
@@ -55,6 +57,7 @@ const DrawerComp = () => {
     "/blog",
     "/reviews",
     "/contact",
+    "/sessions",
     "/profile",
     "/citas",
     "/admin",
@@ -67,6 +70,7 @@ const DrawerComp = () => {
     "/blog",
     "/reviews",
     "/contact",
+    "/sessions",
     "/login",
     "/signup",
   ];
@@ -77,6 +81,7 @@ const DrawerComp = () => {
     "Blog",
     "Reviews",
     "Contact",
+    "Sessions",
     "Login",
     "Sign Up",
   ];
@@ -88,6 +93,7 @@ const DrawerComp = () => {
     "Blog",
     "Reviews",
     "Contact",
+    "Sessions",
     "Profile",
     "Appointments",
   ];
