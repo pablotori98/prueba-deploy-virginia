@@ -9,6 +9,12 @@ import { Box, Typography } from "@mui/material";
 import { Context } from "../store/appContext";
 export const UserProfile = () => {
   const { actions, store } = useContext(Context);
+  const [activeBlur, setActiveBlur] = useState(false);
+  
+  const setBlur = (value) => {
+    console.log("blur")
+    setActiveBlur(value)
+  }
   useState(() => {
     actions.fetchuser(sessionStorage.getItem("user_id"));
   }, []);
@@ -19,7 +25,9 @@ export const UserProfile = () => {
 
   console.log(store.user.paid_sessions)
   return (
-    <Box className="d-flex flex-column align-items-center ">
+    <Box className="d-flex flex-column align-items-center " sx={{
+      filter: activeBlur ? "blur(5px)" : "none",
+    }}>
       <p className="fontabhaya text-center mt-5 pt-3 fontsize3rem">
         Hola {store.user.first_name} {store.user.last_name}
       </p>
@@ -30,7 +38,7 @@ export const UserProfile = () => {
     }
       <Box className="d-flex justify-content-evenly w-100">
         <Box className="leftprofile">
-          <Calendar />
+          <Calendar setBlur={setBlur}/>
         </Box>
         <Box className="rightprofile">
           <h3 className="fontabhaya">Mensajes de Psicologa</h3>

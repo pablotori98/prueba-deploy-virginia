@@ -21,17 +21,16 @@ import {
   Typography,
   List,
   Tooltip,
+  ButtonGroup,
 } from "@mui/material";
-//MUI DATEPICKER >>>
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-//<<< MUI DATE PICKER
+import calendarImg from "../../../assets/admin/calendar.png";
+
 import CloseIcon from "@mui/icons-material/Close";
 import { Formik, useFormik } from "formik";
 import { Context } from "../../../store/appContext";
-import { appointmentInitialValues } from "./appointmentData";
 import styles from "./appointmentmodal.module.css";
+import FlexBetween from "../../../features/styled/FlexBetween";
+import { height } from "@mui/system";
 const AppointmentModal = ({ open, close, data, closeREF, closeOutside }) => {
   //variables >>>
   const title = "Crear Nueva Cita";
@@ -67,6 +66,7 @@ const AppointmentModal = ({ open, close, data, closeREF, closeOutside }) => {
       preferredDay: "Miercoles",
     },
   ]);
+
   const [patient, setPatient] = useState(null);
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
@@ -75,51 +75,30 @@ const AppointmentModal = ({ open, close, data, closeREF, closeOutside }) => {
 
   //functions <<<<
 
-  useLayoutEffect(() => {
-    document.addEventListener("mousedown", closeOutside);
-    return () => {
-      document.removeEventListener("mousedown", closeOutside);
-    };
-  }, []);
 
-  useEffect(() => {
-    if (close === false) {
-      document.removeEventListener("mousedown", closeOutside);
-    }
-  }, [close]);
-
-  const onSubmit = async (values, ax) => {
-    console.log("Im submitting", values);
-    ax.setSubmitting(false);
-    await close();
-    await ax.resetForm();
-  };
-  //formik
-  const {
-    values,
-    errors,
-    touched,
-    handleChange,
-    handleBlur,
-    handleSubmit,
-    isSubmiting,
-  } = useFormik({
-    initialValues: appointmentInitialValues,
-    onSubmit,
-  });
   return (
     <Box>
       <Modal open={open}>
         <Fade in={open}>
           {/* AM = Appointment Modal */}
-          <Box className={styles.AMwrapper} ref={closeREF}>
+          <Box
+            className={styles.AMwrapper}
+            ref={closeREF}
+            sx={{
+              backgroundImage: `url(${calendarImg})`,
+              backgroundSize: "contain",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "bottom 50px right",
+              opacity: 0.3,
+            }}
+          >
             <Header
               close={close}
               title={title}
               variant={"h4"}
               showButton={true}
             />
-            <Body patients={patients} />
+            <Body patients={patients} close={close} closeREF={closeREF} closeOutside={closeOutside}/>
           </Box>
         </Fade>
       </Modal>
@@ -157,10 +136,10 @@ const Header = (props) => {
 };
 
 const Body = (props) => {
-  const { patients } = props;
+  const { patients, close, closeREF, closeOutside } = props;
   return (
     <Box className={styles.AMbody}>
-      <AppointmentForm />
+      <AppointmentForm close={close} closeREF={closeREF} closeOutside={closeOutside}/>
       <PatientList patients={patients} />
     </Box>
   );
@@ -168,11 +147,11 @@ const Body = (props) => {
 
 const PatientList = (props) => {
   const { patients, setPatient } = props;
-
-  const PatientItem = ({ name, lastName, lastVisit, preferredDay }) => {
+  const { store, actions } = useContext(Context);
+  const PatientItem = ({ name, lastName, lastVisit, preferredDay, action }) => {
     return (
       <Tooltip title={`Dia preferido: ` + preferredDay}>
-        <Box className={styles.patientItem}>
+        <Box className={styles.patientItem} onClick={action}>
           <Box>
             <Typography variant="h6" color="textPrimary">
               {name} {lastName}
@@ -198,17 +177,226 @@ const PatientList = (props) => {
             lastName={patient.lastName}
             lastVisit={patient.lastVisit}
             preferredDay={patient.preferredDay}
-            />))}
+            action={() => {
+              actions.setSelectedPatient(patient.name, patient.lastName);
+            }}
+          />
+        ))}
       </Box>
     </Box>
   );
 };
 
-const AppointmentForm = () => {
+const AppointmentForm = (props) => {
+  const noClose = useRef()
+  const { close, date, time, closeREF, closeOutside } = props;
+  const { actions, store } = useContext(Context);
+  const [patient, setPatient] = useState({
+    name: store.selectedPatient.name,
+    lastName: store.selectedPatient.lastName,
+  });
+  const appointmentData = {
+    name: patient.name,
+    lastName: patient.lastName,
+    date: store.selectedDate.date,
+    time: store.selectedDate.time,
+    therapy: "",
+    remarks:""
+  };
+  const onSubmit = async (values, ax) => {
+    console.log("Im submitting", values);
+    ax.setSubmitting(false);
+    await close();
+    await ax.resetForm();
+  };
+  //formik
+  const {
+    values,
+    errors,
+    touched,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    isSubmiting,
+  } = useFormik({
+    initialValues: appointmentData,
+    onSubmit,
+  });
+
+  const therapies = [
+    {
+      id: 1,
+      name: "Psicologia",
+      description: "Psicologia",
+      price: "100",
+      duration: "30",
+      therapist: "V",
+    },
+    {
+      id: 2,
+      name: "Terapia cognitivo-conductual",
+      description: "Terapia cognitivo-conductual",
+      price: "100",
+      duration: "30",
+      therapist: "V",
+    },
+    {
+      id: 3,
+      name: "Terapia neuropsicológica",
+      description: "Terapia neuropsicológica",
+      price: "100",
+      duration: "30",
+      therapist: "V",
+    },
+    {
+      id: 4,
+      name: "Terapia Gestalt humanista",
+      description: "Terapia Gestalt humanista",
+      price: "100",
+      duration: "30",
+      therapist: "V",
+    },
+  ];
+
+
   return (
     <>
       <Box className={styles.AMform}>
         <Header variant={"h5"} title={"Datos de la Cita"} />
+        <form onSubmit={handleSubmit}>
+          <Box
+            sx={{
+              width: "100%",
+              marginTop: "1rem",
+            }}
+          >
+            <Typography variant="body1" color="textSecondary">
+              Datos del paciente:
+            </Typography>
+            <FlexBetween className="mt-2" width="100%">
+              <TextField
+                className={styles.MuiInputBaseinput}
+                label={
+                  store.selectedPatient.name !== ""
+                    ? store.selectedPatient.name
+                    : "Nombre"
+                }
+                name="name"
+                onChange={handleChange}
+                value={values.name}
+                onBlur={handleBlur}
+                error={errors.name && touched.name}
+                helpertext={errors.name}
+                variant="outlined"
+                sx={{
+                  width: "48%",
+                }}
+              />
+              <TextField
+                className={styles.MuiInputBaseinput}
+                label={
+                  store.selectedPatient.lastName !== ""
+                    ? store.selectedPatient.lastName
+                    : "Apellido"
+                }
+                name="lastName"
+                onChange={handleChange}
+                value={values.lastName}
+                onBlur={handleBlur}
+                error={errors.lastName && touched.lastName}
+                helpertext={errors.lastName}
+                variant="outlined"
+                sx={{
+                  width: "48%",
+                }}
+              />
+            </FlexBetween>
+            <Typography className="mt-2" variant="body1" color="textSecondary">
+              Fecha y Hora
+            </Typography>
+            <FlexBetween className="mt-2" width="100%">
+              <TextField
+                className={styles.MuiInputBaseinput}
+                label="Fecha"
+                placeholder="AAAA-MM-DD"
+                name="date"
+                onChange={handleChange}
+                value={values.date}
+                onBlur={handleBlur}
+                error={errors.date && touched.date}
+                helpertext={errors.date}
+                variant="outlined"
+                sx={{
+                  width: "48%",
+                }}
+              />
+              <TextField
+                className={styles.MuiInputBaseinput}
+                label="Hora"
+                placeholder="HH:MM"
+                name="time"
+                onChange={handleChange}
+                value={values.time}
+                onBlur={handleBlur}
+                error={errors.time && touched.time}
+                helpertext={errors.time}
+                variant="outlined"
+                sx={{
+                  width: "48%",
+                }}
+              />
+            </FlexBetween>
+            <Typography className="mt-2" variant="body1" color="textSecondary">
+              Tipo de Consulta
+            </Typography>
+            <FlexBetween className="mt-2 mb-2" width="100%">
+              <Select
+                className={styles.MuiInputBaseinput}
+                label="Tipo de Consulta"
+                name="therapy"
+                onChange={handleChange}
+                value={values.therapy}
+                onBlur={handleBlur}
+                error={errors.therapy && touched.therapy}
+                helpertext={errors.therapy}
+                variant="outlined"
+                fullWidth
+                inputRef={noClose}
+              >
+                {therapies.map((therapy) => (
+                  <MenuItem key={therapy.id} value={therapy.id} >
+                    {therapy.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FlexBetween>
+            <Box className="mt-2" width="100%" sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent:"center",
+              alignItems:"center"
+            }}>
+              <ButtonGroup variant="contained" color="secondary">
+                <Button
+                  className={styles.AMcancel}
+                  onClick={() => {
+                    setShowModal(false);
+                  }}
+                  variant="contained"
+                >
+                  Descartar
+                </Button>
+                <Button
+                  className={styles.AMsave}
+                  onClick={handleSubmit}
+                  variant="contained"
+                >
+                  Guardar
+                </Button>
+              </ButtonGroup>
+            </Box>
+          </Box>
+        </form>
       </Box>
     </>
   );

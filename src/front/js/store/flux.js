@@ -8,10 +8,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       singlepost: [],
       access_token: sessionStorage.getItem("access_token"),
       createcontactmessage: "",
-      contactmessage:[],
-      createreview:"",
-      reviews:[],
-      contactonlyonemessage:[],
+      contactmessage: [],
+      createreview: "",
+      reviews: [],
+      contactonlyonemessage: [],
       is_admin: "",
       user: [],
       users:[],
@@ -28,8 +28,16 @@ const getState = ({ getStore, getActions, setStore }) => {
           start: "2023-02-28",
         },
       ],
-      createpost:"",
+      createpost: "",
       price: "",
+      selectedPatient: {
+        name: "",
+        lastName: "",
+      },
+      selectedDate: {
+        date:"",
+        time:""
+      }
       sessions: "",
       creado:""
 
@@ -54,11 +62,12 @@ const getState = ({ getStore, getActions, setStore }) => {
           language: language,
         });
       },
-      setPrice: (price)=>{
+      setPrice: (price) => {
         setStore({
-          price: price
-        })
+          price: price,
+        });
       },
+
       setCreado: (creado)=>{
         setStore({
           creado: creado
@@ -274,7 +283,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         language,
         image_post,
         current_user
-        
       ) => {
         const options = {
           method: "POST",
@@ -290,27 +298,26 @@ const getState = ({ getStore, getActions, setStore }) => {
             paragraph4: paragraph4,
             paragraph5: paragraph5,
             language: language,
-            image_post: image_post
+            image_post: image_post,
           }),
         };
-        await fetch(`${process.env.BACKEND_URL}/api/blogpost/${current_user}`, options).then(
-          (response) => {
-            if (response.status == 201) {
-              return (
-                response.json(),
-                setStore({
-                  createpost: "Post creado correctamente",
-                })
-              );
-            } else if (response.status == 401) {
-              return(
+        await fetch(
+          `${process.env.BACKEND_URL}/api/blogpost/${current_user}`,
+          options
+        ).then((response) => {
+          if (response.status == 201) {
+            return (
+              response.json(),
               setStore({
-                createpost: "Creación post incorrecto, pruebe de nuevo",
+                createpost: "Post creado correctamente",
               })
-              )
-            }
+            );
+          } else if (response.status == 401) {
+            return setStore({
+              createpost: "Creación post incorrecto, pruebe de nuevo",
+            });
           }
-        );
+        });
       },
 
       // Modificación blog
@@ -341,59 +348,54 @@ const getState = ({ getStore, getActions, setStore }) => {
             paragraph4: paragraph4,
             paragraph5: paragraph5,
             language: language,
-            image_post: image_post
+            image_post: image_post,
           }),
         };
 
-        await fetch(`${process.env.BACKEND_URL}/api/blogpost/${id}/${username}`, options).then(
-          (response) => {
-            if (response.status == 201) {
-              return (
-                response.json(),
-                setStore({
-                  createpost: "Correcto",
-                })
-              );
-            } else if(response.status == 401){
-              return(
+        await fetch(
+          `${process.env.BACKEND_URL}/api/blogpost/${id}/${username}`,
+          options
+        ).then((response) => {
+          if (response.status == 201) {
+            return (
+              response.json(),
               setStore({
-                createpost: "Creación post incorrecto, pruebe de nuevo",
+                createpost: "Correcto",
               })
-              )
-            }
+            );
+          } else if (response.status == 401) {
+            return setStore({
+              createpost: "Creación post incorrecto, pruebe de nuevo",
+            });
           }
-        );
+        });
       },
 
       //Delete post
-      deletepost: async(
-        id
-      )=>{
+      deletepost: async (id) => {
         const options = {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
-          }
-        }
-        await fetch(`${process.env.BACKEND_URL}/api/blogpost/${id}`, options).then(
-          (response) => {
-            if (response.status == 201) {
-              return (
-                response.json(),
-                setStore({
-                  deletepost: "Post borrado",
-                })
-              );
-            } else if(response.status == 401){
-              return(
+          },
+        };
+        await fetch(
+          `${process.env.BACKEND_URL}/api/blogpost/${id}`,
+          options
+        ).then((response) => {
+          if (response.status == 201) {
+            return (
+              response.json(),
               setStore({
-                deletepost: "No se pudo borrar el post",
+                deletepost: "Post borrado",
               })
-              )
-            }
+            );
+          } else if (response.status == 401) {
+            return setStore({
+              deletepost: "No se pudo borrar el post",
+            });
           }
-        );
-
+        });
       },
 
       createAppointment: async (id, title, start, end, allday, patient) => {
@@ -432,28 +434,30 @@ const getState = ({ getStore, getActions, setStore }) => {
             last_name: last_name,
             phone_number: phone_number,
             email: email,
-            problem_description: problem_description
+            problem_description: problem_description,
           }),
         };
-        await fetch(`${process.env.BACKEND_URL}/api/contactmessage`, options).then(
-          (response) => {
-            if (response.status == 201) {
-              return (
-                response.json(),
-                setStore({
-                  createcontactmessage: "correcto",
-                })
-              );
-            } else if (response.status == 400) {
+        await fetch(
+          `${process.env.BACKEND_URL}/api/contactmessage`,
+          options
+        ).then((response) => {
+          if (response.status == 201) {
+            return (
+              response.json(),
               setStore({
-                createcontactmessage: "Error en la creación de mensaje, pruebe de nuevo",
-              });
-            }
+                createcontactmessage: "correcto",
+              })
+            );
+          } else if (response.status == 400) {
+            setStore({
+              createcontactmessage:
+                "Error en la creación de mensaje, pruebe de nuevo",
+            });
           }
-        );
+        });
       },
 
-      fetchallcontactmessages: async() =>{
+      fetchallcontactmessages: async () => {
         const options = {
           method: "GET",
           headers: {
@@ -461,23 +465,27 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
         };
         await fetch(`${process.env.BACKEND_URL}/api/contactmessage`, options)
-        .then(response => response.json())
-        .then(result=>setStore({contactmessage : result}))
+          .then((response) => response.json())
+          .then((result) => setStore({ contactmessage: result }));
       },
 
-      fetchonlyonemessage: async(id) =>{
-        if(id==null){}else{
-        const options = {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        };
-        await fetch(`${process.env.BACKEND_URL}/api/contactmessage/${id}`, options)
-        .then(response => response.json())
-        .then(result=>setStore({contactonlyonemessage : result}))
-      }},
-      
+      fetchonlyonemessage: async (id) => {
+        if (id == null) {
+        } else {
+          const options = {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          };
+          await fetch(
+            `${process.env.BACKEND_URL}/api/contactmessage/${id}`,
+            options
+          )
+            .then((response) => response.json())
+            .then((result) => setStore({ contactonlyonemessage: result }));
+        }
+      },
 
       // Crear review
       createreview: async (
@@ -497,28 +505,29 @@ const getState = ({ getStore, getActions, setStore }) => {
             person_review: person_review,
             first_name: first_name,
             last_name: last_name,
-            language: language
+            language: language,
           }),
         };
-        await fetch(`${process.env.BACKEND_URL}/api/reviews/${username}`, options).then(
-          (response) => {
-            if (response.status == 201) {
-              return (
-                response.json(),
-                setStore({
-                  createreview: "correcto",
-                })
-              );
-            } else if (response.status == 400) {
+        await fetch(
+          `${process.env.BACKEND_URL}/api/reviews/${username}`,
+          options
+        ).then((response) => {
+          if (response.status == 201) {
+            return (
+              response.json(),
               setStore({
-                createreview: "Error en la creación de mensaje, pruebe de nuevo",
-              });
-            }
+                createreview: "correcto",
+              })
+            );
+          } else if (response.status == 400) {
+            setStore({
+              createreview: "Error en la creación de mensaje, pruebe de nuevo",
+            });
           }
-        );
+        });
       },
 
-      displayreviews: async() =>{
+      displayreviews: async () => {
         const options = {
           method: "GET",
           headers: {
@@ -526,41 +535,54 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
         };
         await fetch(`${process.env.BACKEND_URL}/api/reviews`, options)
-        .then(response => response.json())
-        .then(result=>setStore({reviews : result}))
+          .then((response) => response.json())
+          .then((result) => setStore({ reviews: result }));
       },
 
       // Delete review
-      deletereview: async(
-        id
-      )=>{
+      deletereview: async (id) => {
         const options = {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
-          }
-        }
-        await fetch(`${process.env.BACKEND_URL}/api/reviews/${id}`, options).then(
-          (response) => {
-            if (response.status == 200) {
-              return (
-                response.json(),
-                setStore({
-                  deletereview: "Post borrado",
-                })
-              );
-            } else if(response.status == 401){
-              return(
+          },
+        };
+        await fetch(
+          `${process.env.BACKEND_URL}/api/reviews/${id}`,
+          options
+        ).then((response) => {
+          if (response.status == 200) {
+            return (
+              response.json(),
               setStore({
-                deletereview: "No se pudo borrar el post",
+                deletereview: "Post borrado",
               })
-              )
-            }
+            );
+          } else if (response.status == 401) {
+            return setStore({
+              deletereview: "No se pudo borrar el post",
+            });
           }
-        );
-
+        });
       },
 
+      setSelectedPatient: (name, lastName) => {
+        console.log("working", name, lastName);
+        setStore({
+          selectedPatient: {
+            name: name,
+            lastName: lastName,
+          },
+        });
+      },
+      setSelectedDate:(date, time) => {
+        setStore({
+          selectedDate: {
+            date: date,
+            time: time,
+          },
+        });
+      },
     },
   };
 };

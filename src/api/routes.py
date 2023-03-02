@@ -1,13 +1,14 @@
 from datetime import datetime
 from sqlalchemy import and_, or_, not_
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Appointment, BlogPost, Contact, Reviews
+from api.models import db, User, Appointment, BlogPost, Contact, Reviews, Country, City, PatientInfo
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 import base64
 import cloudinary
+import random
 import cloudinary.uploader 
   
 api = Blueprint('api', __name__)
@@ -54,7 +55,6 @@ def signup():
         is_active=True,
         is_admin = False
     )
-
     db.session.add(new_user)
     db.session.commit()
 
@@ -62,6 +62,8 @@ def signup():
         'message': 'User created',
         'New_user': new_user.serialize()
     }), 201
+
+
 
 @api.route('/login', methods=['POST'])
 def login():
@@ -378,3 +380,37 @@ def delete_review(review_id):
     return jsonify({
         'message': 'Post borrado' })
 
+
+@api.route('/testpatientinfobatch', methods=['POST'])
+def testpatientinfobatch():
+    users = User.query.all()
+    user_id_list = []
+    for user in users:
+        user_id_list.append(user.id)
+    for user_id in user_id_list:
+        new_patient_info = PatientInfo(
+            user_id=user_id,
+            birth_date = random.choice(['01/01/1990', '01/01/1991', '01/01/1987', '01/01/1988', '01/01/1989', '01/01/1976', '01/01/1977', '01/01/1978']),
+            gender=random.choice(['Mujer','Hombre']),
+            age = random.choice([29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49]),
+            city_id = random.randint(5, 4000),
+            visits_count = random.randint(0, 25),
+            last_visit = random.choice(['01/01/2023', '01/02/2023', None ]),
+            last_visit_reason = random.choice(['Cambio de tratamiento', 'Cambio de medicamento', 'Cambio de diagnostico', None])
+            )
+        db.session.add(new_patient_info)
+        db.session.commit()
+    return jsonify({
+        'message': 'PatientInfo created',
+        'New_patient_info': new_patient_info.serialize()
+    }), 201
+
+@api.route('/allusers', methods=['GET'])
+def allusers():
+    users = User.query.all()
+    return jsonify({
+        'users': [user.serialize() for user in users]
+    })
+
+
+# Appointments routes
