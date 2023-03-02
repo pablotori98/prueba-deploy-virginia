@@ -16,20 +16,26 @@ export const UserProfile = () => {
     setActiveBlur(value)
   }
   useState(() => {
-    actions.fetchallusers(sessionStorage.getItem("user_id"));
+    actions.fetchuser(sessionStorage.getItem("user_id"));
   }, []);
   const newTitle = store.language == "spanish" ? "Perfil" : "Profile";
   useLayoutEffect(() => {
     document.title = newTitle;
   }, []);
 
+  console.log(store.user.paid_sessions)
   return (
     <Box className="d-flex flex-column align-items-center " sx={{
       filter: activeBlur ? "blur(5px)" : "none",
     }}>
-      <h1 className="fontabhaya text-center my-5 py-3">
+      <p className="fontabhaya text-center mt-5 pt-3 fontsize3rem">
         Hola {store.user.first_name} {store.user.last_name}
-      </h1>
+      </p>
+      {store.user.paid_sessions != null?
+      <p className="mb-5 fontabhaya fontsize1-5rem">Tienes {store.user.paid_sessions} sesiones disponibles</p>
+     :
+     null 
+    }
       <Box className="d-flex justify-content-evenly w-100">
         <Box className="leftprofile">
           <Calendar setBlur={setBlur}/>

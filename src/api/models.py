@@ -1,6 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from datetime import datetime
+from sqlalchemy import Column, ForeignKey, Integer, String, Date, and_, or_, not_
+from sqlalchemy.orm import relationship
 
 db = SQLAlchemy()
 
@@ -64,6 +66,7 @@ class User(db.Model, UserMixin):
     is_admin = db.Column(db.Boolean(), unique=False, nullable=False)
     is_patient = db.Column(db.Boolean(), unique=False, nullable=True)
     patient_info = db.relationship('PatientInfo', backref='User', lazy=True)
+    paid_sessions= db.Column(db.Integer)
 
     def __repr__(self):
         return f'<User {self.email}>'
@@ -79,7 +82,8 @@ class User(db.Model, UserMixin):
             "is_admin": self.is_admin,
             "is_active": self.is_active,
             "is_patient": self.is_patient,
-            "patient_info": [patient_info.serialize() for patient_info in self.patient_info]
+            "patient_info": [patient_info.serialize() for patient_info in self.patient_info],
+            "paid_sessions": self.paid_sessions
         }
 
 
@@ -210,3 +214,18 @@ class Reviews(db.Model):
             "last_name": self.last_name,
             "language": self.language
         }
+
+# class PaidSessions(db.Model):
+#     id= db.Column(db.Integer, primary_key=True)
+#     sessions = db.Column(db.Integer)
+#     user_id = db.Column(db.Integer, ForeignKey("user.id"))
+#     user=db.relationship("User", back_populates="paid_sessions")
+
+#     def __repr__(self):
+#         return f'<PaidSessions {self.sessions}>'
+
+#     def serialize(self):
+#         return {
+#             "id": self.id,
+
+#         }

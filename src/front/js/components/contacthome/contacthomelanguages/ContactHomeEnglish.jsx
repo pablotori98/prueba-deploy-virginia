@@ -25,9 +25,9 @@ export const ContactHomeEnglish = () => {
       values.email,
       values.problem_description
     );
-    if(store.signup=="Correcto"){
-      navigate("/")
-    }
+    // if(store.signup=="Correcto"){
+    //   navigate("/")
+    // }
   };
 
   const { values, handleSubmit, handleChange, onChange } = useFormik({

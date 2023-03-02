@@ -19,7 +19,7 @@ import Testing from "./pages/testting.js";
 import { BlogPost } from "./pages/BlogPost";
 import { Citas } from "./pages/adminpanel/Citas";
 import { CitasPaciente } from "./pages/CitasPaciente";
-
+import { PatientList } from "./components/patientlist/PatientList.jsx";
 //Pages and views
 
 //Components and features
@@ -28,6 +28,7 @@ import { Footer } from "./components/footer/Footer.jsx";
 import { Contact } from "./components/contact/Contact.jsx";
 import ProtectedRoute from "./app/ProtectedRoute.js";
 import AdminRoute from "./app/AdminRoute";
+import { SessionPurchase } from "./components/purchases/SessionPurchase.jsx";
 //Components and features
 import injectContext from "./store/appContext";
 import { HandlePost } from "./components/blog/Createpost/HandlePost.js";
@@ -82,6 +83,15 @@ const Layout = () => {
                   <ProtectedRoute
                     enabledProtection={false}
                     component={<AboutMe />}
+                  />
+                }
+              />
+              <Route
+                path="/sessions"
+                element={
+                  <ProtectedRoute
+                    enabledProtection={false}
+                    component={<SessionPurchase />}
                   />
                 }
               />
@@ -170,6 +180,13 @@ const Layout = () => {
                 path="/admin/messages"
                 element={
                   <AdminRoute isEnabled={true} component={<AdminMessages />} />
+                }
+              />
+
+              <Route
+                path="/admin/patientlist"
+                element={
+                  <AdminRoute isEnabled={true} component={<PatientList />} />
                 }
               />
 

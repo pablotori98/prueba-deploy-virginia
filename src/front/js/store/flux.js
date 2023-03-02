@@ -14,6 +14,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       contactonlyonemessage: [],
       is_admin: "",
       user: [],
+      users:[],
+      userinfo:[],
       user_id: sessionStorage.getItem("user_id"),
       appointments: [],
       initialSample: [
@@ -36,6 +38,10 @@ const getState = ({ getStore, getActions, setStore }) => {
         date:"",
         time:""
       }
+      sessions: "",
+      creado:""
+
+
     },
     actions: {
       //testing events
@@ -61,7 +67,18 @@ const getState = ({ getStore, getActions, setStore }) => {
           price: price,
         });
       },
-      removeresults: () => {
+
+      setCreado: (creado)=>{
+        setStore({
+          creado: creado
+        })
+      },
+      setSessions: (sessions)=>{
+        setStore({
+          sessions: sessions
+        })
+      },
+      removeresults: ()=>{
         setStore({
           createpost: "",
         });
@@ -171,7 +188,19 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       //Fetch all users
-      fetchallusers: async (id) => {
+      fetchallusers: async () => {
+        const options = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        await fetch(`${process.env.BACKEND_URL}/api/users`, options)
+          .then((response) => response.json())
+          .then((result) => setStore({ users: result }));
+      },
+
+      fetchuser: async (id) => {
         const options = {
           method: "GET",
           headers: {
@@ -182,6 +211,19 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((response) => response.json())
           .then((result) => setStore({ user: result }));
       },
+
+      fetchuserinfo: async (id) => {
+        if(id==null){}else{
+        const options = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        await fetch(`${process.env.BACKEND_URL}/api/users/${id}`, options)
+          .then((response) => response.json())
+          .then((result) => setStore({ userinfo: result }));
+      }},
 
       singleblogpost: async (id) => {
         const options = {
@@ -194,6 +236,41 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((response) => response.json())
           .then((result) => setStore({ singlepost: result }));
       },
+
+      // Modificar sesiones
+      paidSessions: async (
+        sessions,
+        id,
+        username
+      ) => {
+        const options = {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            paid_sessions: sessions,
+
+          }),
+        };
+
+        await fetch(`${process.env.BACKEND_URL}/api/users/${id}/${username}`, options).then(
+          (response) => {
+            if (response.status == 201) {
+              return (
+                response.json()
+              );
+            } else if(response.status == 401){
+              return(
+
+                sessionStorage.setItem("Creación post incorrecto, pruebe de nuevo") 
+              )
+            }
+          }
+        );
+      },
+
 
       // Creacion de post
       handlepost: async (

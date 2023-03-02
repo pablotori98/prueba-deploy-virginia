@@ -27,6 +27,12 @@ export const PayPal = () => {
               ],
             });
           }}
+
+          onApprove={(data, actionss) => {
+            return actionss.order.capture().then((details) => {
+                actions.paidSessions((store.sessions + store.user.paid_sessions), sessionStorage.getItem("user_id"), sessionStorage.getItem("current_user"))
+            });
+        }}
         />
       </PayPalScriptProvider>
     </div>
