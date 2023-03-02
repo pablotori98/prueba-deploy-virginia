@@ -113,7 +113,7 @@ class PatientInfo (db.Model):
             "address": self.address,
             "city": self.city.serialize(),
             "visits_count": self.visits_count,
-            "last_visit": self.last_visit.strftime("%Y-%m-%d %H:%M:%S"),
+            "last_visit": self.last_visit,
             "last_visit_reason": self.last_visit_reason
         }
 
