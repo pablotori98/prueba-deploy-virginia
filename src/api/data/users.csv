@@ -1,0 +1,13 @@
+﻿first_name,last_name,username,email,password,phone_number,is_active,is_admin,is_patient
+admin,admin,admin,admin@email.com,1,643816978,true,true,true
+Daenerys,Targaryen,DanyT,dany@firemail.com,1,999444563,true,false,true
+John,Snow,SnowyJonny,SnowyJonny@got.com,1,456212156,true,false,true
+Cercei,Lannister,HardBitch,HardBitch@got.com,1,474942381,true,false,true
+Ned,Stark,NoHeaded,NoHeaded@got.com,1,102474044,true,false,true
+Tyrion,Lannister,GnomeX,GnomeX@got.com,1,337172651,true,false,true
+Arya,Stark,LittleBeast,LittleBeast@got.com,1,389790184,true,false,true
+Barys,Sand,BoldFolk,BoldFolk@got.com,1,264002053,true,false,true
+Khal,Drogo,NotAquaman,NotAquaman@got.com,1,203228826,true,false,true
+Viserys,Targaryen,HotMate,HotMate@got.com,1,493287039,true,false,true
+Drogon,Targaryen,BlackDragon,BlackDragon@got.com,1,37204220,true,false,true
+Viserion,Targeryen,TheUndead,TheUndead@got.com,1,373941725,true,false,true

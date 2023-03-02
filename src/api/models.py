@@ -1,7 +1,55 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from datetime import datetime
+
 db = SQLAlchemy()
+
+class Country(db.Model):#pais
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), unique=True, nullable=False)
+    states = db.relationship('State', backref='Country', lazy=True) 
+
+    def __repr__(self):
+        return f'<Countries {self.name}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "states": [state.serialize() for state in self.states]
+
+        }
+
+class State(db.Model): #provincias
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), unique=True, nullable=False)
+    country = db.Column(db.String(80), db.ForeignKey('country.name'), nullable=False)
+    cities = db.relationship('City', backref='State', lazy=True)
+    def __repr__(self):
+        return f'<States {self.name}>'
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "country": self.country,
+            "cities": [city.serialize() for city in self.cities]
+        }
+
+
+class City(db.Model): #ciudades, pueblos
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), nullable=False)
+    state = db.Column(db.String(80), db.ForeignKey('state.name'), nullable=False)
+
+
+    def __repr__(self):
+        return f'<Cities {self.name}>'
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "state": self.state,
+        }
 
 
 class User(db.Model, UserMixin):
@@ -15,6 +63,7 @@ class User(db.Model, UserMixin):
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
     is_admin = db.Column(db.Boolean(), unique=False, nullable=False)
     is_patient = db.Column(db.Boolean(), unique=False, nullable=True)
+    patient_info = db.relationship('PatientInfo', backref='User', lazy=True)
 
     def __repr__(self):
         return f'<User {self.email}>'
@@ -29,18 +78,51 @@ class User(db.Model, UserMixin):
             "email": self.email,
             "is_admin": self.is_admin,
             "is_active": self.is_active,
-            "is_patient": self.is_patient
+            "is_patient": self.is_patient,
+            "patient_info": [patient_info.serialize() for patient_info in self.patient_info]
+        }
+
+
+class PatientInfo (db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    birth_date = db.Column(db.DateTime, nullable=False)
+    age = db.Column(db.Integer, nullable=False)
+    gender = db.Column(db.String(80), nullable=False)
+    address = db.Column(db.String(120), nullable=True)
+    city_id = db.Column(db.Integer, db.ForeignKey('city.id'), nullable=False)
+    city = db.relationship('City', backref=db.backref('patient_info', lazy=True))
+    visits_count = db.Column(db.Integer, nullable=False)
+    last_visit = db.Column(db.DateTime, nullable=True)
+    last_visit_reason = db.Column(db.String(120), nullable = True)
+
+    def __repr__(self):
+        return f'<PatientInfo {self.user_id}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "birth_date": self.birth_date.strftime("%Y-%m-%d"),
+            "age": self.age,
+            "gender": self.gender,
+            "address": self.address,
+            "city": self.city.serialize(),
+            "visits_count": self.visits_count,
+            "last_visit": self.last_visit.strftime("%Y-%m-%d %H:%M:%S"),
+            "last_visit_reason": self.last_visit_reason
         }
 
 class Appointment(db.Model):
     id = db.Column(db.String(80), primary_key=True)
     title = db.Column(db.String(80), unique=False, nullable=False)
     start = db.Column(db.DateTime, nullable=False)
-    start_hour = db.Column(db.DateTime, unique=False, nullable=True)
     end = db.Column(db.DateTime, nullable=False)
-    end_hour = db.Column(db.DateTime, unique=False, nullable=True)
     remarks = db.Column(db.String(80), nullable=True)
     allDay = db.Column(db.Boolean(), nullable=True)
+    patient_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    patient = db.relationship('User', backref=db.backref('appointments', lazy=True))
+
 
     def __repr__(self):
         return f'<Appointment {self.title}>'
@@ -49,15 +131,13 @@ class Appointment(db.Model):
         return {
             "id": self.id,
             "title": self.title,
-            # format date
-            "start": self.start.strftime("%Y-%m-%d"),
-            "start_hour": self.start.strftime("%H:%M"),
-            "end": self.end.strftime("%Y-%m-%d"),
-            "end_hour": self.end.strftime("%H:%M"),
+            "start": self.start.strftime("%Y-%m-%d %H:%M:%S"),
+            "end": self.end.strftime("%Y-%m-%d %H:%M:%S"),
             "remarks": self.remarks,
-            "allday": self.allDay
+            "allday": self.allDay,
+            "patient_id": self.patient_id,
+            "patient": self.patient.serialize()
         }
-
 
 
 class BlogPost(db.Model):

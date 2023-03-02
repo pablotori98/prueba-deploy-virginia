@@ -28,11 +28,13 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-const Calendar = () => {
+const Calendar = (props) => {
+  const { setBlur } = props;
   const { actions, store } = useContext(Context);
   const [currentEvents, setCurrentEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(true); //<<<<< this toggles modal
+
   const closeREF = useRef(null);
 
   const initialSample = [
@@ -46,11 +48,15 @@ const Calendar = () => {
     },
   ];
   const language = store.language;
+  const handleDate = (date) => {
+    const day = date.startStr.split("T")[0];
+    const time = date.startStr.split("T")[1];
+    actions.setSelectedDate(day, time)
+    setOpen(true)
+  };
 
   const handleDateClick = (selected) => {
-    const title = prompt("New title");
-    const start = prompt("New date, please use YYYY-MM-DD format");
-    actions.newCita(title, start);
+    handleDate(selected);
     // const title = prompt("Enter Title");
     // const calendarApi = selected.view.calendar;
     // calendarApi.unselect();
@@ -97,19 +103,25 @@ const Calendar = () => {
     setCurrentEvents(data);
   };
 
-  const closeOnClickOutside = (e) => {
-    console.log("i was called");
-    if (closeREF.current && !closeREF.current.contains(e.target)) {
-      setOpen(false);
-    }
-  };
 
+
+  const handleClose = () => {
+    setOpen(false);
+    setBlur(false);
+  };
 
   useLayoutEffect(() => {
     fetchAppointments();
+    console.log(currentEvents);
   }, []);
 
   useEffect(() => {
+    if (open === true) {
+      setBlur(true);
+    }
+  });
+  useEffect(() => {
+    console.log("current events", currentEvents);
     setIsLoading(false);
   }, [currentEvents]);
   return isLoading === false ? (
@@ -117,9 +129,8 @@ const Calendar = () => {
       <Box display="flex" justifyContent="space-between">
         <AppointmentModal
           open={open}
-          close={() => setOpen(false)}
+          close={() => handleClose()}
           closeREF={closeREF}
-          closeOutside={closeOnClickOutside}
         />
 
         {/* CALENDAR */}
