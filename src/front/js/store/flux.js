@@ -225,6 +225,36 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((result) => setStore({ userinfo: result }));
       }},
 
+      modifyPassword: async (
+        password,
+        new_password,
+        username
+      ) => {
+        const options = {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            password: password,
+            new_password: new_password
+
+          }),
+        };
+
+        await fetch(`${process.env.BACKEND_URL}/api/settings/${username}/changepassword`, options).then(
+          (response) => {
+            if (response.status == 201) {
+              return (
+                response.json()
+              );
+            } else if(response.status == 401){}
+          }
+        );
+      },
+
+
       singleblogpost: async (id) => {
         const options = {
           method: "GET",

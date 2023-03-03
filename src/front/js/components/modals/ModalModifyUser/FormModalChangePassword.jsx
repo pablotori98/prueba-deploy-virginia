@@ -26,10 +26,10 @@ import {
     };
     const { actions, store } = useContext(Context);
     const onSubmit = async (values, ax) => {
-      await actions.createreview(
+      await actions.modifyPassword(
         values.old_password,
         values.new_password,
-
+        sessionStorage.getItem("current_user")
       );
       location.reload();
     };
