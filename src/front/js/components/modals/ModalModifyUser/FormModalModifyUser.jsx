@@ -95,7 +95,7 @@ export const FormModalModifyUser = () => {
         />
         <LocalizationProvider dateAdapter={AdapterDayjs} className="mb-2">
           <MobileDatePicker
-            label="Date mobile"
+            label="Fecha de nacimiento"
             inputFormat="MM/DD/YYYY"
             value={value}
             onChange={handleChanges}
