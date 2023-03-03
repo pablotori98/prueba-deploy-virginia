@@ -99,6 +99,23 @@ def get_user(user_id):
     user = db.session.query(User).filter(User.id == user_id).first()
     return jsonify(user.serialize()), 200
 
+@api.route('/settings/<string:username_var>/changepassword', methods=['PUT'])
+@jwt_required()
+def change_password(username_var):
+    user = get_jwt_identity()
+    if user != username_var:
+        return jsonify({"message": "Access Denied"}), 401
+    request_data = request.get_json(force=True)
+    old_password= request_data['password']
+    user = db.session.query(User).filter(User.username == username_var, User.password == old_password).first()
+    if user == None:
+        return jsonify({"msg": "contraseña no coincide"})
+
+    else: 
+        user.password = request.json.get('new_password', None)
+        db.session.commit()
+        return jsonify({"msg":"Contraseña modificada con exito", })
+
 #Modify Paid sessions
 @api.route('/users/<int:user_id>/<string:username_var>', methods=['PUT'])
 @jwt_required()
