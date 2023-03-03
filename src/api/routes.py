@@ -138,6 +138,28 @@ def change_personal_info(username_var):
         'message': 'Personal info modified',
         }), 201
 
+# ¿Por que no funciona?
+# #Modify patient info
+# @api.route('/settings/<string:username_var>/<int:user_id>/aditionalpersonalinfo', methods=['PUT'])
+# @jwt_required()
+# def change_patient_info(username_var, user_id):
+#     user = get_jwt_identity()
+#     if user != username_var:
+#         return jsonify({"message": "Access Denied"}), 401
+#     patientinfo = db.session.query(PatientInfo).filter(PatientInfo.user_id == user_id).first()
+#     default_values = patientinfo
+#     request_data = request.get_json(force=True)
+
+#     patientinfo.birth_date = request_data.get('birth_date', default_values.birth_date)
+#     patientinfo.gender = request_data.get('gender', default_values.gender)
+#     patientinfo.city = request_data.get('city', default_values.city)
+#     db.session.commit()
+
+#     return jsonify({
+#         'message': 'Personal info modified',
+#         }), 201
+
+
 
 #Modify Paid sessions
 @api.route('/users/<int:user_id>/<string:username_var>', methods=['PUT'])
