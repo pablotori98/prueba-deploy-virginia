@@ -17,9 +17,12 @@ import { SignUpSpanish } from "../components/signup/SignupSpanish.jsx";
 import { SignUpEnglish } from "../components/signup/SignupEnglish.jsx";
 
 export const SignUp = () => {
+  //Declaracion navigate
   const navigate = useNavigate();
+  //Use context
   const { actions, store } = useContext(Context);
 
+  //Nombre pestaña
   if(store.language=="spanish"){
     const newTitle = "Registro";
     useLayoutEffect(() => {
@@ -30,6 +33,14 @@ export const SignUp = () => {
         document.title = newTitle;
       }, []);
     }
+
+    //Scroll to top
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
+    
+  //Formik
+  //Values
   const onSubmit = async (values, ax) => {
     await actions.signup(
       values.first_name,
@@ -43,7 +54,7 @@ export const SignUp = () => {
       navigate("/");
     }
   };
-
+  //UseFormik
   const { values, handleSubmit, handleChange, onChange } = useFormik({
     initialValues: {
       first_name: "",

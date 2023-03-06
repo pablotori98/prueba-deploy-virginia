@@ -1,5 +1,5 @@
 //Import React
-import React, { useContext, useLayoutEffect } from "react";
+import React, { useContext, useEffect, useLayoutEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 //Import materials
@@ -36,6 +36,9 @@ export const Login = () => {
     onSubmit,
   });
 
+      useEffect(() => {
+      window.scrollTo(0, 0)
+    }, [])
   return (
     <Box className="login">
       <Box className="cardlogin">

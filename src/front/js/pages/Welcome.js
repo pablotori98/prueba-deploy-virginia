@@ -25,6 +25,9 @@ const Welcome = () => {
         document.title = newTitle;
       }, []);
     }
+    useEffect(() => {
+      window.scrollTo(0, 0)
+    }, [])
   return (
     <Box sx={{}}>
       <Box className="d-flex flex-column align-items-center">

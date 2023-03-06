@@ -1,5 +1,5 @@
 //Import React
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 //Import materials
@@ -13,7 +13,9 @@ import { AboutMeComponent } from "../components/aboutme/AboutMeComponent.jsx";
 export const AboutMe = () => {
   const mediadesktop = useMediaQuery("(min-width: 1000px)");
   const mediamobile = useMediaQuery("(min-width: 620px)");
-
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (<Box>
     <AboutMeComponent />
   </Box>)
