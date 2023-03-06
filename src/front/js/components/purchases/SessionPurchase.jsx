@@ -142,7 +142,9 @@ export const SessionPurchase = () => {
 
             {store.user.username ? (
               open == true ? (
-                <PayPal />
+                useEffect(() => {
+                  <PayPal />;
+                }, [])
               ) : (
                 <Button
                   onClick={() => setOpen(true)}
